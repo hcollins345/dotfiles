@@ -8,6 +8,8 @@ cd /tmp && \
 curl -O https://repo.anaconda.com/archive/Anaconda3-5.3.1-Linux-x86_64.sh && \
 bash -b Anaconda3-5.3.1-Linux-x86_64.sh && \
 cd ~ && \
+git config --global user.email "hcollins345@gmail.com"
+git config --global user.name "hcollins345"
 sed -i '1s/#/set -o vi\n#/' .bashrc && \
 sed -i '2s/#/export PATH="~/anaconda3/bin:$PATH"\n#/' .bashrc
 sed -i '3s/#/tmux\n#/' .bashrc && \
