@@ -238,7 +238,7 @@ map <Leader>vz :VimuxZoomRunner<CR>
   else 
     autocmd Filetype markdown map <F5> :!pandoc<space><C-r>%<space>--latex-engine=xelatex<space>-o<space>%:t:r.pdf<space>--verbose<Enter><Enter>
     autocmd Filetype rmd map <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
-    autocmd Filetype rmd map <F7> :!<space>xreader<space>%:t:r.pdf<space>&<CR>
+    autocmd Filetype markdown,rmd map <F7> :!<space>xreader<space>%:t:r.pdf<space>&<CR>
   endif
 
 

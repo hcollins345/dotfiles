@@ -10,28 +10,22 @@ bash -b Anaconda3-5.3.1-Linux-x86_64.sh && \
 cd ~ && \
 git config --global user.email "hcollins345@gmail.com"
 git config --global user.name "hcollins345"
-sed -i '1s/#/set -o vi\n#/' .bashrc && \
-sed -i '2s/#/export PATH="~/anaconda3/bin:$PATH"\n#/' .bashrc
-sed -i '3s/#/tmux\n#/' .bashrc && \
 
-
-#===========Vimrc and YCM=======
-#Then I went put .vimrc in ~ and ran :PluginInstall
-#Need to refresh the terminal or source the anaconda python before running install.py inside of YCM
+# ==========Vimrc and YCM=======
+# go to .vimrc in ~ and ran :PluginInstall
+# Need to refresh the terminal or source the anaconda python before running install.py inside of YCM
 
 # ==========keyboard============
-#Also change the tilling for windows in keyboard (note that if 'snap' a window, other windows cannot be maximised on top of it)
-#Map CapsLock to Esc key
-
-# ==========fonts===============
-# add fonts to terminal by putting the font in the .fonts folder in $HOME and running;
-    #"fv-cache -vf" (I think that's the command)
-
-# Also add the additions to .bashrc and the additions to the .tmux.config file 
-    #(they were the xterm-256color bits)
-
-# decide on keyboard shortcuts
+# Map keyboard shortcuts
     # * push windows -- super + h|j|k|i
     # * snap windows -- ctrl + super + h|j|k|i
     # * map CpsLock to ESC
+    # * close window -- super + backspace
+    # * maximise window -- super + m
+
+# ===========fonts==============
+# add fonts to terminal by putting the font in the .fonts folder in $HOME and running;
+    #"fv-cache -vf" (I think that's the command)
+# you can then access it in preferences
+
 
