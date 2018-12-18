@@ -10,10 +10,12 @@ bash -b Anaconda3-5.3.1-Linux-x86_64.sh && \
 cd ~ && \
 git config --global user.email "hcollins345@gmail.com"
 git config --global user.name "hcollins345"
+conda install -c conda-forge powerline-status 
+
 
 # ==========Vimrc and YCM=======
 # go to .vimrc in ~ and ran :PluginInstall
-# Need to refresh the terminal or source the anaconda python before running install.py inside of YCM
+# Need to change bashrc anaconda path, refresh the terminal or source anaconda python before running install.py inside of YCM
 
 # ==========keyboard============
 # Map keyboard shortcuts
@@ -26,6 +28,16 @@ git config --global user.name "hcollins345"
 # ===========fonts==============
 # add fonts to terminal by putting the font in the .fonts folder in $HOME and running;
     #"fv-cache -vf" (I think that's the command)
+    # was using operator mono
 # you can then access it in preferences
+
+# ===========powerline=========
+# for git info, change shell{theme: default} to default_leftonly in ~/.vim/bundle/powerline/powerline/config_files config.json
+# TRY AIRLINE, it does the same thing but just for vim
+# To modify, download the powerline symbols, sudo apt install fontforge
+  #http://designwithfontforge.com/en-US/Installing_Fontforge.html
+  #need to modify the height in the fontforge
+
+
 
 

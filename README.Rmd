@@ -9,7 +9,7 @@ Config files for vim, tmux, bash alongside startup scripts for installations, sy
 
 ### setup files
 
-Repo should be cloned into \$HOME
+Repo should be cloned into \$HOME.
 
 #### startup.sh
 To be run with sudo after new OS installation.
