@@ -1,3 +1,4 @@
+" SHIT {{{
 " All system-wide defaults are set in $VIMRUNTIME/debian.vim and sourced by
 " the call to :runtime you can find below.  If you wish to change any of those
 " settings, you should do it in this file (/etc/vim/vimrc), since debian.vim
@@ -9,9 +10,9 @@
 " properly set to work with the Vim-related packages available in Debian.
 "
 " LINUX
-""runtime! debian.vim
-
-" VUNDLE REQUIREMENTS
+"" runtime! debian.vim
+" }}}
+" ===== INIT SETTINGS AND VUNDLE REQUIREMENTS {{{
 set nocompatible              " be iMproved, required
 filetype off                  " required
 " WINDOWS Portable =======================
@@ -27,7 +28,8 @@ call vundle#begin()
 " End OS choice===========================
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-"-------------------------- Vundle PLUGINS -----------------------------
+" }}}
+" ===== PLUGINS {{{
 "run :PluginInstall after saving (might have to reload vimrc)
 "Syntax and code completion
 Plugin 'jmarkow/vim-matlab'
@@ -51,6 +53,13 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
 "VIMWIKI
 Plugin 'vimwiki/vimwiki'
+Plugin 'suan/vim-instant-markdown'
+"NERDTree
+Plugin 'scrooloose/nerdtree'
+"MiniMap
+"Plugin 'severin-lemaignan/vim-minimap'
+"Folding
+Plugin 'tmhedberg/SimpylFold' "python
 "OTHER
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
@@ -71,7 +80,8 @@ if has("syntax")
   syntax on
 endif
 :syntax enable
-"===================== ColorScheme/ SynTax/ Spelling  ================
+" }}}
+"===== ColorScheme/ SynTax/ Spelling  {{{ 
 let g:gruvbox_italic=1 
 set termguicolors " Gives terminal vim the same color options as 256???
 let g:pandoc#syntax#conceal#use = 1
@@ -82,8 +92,8 @@ else
 	hi SpellBad guifg=Red
 endif
 hi SpellBad cterm=bold ctermfg=1 
-
-"======================= Random Plugin Configs ==========================
+" }}}
+"===== Plugin Configs {{{
 "VIM-LATEX
 let g:tex_flavor='latex'
 "I don't know what this is for but the $* creates an error message
@@ -92,7 +102,10 @@ let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats='pdf, aux'
 
 "VimWiki
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown','ext': '.md', 'auto_tags': 1}]
+let g:vimwiki_list = [{'path': '~/dotfiles/vimwiki/', 'syntax': 'markdown','ext': '.md', 'auto_tags': 1}]
+let g:instant_markdown_autostart = 0
+let g:vimwiki_ext2syntax = {'.md': 'markdown'}
+
 "Pandoc/ Rmarkdown
 let g:pandoc#folding#fdc = 0
 "Arduino Directory
@@ -102,6 +115,11 @@ let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Python Folding (uncomment to see docstrings)
+let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_fold_docstring	= 0
+
 "powerline
 set laststatus=2 " 2 to Always display the statusline in all windows
 "set showtabline=2 " Always display the tabline, even if there is only one tab
@@ -109,7 +127,11 @@ set laststatus=2 " 2 to Always display the statusline in all windows
 "set t_Co=256
 let g:Powerline_symbols = 'fancy'
 "https://powerline.readthedocs.io/en/latest/configuration.html#quick-setup-guide
-"======================= FileType Indentation ========================
+
+"NERDTree
+let NERDTreeMinimalUI = 1
+" }}}
+"===== FileType Indentation {{{
 set ts=2 sts=2 sw=2
 if has("autocmd")
   filetype on
@@ -128,16 +150,23 @@ if has("autocmd")
 	autocmd BufRead,BufNewFile *.ino set filetype=arduino
   filetype plugin indent on
 endif
-"========================= MAPPINGS ==================================
-"----------------------- Plugin Mappings ------------------------------
+"}}}
+"===== MAPPINGS {{{
+
+:let mapleader = ","
+"----- Plugin Mappings {{{
+
 " Commentary
 map cm <Plug>Commentary
-"----------------------- General Mappings -----------------------------
+map <leader>n :NERDTreeToggle<CR>
+"}}}
+"----- General Mappings {{{
+
 " stops undoable undo
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
 " trigger line numbering
-nmap <C-N><C-N> :set invnumber<CR>
+nmap <leader>nn :set invnumber<CR>
 " fold settings 
 set foldlevel=1
 nnoremap <space> za
@@ -150,8 +179,8 @@ map <leader>vl :VimuxRunLastCommand<CR>
 map <Leader>vi :VimuxInspectRunner<CR>
 " Zoom the tmux runner pane
 map <Leader>vz :VimuxZoomRunner<CR>
-"----------------------- FileType Mappings ----------------------------
-:let mapleader = ","
+" }}}
+"----- FileType Mappings {{{
 "MARKDOWN
   autocmd Filetype markdown,rmd map <leader>w yiWi[<esc>Ea](<esc>pa)
   autocmd Filetype markdown,rmd inoremap ;n ---<Enter><Enter>
@@ -189,7 +218,9 @@ map <Leader>vz :VimuxZoomRunner<CR>
   autocmd BufRead,BufNewFile *.rq map <F5> :!<space>sparql.bat<space>--data=royal92.nt<space>--query=%<CR>
   "Py
   autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python<space>%<CR>
-"======================== Vim configs ================================
+" }}}
+" }}}
+"===== Vim configs {{{
 set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
 set ignorecase		" Do case insensitive matching
@@ -218,6 +249,8 @@ if has('path_extra')
 endif
 set smarttab
 set autoindent
+" }}}
+" ===== Extra {{{
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -235,3 +268,5 @@ if has("autocmd")
 	autocmd bufwritepost .vimrc nested :source $MYVIMRC
 endif
 
+" vim: set fdm=marker fmr={{{,}}} fdl=0 :
+"}}}
