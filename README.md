@@ -23,7 +23,10 @@ Creates symbolic links for each of the config files.
 2. sudo apt install git 
 3. add ssh keys 
 [tutorial](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
-4. git clone dotfiles
-5. bash sync.sh
-6. sudo bash startup.sh
-7. bash startup_part_2.sh
+4. chmod 600 ~/.ssh/id_rsa
+5. git clone dotfiles
+6. bash sync.sh
+7. sudo bash startup.sh
+8. bash startup_part_2.sh
+9. :PluginInstall in .vimrc
+

@@ -7,7 +7,9 @@ echo "install.packages(c('rmarkdown', 'reticulate', 'tinytex'), repos='http://cr
 cd /tmp && \
 curl -O https://repo.anaconda.com/archive/Anaconda3-5.3.1-Linux-x86_64.sh && \
 bash -b Anaconda3-5.3.1-Linux-x86_64.sh && \
-sudo chmod -R ugo+rw ~/anaconda3
+sudo chown -R harry ~/anaconda3
+sudo chown -R harry ~/.vim
+sudo chown -R harry ~/.TinyTex
 
 # ==========Vimrc and YCM=======
 # go to .vimrc in ~ and ran :PluginInstall
@@ -35,6 +37,6 @@ sudo chmod -R ugo+rw ~/anaconda3
   #http://designwithfontforge.com/en-US/Installing_Fontforge.html
   #need to modify the height in the fontforge
 
-
-
-
+# ==========Notes==============
+# chown steps doesn't change the group (it is still root) (although I can't
+#     why that would be problem
