@@ -1,6 +1,6 @@
 #Need to add the cran link to etc/../sources.list for ubuntu bionic (if still using linux mint Tara), looks like deb https...
-sudo apt-get update && \
-sudo apt-get upgrade && \
+sudo apt-get update -y && \
+sudo apt-get upgrade -y && \
 sudo apt-get install --assume-yes xclip tmux git r-base vim-gtk3 pandoc pandoc-citeproc cmake build-essential && \
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && \
 echo "install.packages(c('rmarkdown', 'reticulate', 'tinytex'), repos='http://cran.rstudio.com/'); tinytex::install_tinytex()" | sudo R --vanilla && \
@@ -23,7 +23,8 @@ conda install -c conda-forge powerline-status
     # * snap windows -- ctrl + super + h|j|k|i
     # * map CpsLock to ESC
     # * close window -- super + backspace
-    # * maximise window -- super + m
+    # * toggle maximisation -- super + m
+    # * toggle fullscreen -- super + ctrl + m
 
 # ===========fonts==============
 # add fonts to terminal by putting the font in the .fonts folder in $HOME and running;
