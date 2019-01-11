@@ -7,11 +7,7 @@ echo "install.packages(c('rmarkdown', 'reticulate', 'tinytex'), repos='http://cr
 cd /tmp && \
 curl -O https://repo.anaconda.com/archive/Anaconda3-5.3.1-Linux-x86_64.sh && \
 bash -b Anaconda3-5.3.1-Linux-x86_64.sh && \
-cd ~ && \
-git config --global user.email "hcollins345@gmail.com"
-git config --global user.name "hcollins345"
-conda install -c conda-forge powerline-status 
-
+sudo chmod -R ugo+rw ~/anaconda3
 
 # ==========Vimrc and YCM=======
 # go to .vimrc in ~ and ran :PluginInstall
