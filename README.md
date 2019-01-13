@@ -29,4 +29,10 @@ Creates symbolic links for each of the config files.
 7. sudo bash startup.sh
 8. bash startup_part_2.sh
 9. :PluginInstall in .vimrc
+10. Compile YCM (run install.py in the YCM directory)
+11. 
+12. 
 
+### TODO
+
+- [ ] Run :PluginInstall from commandline

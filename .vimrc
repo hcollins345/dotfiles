@@ -64,6 +64,8 @@ Plugin 'tmhedberg/SimpylFold' "python
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim'}
+
+Plugin 'szymonmaszke/vimpyter'
 call vundle#end()            " required
 filetype plugin indent on    " required
 filetype indent on
