@@ -220,6 +220,10 @@ map <Leader>vz :VimuxZoomRunner<CR>
   autocmd BufRead,BufNewFile *.rq map <F5> :!<space>sparql.bat<space>--data=royal92.nt<space>--query=%<CR>
   "Py
   autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python<space>%<CR>
+  "ipynb
+  autocmd Filetype ipynb nmap <silent><Leader>b :VimpyterInsertPythonBlock<CR>
+  autocmd Filetype ipynb nmap <silent><Leader>j :VimpyterStartJupyter<CR>
+  autocmd Filetype ipynb nmap <silent><Leader>n :VimpyterStartNteract<CR>
 " }}}
 " }}}
 "===== Vim configs {{{
