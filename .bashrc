@@ -1,5 +1,6 @@
 set -o vi
 export PATH="/home/harry/anaconda3/bin:$PATH"
+export PATH="/home/harry/apps/android-studio/bin:$PATH"
 export TERM="xterm-256color"
 alias tmux="env TERM=screen-256color tmux"
 export CLUSTER="s1664050@korenvliet.ewi.utwente.nl"
