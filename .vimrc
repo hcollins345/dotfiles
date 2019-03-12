@@ -66,7 +66,6 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim'}
 
-Plugin 'szymonmaszke/vimpyter'
 call vundle#end()            " required
 filetype plugin indent on    " required
 filetype indent on
@@ -97,6 +96,8 @@ endif
 hi SpellBad cterm=bold ctermfg=1 
 " }}}
 "===== Plugin Configs {{{
+"vim fugitive
+set diffopt+=vertical
 "VIM-LATEX
 let g:tex_flavor='latex'
 "I don't know what this is for but the $* creates an error message
@@ -162,6 +163,10 @@ endif
 " Commentary
 map cm <Plug>Commentary
 map <leader>n :NERDTreeToggle<CR>
+
+" Vimwiki
+nmap <silent><buffer> <Leader>wc <Plug>Vimwiki2HTML
+
 "}}}
 "----- General Mappings {{{
 
@@ -191,7 +196,9 @@ map <Leader>vz :VimuxZoomRunner<CR>
   autocmd Filetype markdown,rmd inoremap ;s ~~~~<++><Esc>F~hi
   autocmd Filetype markdown,rmd inoremap ;e **<++><Esc>F*i
   autocmd Filetype markdown,rmd inoremap ;h ====<Space><++><Esc>F=hi
+  "image
   autocmd Filetype markdown,rmd inoremap ;i ![](<++>)<++><Esc>F[a
+  "links
   autocmd Filetype markdown,rmd inoremap ;a [](<++>)<++><Esc>F[a
   autocmd Filetype markdown,rmd inoremap ;1 #<Space><Enter><++><Esc>kA
   autocmd Filetype markdown,rmd inoremap ;2 ##<Space><Enter><++><Esc>kA
@@ -200,8 +207,8 @@ map <Leader>vz :VimuxZoomRunner<CR>
   autocmd Filetype markdown,rmd inoremap ;eq $$\begin{aligned}<CR><CR>\end{aligned}$$<CR><++><Esc>kki<space><space>
   "autocmd Filetype markdown,rmd map <F5> :!pandoc<space><C-r>%<space>--pdf-engine=xelatex<space>-o<space><C-r>%.pdf<Enter><Enter>
   autocmd Filetype markdown,rmd map <F6> i---<CR>title: <++><CR>subtitle: <++><CR>author: Harry Collins<CR>date: '<C-r>=strftime('%c')<CR><++>'<CR>output: <++>pdf_document<CR>urlcolor: <++>blue<CR>linkcolor: <++>black<CR>---<CR><CR><++><C-j>
-  autocmd Filetype rmd inoremap ;r ```{r}<CR>```<CR><CR><esc>2kO
-  autocmd Filetype rmd inoremap ;p ```{python}<CR>```<CR><CR><esc>2kO
+  autocmd Filetype markdown,rmd inoremap ;r ```{r}<CR>```<CR><CR><esc>2kO
+  autocmd Filetype markdown,rmd inoremap ;p ```{python}<CR>```<CR><CR><esc>2kO
   if exists('$TUX')
     autocmd Filetype markdown map <buffer> <F5> :!pandoc<space><C-r>%<space>--latex-engine=xelatex<space>-o<space>%:t:r.pdf<space>--verbose<Enter><Enter>
     autocmd Filetype rmd map <buffer> <F5> :call VimuxRunCommand("echo<space>$'require(rmarkdown);<space>render('~/test.Rmd')'<space>\|<space>R<space>--vanilla")<CR>
@@ -238,7 +245,7 @@ set hidden		" Hide buffers when they are abandoned
 set mouse=a		" Enable mouse usage (all modes)
 set backspace=indent,eol,start " allow backspacing over indent, start of line and start
 set expandtab  " turns tabs to spaces
-set clipboard=unnamed  " uses the OS clipboard for copying and pasting
+set clipboard=unnamedplus " uses the OS clipboard for copying and pasting
 set encoding=utf-8
 "new (tobe checked)
 set scrolloff=1
