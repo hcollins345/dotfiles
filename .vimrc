@@ -204,7 +204,8 @@ map <Leader>vz :VimuxZoomRunner<CR>
   autocmd Filetype markdown,rmd inoremap ;2 ##<Space><Enter><++><Esc>kA
   autocmd Filetype markdown,rmd inoremap ;3 ###<Space><Enter><++><Esc>kA
   autocmd Filetype markdown,rmd inoremap ;l --------<Enter>
-  autocmd Filetype markdown,rmd inoremap ;eq $$\begin{aligned}<CR><CR>\end{aligned}$$<CR><++><Esc>kki<space><space>
+  autocmd Filetype markdown,rmd inoremap ;eq \begin{align}<CR><CR>\end{align}<CR><++><Esc>kki<space><space>
+  autocmd Filetype markdown,rmd inoremap ;hr \hyperref[]{<++> \autoref{<++>}}<Esc>21hi
   "autocmd Filetype markdown,rmd map <F5> :!pandoc<space><C-r>%<space>--pdf-engine=xelatex<space>-o<space><C-r>%.pdf<Enter><Enter>
   autocmd Filetype markdown,rmd map <F6> i---<CR>title: <++><CR>subtitle: <++><CR>author: Harry Collins<CR>date: '<C-r>=strftime('%c')<CR><++>'<CR>output: <++>pdf_document<CR>urlcolor: <++>blue<CR>linkcolor: <++>black<CR>---<CR><CR><++><C-j>
   autocmd Filetype markdown,rmd inoremap ;r ```{r}<CR>```<CR><CR><esc>2kO
