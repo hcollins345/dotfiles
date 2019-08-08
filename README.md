@@ -35,11 +35,11 @@ Creates symbolic links for each of the config files.
 13. 
 
 #### Vim install (if not using startup.sh)
-'''
+```
 bash sync.sh 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 :PluginInstall #in vim
-'''
+```
 
 ### TODO
 
