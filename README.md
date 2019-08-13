@@ -39,6 +39,7 @@ Creates symbolic links for each of the config files.
 bash sync.sh 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 :PluginInstall #in vim
+source ~/.bashrc
 ```
 
 ### TODO
