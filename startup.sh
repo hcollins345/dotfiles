@@ -26,9 +26,10 @@ sudo chown -R harry ~/.TinyTex
 
 # ===========fonts==============
 # add fonts to terminal by putting the font in the .fonts folder in $HOME and running;
-    #"fv-cache -vf" (I think that's the command)
-    # was using operator mono
+    #"fc-cache -vf" (from wherever you put it)
+    # was using operator mono book
 # you can then access it in preferences
+# If you want to patch in glyphs better maybe try "ryanoasis/ nerd-fonts"
 
 # ===========powerline=========
 # for git info, change shell{theme: default} to default_leftonly in ~/.vim/bundle/powerline/powerline/config_files config.json
@@ -40,3 +41,6 @@ sudo chown -R harry ~/.TinyTex
 # ==========Notes==============
 # chown steps doesn't change the group (it is still root) (although I can't
 #     why that would be problem
+# which python shows location of python
+# python --version should mention anaconda in the echo 
+# refreshing can be done using     source ~/.bashrc

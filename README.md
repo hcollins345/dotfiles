@@ -59,4 +59,3 @@ sudo apt-get install thermald
 
 sudo apt-get install indicator-cpufreq
 
-

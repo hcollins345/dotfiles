@@ -38,6 +38,8 @@ Plugin 'elmanuelito/vim-matlab-behave'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-latex/vim-latex'
 Plugin 'vivien/vim-linux-coding-style'
+Plugin 'Raimondi/delimitMate'
+
 "T Pope
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
@@ -118,7 +120,15 @@ let g:arduino_dir = '~/Applications/Arduino'
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:ycm_seed_identifiers_with_syntax = 1
+  " runs <c-space> after 2 letters
+let g:ycm_semantic_triggers = {
+	\   'python': [ 're!\w{2}' ]
+	\ }
+  " This doesn't work with python, but there is options like GoToDefinition
+  " etc
+map <leader>g :YcmCompleter GoToImplementationElseDeclaration<CR>
+map <leader>i :YcmCompleter GetDoc<CR>
 
 " Python Folding (uncomment to see docstrings)
 let g:SimpylFold_docstring_preview = 1
@@ -157,11 +167,13 @@ endif
 "}}}
 "===== MAPPINGS {{{
 
-:let mapleader = ","
+let mapleader = ","
 "----- Plugin Mappings {{{
 
 " Commentary
 map cm <Plug>Commentary
+
+" NERDTree
 map <leader>n :NERDTreeToggle<CR>
 
 " Vimwiki
@@ -209,7 +221,7 @@ map <Leader>vz :VimuxZoomRunner<CR>
   "autocmd Filetype markdown,rmd map <F5> :!pandoc<space><C-r>%<space>--pdf-engine=xelatex<space>-o<space><C-r>%.pdf<Enter><Enter>
   autocmd Filetype markdown,rmd map <F6> i---<CR>title: <++><CR>subtitle: <++><CR>author: Harry Collins<CR>date: '<C-r>=strftime('%c')<CR><++>'<CR>output: <++>pdf_document<CR>urlcolor: <++>blue<CR>linkcolor: <++>black<CR>---<CR><CR><++><C-j>
   autocmd Filetype markdown,rmd inoremap ;r ```{r}<CR>```<CR><CR><esc>2kO
-  autocmd Filetype markdown,rmd inoremap ;p ```{python}<CR>```<CR><CR><esc>2kO
+  autocmd Filetype markdown,rmd inoremap ;p ```{python echo=FALSE, fig.cap=''}<CR>```<CR><CR><esc>2kO
   if exists('$TUX')
     autocmd Filetype markdown map <buffer> <F5> :!pandoc<space><C-r>%<space>--latex-engine=xelatex<space>-o<space>%:t:r.pdf<space>--verbose<Enter><Enter>
     autocmd Filetype rmd map <buffer> <F5> :call VimuxRunCommand("echo<space>$'require(rmarkdown);<space>render('~/test.Rmd')'<space>\|<space>R<space>--vanilla")<CR>
@@ -262,6 +274,8 @@ set formatoptions+=j " Delete comment character when joining commented lines
 if has('path_extra')
   setglobal tags-=./tags tags-=./tags; tags^=./tags;
 endif
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
 set smarttab
 set autoindent
 " }}}
