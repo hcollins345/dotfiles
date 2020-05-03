@@ -7,9 +7,10 @@ echo "install.packages(c('rmarkdown', 'reticulate', 'tinytex'), repos='http://cr
 cd /tmp && \
 curl -O https://repo.anaconda.com/archive/Anaconda3-5.3.1-Linux-x86_64.sh && \
 bash -b Anaconda3-5.3.1-Linux-x86_64.sh && \
-sudo chown -R harry ~/anaconda3
-sudo chown -R harry ~/.vim
-sudo chown -R harry ~/.TinyTex
+sudo chown -R harry ~/anaconda3 && \
+sudo chown -R harry ~/.vim && \
+sudo chown -R harry ~/.TinyTex && \
+vim +PluginInstall +qall 
 
 # ==========Vimrc and YCM=======
 # go to .vimrc in ~ and ran :PluginInstall
