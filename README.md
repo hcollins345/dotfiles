@@ -44,7 +44,7 @@ source ~/.bashrc
 
 ### TODO
 
-- [ ] Run :PluginInstall from commandline
+- [x] Run :PluginInstall from commandline
 
 
 ### POWER MANAGEMENT
@@ -66,4 +66,9 @@ sudo apt-get install thermald
 #### CPUfreq
 
 sudo apt-get install indicator-cpufreq
+
+## Windows
+
+Tmux:
+https://blog.pjsen.eu/?p=440
 
