@@ -4,7 +4,7 @@ configs
 Config files for vim, tmux, bash alongside startup scripts for
 installations, symbolic links etc
 
-### setup files
+### Setup
 
 Repo should be cloned into $HOME
 
