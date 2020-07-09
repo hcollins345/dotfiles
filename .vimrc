@@ -92,6 +92,7 @@ let g:pandoc#syntax#conceal#use = 1
 colorscheme gruvbox
 set background=dark
 if has('gui_running')
+	set guifont=Lucida_Console:h12:cDEFAULT
 else
 	hi SpellBad guifg=Red
 endif
