@@ -53,7 +53,11 @@ source ~/.bashrc
 ### git install
 https://git-scm.com/download/win
 
-### POWER MANAGEMENT
+### Tmux:
+https://blog.pjsen.eu/?p=440
+
+
+## POWER MANAGEMENT (Linux)
 
 Details here
 https://itsfoss.com/reduce-overheating-laptops-linux/
@@ -73,8 +77,6 @@ sudo apt-get install thermald
 
 sudo apt-get install indicator-cpufreq
 
-## Windows
 
-Tmux:
-https://blog.pjsen.eu/?p=440
+
 
