@@ -48,6 +48,10 @@ source ~/.bashrc
 - [ ] Insert backticks in tmux https://gist.github.com/JikkuJose/7509315
             (mod so 3 backticks will insert one backtick)
 
+## Windows 
+
+### git install
+https://git-scm.com/download/win
 
 ### POWER MANAGEMENT
 
