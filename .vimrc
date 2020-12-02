@@ -40,6 +40,8 @@ Plugin 'vim-latex/vim-latex'
 Plugin 'vivien/vim-linux-coding-style'
 Plugin 'Raimondi/delimitMate'
 
+Plugin 'python_match.vim'
+Plugin 'matchit.zip'
 "T Pope
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
