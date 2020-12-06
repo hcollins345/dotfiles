@@ -79,7 +79,10 @@ sudo apt-get install indicator-cpufreq
 
 ## Monitor overlay
 https://www.msi.com/Landing/afterburner
+
 Msi afterburner auto installs RTSS (used for the overlays)
+
+https://pcgamehaven.com/easily-monitor-cpu-gpu-usage-gaming/
 
 
 
