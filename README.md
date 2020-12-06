@@ -79,6 +79,8 @@ sudo apt-get install indicator-cpufreq
 
 ## Monitor overlay
 https://en.softonic.com/download/agaueeye/windows/post-download
+https://www.msi.com/Landing/afterburner
+
 
 
 
