@@ -77,6 +77,9 @@ sudo apt-get install thermald
 
 sudo apt-get install indicator-cpufreq
 
+## Monitor overlay
+https://en.softonic.com/download/agaueeye/windows/post-download
+
 
 
 
