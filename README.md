@@ -56,6 +56,12 @@ https://git-scm.com/download/win
 ### Tmux:
 https://blog.pjsen.eu/?p=440
 
+### Vim -- youcompleteme
+You need to install python
+You need to install cake
+https://cmake.org/download/
+I also needed to select Visual C++ build tools in Workloads in Visual Studio.
+Then compile YCM (run install.py in the YCM directory)
 
 ## POWER MANAGEMENT (Linux)
 
