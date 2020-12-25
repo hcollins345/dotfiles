@@ -5,8 +5,8 @@ sudo apt-get install --assume-yes xclip tmux git r-base vim-gtk3 pandoc pandoc-c
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && \
 echo "install.packages(c('rmarkdown', 'reticulate', 'tinytex'), repos='http://cran.rstudio.com/'); tinytex::install_tinytex()" | sudo R --vanilla && \
 cd /tmp && \
-curl -O https://repo.anaconda.com/archive/Anaconda3-5.3.1-Linux-x86_64.sh && \
-bash -b Anaconda3-5.3.1-Linux-x86_64.sh && \
+curl -O https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh && \
+bash Anaconda3-2020.11-Linux-x86_64.sh -b && \
 sudo chown -R harry ~/anaconda3 && \
 sudo chown -R harry ~/.vim && \
 sudo chown -R harry ~/.TinyTex && \
