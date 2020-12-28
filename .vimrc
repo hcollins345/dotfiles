@@ -35,13 +35,18 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'jmarkow/vim-matlab'
 Plugin 'stevearc/vim-arduino'
 Plugin 'elmanuelito/vim-matlab-behave'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-latex/vim-latex'
 Plugin 'vivien/vim-linux-coding-style'
 Plugin 'Raimondi/delimitMate'
-
+"Search
+Plugin 'junegunn/fzf.vim'
+"editorconfig
+Plugin 'editorconfig/editorconfig-vim'
+"Extend % functionality (python_match might be a superset of matchit.zip)
 Plugin 'python_match.vim'
 Plugin 'matchit.zip'
+
 "T Pope
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
@@ -65,10 +70,14 @@ Plugin 'scrooloose/nerdtree'
 "Plugin 'severin-lemaignan/vim-minimap'
 "Folding
 Plugin 'tmhedberg/SimpylFold' "python
-"OTHER
+"Panes
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
+"Powerline
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim'}
+
+Plugin 'mattn/emmet-vim'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -109,7 +118,8 @@ let g:tex_flavor='latex'
 "set grepprg=grep\ -nH $*
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats='pdf, aux'
-
+"Editorconfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 "VimWiki
 let g:vimwiki_list = [{'path': '~/dotfiles/vimwiki/', 'syntax': 'markdown','ext': '.md', 'auto_tags': 1}]
 let g:instant_markdown_autostart = 0
@@ -119,19 +129,23 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 let g:pandoc#folding#fdc = 0
 "Arduino Directory
 let g:arduino_dir = '~/Applications/Arduino'
+
 "YouCompleteMe 
-let g:ycm_filepath_completion_use_working_dir = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_seed_identifiers_with_syntax = 1
+" let g:ycm_filepath_completion_use_working_dir = 1
+" let g:ycm_collect_identifiers_from_tags_files = 1
+" let g:ycm_autoclose_preview_window_after_insertion = 1
+" let g:ycm_seed_identifiers_with_syntax = 1
   " runs <c-space> after 2 letters
-let g:ycm_semantic_triggers = {
+" let g:ycm_semantic_triggers = {
 	\   'python': [ 're!\w{2}' ]
 	\ }
   " This doesn't work with python, but there is options like GoToDefinition
   " etc
-map <leader>g :YcmCompleter GoToImplementationElseDeclaration<CR>
-map <leader>i :YcmCompleter GetDoc<CR>
+" map <leader>g :YcmCompleter GoToImplementationElseDeclaration<CR>
+" map <leader>i :YcmCompleter GetDoc<CR>
+
+"fzf
+map ; :Files<CR>
 
 " Python Folding (uncomment to see docstrings)
 let g:SimpylFold_docstring_preview = 1
@@ -148,54 +162,6 @@ let g:Powerline_symbols = 'fancy'
 "NERDTree
 let NERDTreeMinimalUI = 1
 " }}}
-"===== FileType Indentation {{{
-set ts=2 sts=2 sw=2
-if has("autocmd")
-  filetype on
-  autocmd FileType vim setlocal ts=2 sts=2 sw=2 
-  autocmd FileType ruby setlocal ts=2 sts=2 sw=2 
-  autocmd FileType python setlocal ts=4 sts=4 sw=4 
-  autocmd FileType html setlocal ts=2 sts=2 sw=2 
-  autocmd FileType css setlocal ts=4 sts=4 sw=4 
-  autocmd FileType matlab setlocal ts=4 sw=4 
-  autocmd FileType tex setlocal sw=2 sts=2 ts=2
-  autocmd FileType LaTex setlocal sw=2 sts=2 ts=2
-	autocmd FileType sh setlocal sw=4 ts=4
-	autocmd FileType markdown setlocal ts=2 sts=2 sw=2
-	autocmd FileType rmd setlocal ts=2 sts=2 sw=2 
-	autocmd BufRead,BufNewFile *.pde set filetype=arduino
-	autocmd BufRead,BufNewFile *.ino set filetype=arduino
-  filetype plugin indent on
-endif
-function! DoPrettyXML()
-  " save the filetype so we can restore it later
-  let l:origft = &ft
-  set ft=
-  " delete the xml header if it exists. This will
-  " permit us to surround the document with fake tags
-  " without creating invalid xml.
-  1s/<?xml .*?>//e
-  " insert fake tags around the entire document.
-  " This will permit us to pretty-format excerpts of
-  " XML that may contain multiple top-level elements.
-  0put ='<PrettyXML>'
-  $put ='</PrettyXML>'
-  silent %!xmllint --encode UTF-8 --format -
-  " xmllint will insert an <?xml?> header. it's easy enough to delete
-  " if you don't want it.
-  " delete the fake tags
-  2d
-  $d
-  " restore the 'normal' indentation, which is one extra level
-  " too deep due to the extra tags we wrapped around the document.
-  silent %<
-  " back to home
-  1
-  " restore the filetype
-  exe "set ft=" . l:origft
-endfunction
-command! PrettyXML call DoPrettyXML()
-"}}}
 "===== MAPPINGS {{{
 
 let mapleader = ","
@@ -204,6 +170,9 @@ let mapleader = ","
 " Commentary
 map cm <Plug>Commentary
 
+"GitGutter
+command! GG GitGutterToggle
+
 " NERDTree
 map <leader>n :NERDTreeToggle<CR>
 
@@ -211,7 +180,7 @@ map <leader>n :NERDTreeToggle<CR>
 nmap <silent><buffer> <Leader>wc <Plug>Vimwiki2HTML
 
 "}}}
-"----- General Mappings {{{
+"----- General Mappings {{
 
 " stops undoable undo
 inoremap <c-u> <c-g>u<c-u>
@@ -223,7 +192,7 @@ set foldlevel=1
 nnoremap <space> za
 " tmux settings
 set splitright
-" all this vimux stuff appears to be shit
+" vimux
 map <leader>vp :VimuxPromptCommand<CR>
 map <leader>vl :VimuxRunLastCommand<CR>
 " Inspect runner pane
@@ -292,6 +261,7 @@ set expandtab  " turns tabs to spaces
 set clipboard=unnamedplus " uses the OS clipboard for copying and pasting
 set encoding=utf-8
 set history=10000
+set updatetime=100
 "new (tobe checked)
 set scrolloff=1
 set sidescrolloff=5
@@ -311,6 +281,55 @@ autocmd InsertLeave * set nocul
 set smarttab
 set autoindent
 " }}}
+"===== FileType Indentation {{{
+set ts=2 sts=2 sw=2
+if has("autocmd")
+  filetype on
+  autocmd FileType vim setlocal ts=2 sts=2 sw=2 
+  autocmd FileType ruby setlocal ts=2 sts=2 sw=2 
+  autocmd FileType python setlocal ts=4 sts=4 sw=4 
+  autocmd FileType html setlocal ts=2 sts=2 sw=2 
+  autocmd FileType css setlocal ts=4 sts=4 sw=4 
+  autocmd FileType matlab setlocal ts=4 sw=4 
+  autocmd FileType tex setlocal sw=2 sts=2 ts=2
+  autocmd FileType LaTex setlocal sw=2 sts=2 ts=2
+	autocmd FileType sh setlocal sw=4 ts=4
+	autocmd FileType markdown setlocal ts=2 sts=2 sw=2
+	autocmd FileType rmd setlocal ts=2 sts=2 sw=2 
+  autocmd FileType xml setlocal noexpandtab
+	autocmd BufRead,BufNewFile *.pde set filetype=arduino
+	autocmd BufRead,BufNewFile *.ino set filetype=arduino
+  filetype plugin indent on
+endif
+function! DoPrettyXML()
+  " save the filetype so we can restore it later
+  let l:origft = &ft
+  set ft=
+  " delete the xml header if it exists. This will
+  " permit us to surround the document with fake tags
+  " without creating invalid xml.
+  1s/<?xml .*?>//e
+  " insert fake tags around the entire document.
+  " This will permit us to pretty-format excerpts of
+  " XML that may contain multiple top-level elements.
+  0put ='<PrettyXML>'
+  $put ='</PrettyXML>'
+  silent %!xmllint --encode UTF-8 --format -
+  " xmllint will insert an <?xml?> header. it's easy enough to delete
+  " if you don't want it.
+  " delete the fake tags
+  2d
+  $d
+  " restore the 'normal' indentation, which is one extra level
+  " too deep due to the extra tags we wrapped around the document.
+  silent %<
+  " back to home
+  1
+  " restore the filetype
+  exe "set ft=" . l:origft
+endfunction
+command! PrettyXML call DoPrettyXML()
+"}}}
 " ===== Extra {{{
 
 " Uncomment the following to have Vim jump to the last position when

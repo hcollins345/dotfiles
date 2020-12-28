@@ -10,7 +10,9 @@ bash Anaconda3-2020.11-Linux-x86_64.sh -b && \
 sudo chown -R harry ~/anaconda3 && \
 sudo chown -R harry ~/.vim && \
 sudo chown -R harry ~/.TinyTex && \
-vim +PluginInstall +qall 
+source ~/.bashrc && \
+vim +PluginInstall +qall && \
+python ~/.vim/bundle/YouCompleteMe/install.py
 
 # ==========Vimrc and YCM=======
 # go to .vimrc in ~ and ran :PluginInstall
