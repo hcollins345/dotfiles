@@ -130,6 +130,7 @@ let g:pandoc#folding#fdc = 0
 "Arduino Directory
 let g:arduino_dir = '~/Applications/Arduino'
 
+set foldtext=gitgutter#fold#foldtext()
 "YouCompleteMe 
 " let g:ycm_filepath_completion_use_working_dir = 1
 " let g:ycm_collect_identifiers_from_tags_files = 1
@@ -180,7 +181,7 @@ map <leader>n :NERDTreeToggle<CR>
 nmap <silent><buffer> <Leader>wc <Plug>Vimwiki2HTML
 
 "}}}
-"----- General Mappings {{
+"----- General Mappings {{{
 
 " stops undoable undo
 inoremap <c-u> <c-g>u<c-u>
@@ -301,6 +302,8 @@ if has("autocmd")
 	autocmd BufRead,BufNewFile *.ino set filetype=arduino
   filetype plugin indent on
 endif
+"}}}
+"===== Functions {{{
 function! DoPrettyXML()
   " save the filetype so we can restore it later
   let l:origft = &ft
