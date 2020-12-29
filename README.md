@@ -57,7 +57,7 @@ source ~/.bashrc
 ### Python3
 https://www.anaconda.com/products/individual (scroll to bottom of page)
 
-### Download 64bit Vim
+### 64bit Vim
 1. Install 64 bit vim - https://github.com/vim/vim-win32-installer/releases
 2. Add to dotfiles/.bashrc 
     ```
