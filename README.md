@@ -58,22 +58,22 @@ source ~/.bashrc
 https://www.anaconda.com/products/individual (scroll to bottom of page)
 
 ### Download 64bit Vim
-1. 64 bit vim - https://github.com/vim/vim-win32-installer/releases
-    1. Add to .bashrc 
+1. Install 64 bit vim - https://github.com/vim/vim-win32-installer/releases
+2. Add to dotfiles/.bashrc 
     ```
-        alias vim="vim.bat"  
-        alias gvim="gvim.bat"  
+    alias vim="vim.bat"  
+    alias gvim="gvim.bat"  
     ```
-    2. In git bash
+3. In git bash
     ```
-        bash ~/dotfiles/sync.sh  
-        git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-        vim +PluginInstall +qall
+    bash ~/dotfiles/sync.sh  
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    vim +PluginInstall +qall
     ```
 
 ### YCM - needs 64 bit vim and python3
-1. cake - https://cmake.org/download/
-2. Visual Studio Build Tools - https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16  
+1. Install cake - https://cmake.org/download/
+2. Install Visual Studio Build Tools - https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16  
         * Select Visual C++ build tools in Workloads in Visual Studio (was selected by default).  
             ![Visual studio workload screenshot](https://github.com/hcollins345/random/blob/master/visual_studio_build_tools.png)
 3. Compile YCM - ```python .vim/bundle/YouCompleteMe/install.py```
