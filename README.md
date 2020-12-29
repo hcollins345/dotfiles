@@ -79,6 +79,13 @@ https://www.anaconda.com/products/individual (scroll to bottom of page)
 3. Compile YCM - ```python .vim/bundle/YouCompleteMe/install.py```
 4. Add Environment variable ```PYTHONPATH``` with value (update path names first), ```C:\Users\<name>\Anaconda3\Lib;C:\Users\<name>\Anaconda3\libs;C:\Users#<name>\Anaconda3\Lib\site-packages;C:\Users\<name>\Anaconda3\DLLs```
 
+### POWERLINE fonts
+```
+git clone https://github.com/powerline/fonts.git --depth=1
+./fonts/install.sh
+rm -rf fonts
+```
+
 ## POWER MANAGEMENT (Linux)
 
 Details here
