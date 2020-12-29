@@ -50,11 +50,19 @@ source ~/.bashrc
 
 ## Windows 
 
-### git install
-https://git-scm.com/download/win
+1. Install git https://git-scm.com/download/win
+2. git clone git@github.com:hcollins345/dotfiles.git
+3. Update ssh key - 
+ a. ssh-keygen -t ed25519 -C "hcollins345@gmail.com" - try replacing email with hcollins345 instead
+ b. git config --global user.email "hcollins345@gmail.com" - try replacing with git config --global user.name "hcollins345"
+ c. clip < ~/.ssh/id_ed25519.pub
+ d. add to https://github.com/settings/ssh/new
+4. 
 
-### Tmux:
-https://blog.pjsen.eu/?p=440
+### YCM 
+1. Need 64 bit vim - https://github.com/vim/vim-win32-installer/releases
+2. Need python installed (prefarably 3) - https://www.anaconda.com/products/individual (scroll to bottom of page)
+
 
 ### Vim -- youcompleteme
 You need to install python  
