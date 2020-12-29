@@ -77,7 +77,7 @@ https://www.anaconda.com/products/individual (scroll to bottom of page)
         * Select Visual C++ build tools in Workloads in Visual Studio (was selected by default).  
             ![Visual studio workload screenshot](https://github.com/hcollins345/random/blob/master/visual_studio_build_tools.png)
 3. Compile YCM - ```python .vim/bundle/YouCompleteMe/install.py```
-4. Add Environment variable PYTHONPATH with value, C:\Users\<name>\Anaconda3\Lib;C:\Users\<name>\Anaconda3\libs;C:\Users#<name>\Anaconda3\Lib\site-packages;C:\Users\<name>\Anaconda3\DLLs 
+4. Add Environment variable ```PYTHONPATH``` with value (update name), ```C:\Users\<name>\Anaconda3\Lib;C:\Users\<name>\Anaconda3\libs;C:\Users#<name>\Anaconda3\Lib\site-packages;C:\Users\<name>\Anaconda3\DLLs```
 
 ## POWER MANAGEMENT (Linux)
 
