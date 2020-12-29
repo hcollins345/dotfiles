@@ -45,32 +45,38 @@ source ~/.bashrc
 
 ## Windows 
 1. Install git https://git-scm.com/download/win
-2. git clone git@github.com:hcollins345/dotfiles.git
-3. Update ssh key - 
-    1. ssh-keygen -t ed25519 -C "hcollins345@gmail.com" - try replacing email with hcollins345 instead
-    2. git config --global user.email "hcollins345@gmail.com" - try replacing with git config --global user.name "hcollins345"
-    3. clip < ~/.ssh/id_ed25519.pub
-    4. Paste clipboard into https://github.com/settings/ssh/new
+2. ```git clone git@github.com:hcollins345/dotfiles.git```
+3. Update ssh key 
+      ```
+    ssh-keygen -t ed25519 -C "hcollins345@gmail.com" # try replacing email with hcollins345 instead
+    git config --global user.email "hcollins345@gmail.com" # try replacing with git config --global user.name "hcollins345"
+    clip < ~/.ssh/id_ed25519.pub
+      ```
+    1. Paste clipboard into https://github.com/settings/ssh/new
 
 ### Python3
 https://www.anaconda.com/products/individual (scroll to bottom of page)
 
 ### Download 64bit Vim
 1. 64 bit vim - https://github.com/vim/vim-win32-installer/releases
-    1. Add to .bashrc  
+    1. Add to .bashrc 
+    ```
         alias vim="vim.bat"  
         alias gvim="gvim.bat"  
-    2. In git bash:  
+    ```
+    2. In git bash
+    ```
         bash ~/dotfiles/sync.sh  
         git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
         vim +PluginInstall +qall
+    ```
 
 ### YCM - needs 64 bit vim and python3
 1. cake - https://cmake.org/download/
 2. Visual Studio Build Tools - https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16  
         * Select Visual C++ build tools in Workloads in Visual Studio (was selected by default).  
             ![Visual studio workload screenshot](https://github.com/hcollins345/random/blob/master/visual_studio_build_tools.png)
-3. Compile YCM - python .vim/bundle/YouCompleteMe/install.py
+3. Compile YCM - ```python .vim/bundle/YouCompleteMe/install.py```
 4. Add Environment variable PYTHONPATH with value, C:\Users\<name>\Anaconda3\Lib;C:\Users\<name>\Anaconda3\libs;C:\Users#<name>\Anaconda3\Lib\site-packages;C:\Users\<name>\Anaconda3\DLLs 
 
 ## POWER MANAGEMENT (Linux)
