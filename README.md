@@ -85,6 +85,7 @@ git clone https://github.com/powerline/fonts.git --depth=1
 ./fonts/install.sh
 rm -rf fonts
 ```
+Navigate to ```C:\Program Files\Git\mingw64\share\fonts```, highlight all, right click and hit install
 
 ## POWER MANAGEMENT (Linux)
 
