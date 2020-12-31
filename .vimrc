@@ -131,18 +131,18 @@ let g:pandoc#folding#fdc = 0
 let g:arduino_dir = '~/Applications/Arduino'
 
 "YouCompleteMe 
-" let g:ycm_filepath_completion_use_working_dir = 1
-" let g:ycm_collect_identifiers_from_tags_files = 1
-" let g:ycm_autoclose_preview_window_after_insertion = 1
-" let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_filepath_completion_use_working_dir = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_seed_identifiers_with_syntax = 1
   " runs <c-space> after 2 letters
-" let g:ycm_semantic_triggers = {
+let g:ycm_semantic_triggers = {
 	\   'python': [ 're!\w{2}' ]
 	\ }
   " This doesn't work with python, but there is options like GoToDefinition
   " etc
-" map <leader>g :YcmCompleter GoToImplementationElseDeclaration<CR>
-" map <leader>i :YcmCompleter GetDoc<CR>
+map gd :YcmCompleter GoTo<CR>
+map gi :YcmCompleter GetDoc<CR>
 
 "fzf
 map ; :Files<CR>

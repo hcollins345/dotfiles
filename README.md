@@ -1,20 +1,19 @@
-configs
-=======
+Configs
+=====================================================
 
 Config files for vim, tmux, bash alongside startup scripts for
 installations, symbolic links etc
 
-### Setup
-
 Repo should be cloned into $HOME
 
-#### startup.sh
+Linux
+-----------------------------------------------------
 
-To be run with sudo after new OS installation. Installs Rmarkdown with
+#### startup.sh
+To be run after sudo after new OS installation. Installs Rmarkdown with
 tinytex, Anaconda etc.
 
 #### sync.sh
-
 Creates symbolic links for each of the config files.
 
 ### Installation
@@ -27,12 +26,8 @@ Creates symbolic links for each of the config files.
 6. bash sync.sh
 7. sudo bash startup.sh
 8. bash startup_part_2.sh
-9. :PluginInstall in .vimrc
-10. Compile YCM (run install.py in the YCM directory)
 11. in usr/share/vim/vim80/syntax/tex.vim find the TexNewMathZone parts and add 
       call TexNewMathZone("E","align",1)
-12. 
-13. 
 
 #### Vim install (if not using startup.sh)
 ```
@@ -43,27 +38,58 @@ source ~/.bashrc
 ```
 
 ### TODO
-
 - [x] Run :PluginInstall from commandline
 - [ ] Insert backticks in tmux https://gist.github.com/JikkuJose/7509315
             (mod so 3 backticks will insert one backtick)
 
-## Windows 
+Windows
+----------------------
 
-### git install
-https://git-scm.com/download/win
+1. Install git https://git-scm.com/download/win
+2. ```git clone git@github.com:hcollins345/dotfiles.git```
+3. Update ssh key 
+      ```
+    ssh-keygen -t ed25519 -C "hcollins345@gmail.com" # try replacing email with hcollins345 instead
+    git config --global user.email "hcollins345@gmail.com" # try replacing with git config --global user.name "hcollins345"
+    clip < ~/.ssh/id_ed25519.pub
+      ```
+    1. Paste clipboard into https://github.com/settings/ssh/new
 
-### Tmux:
-https://blog.pjsen.eu/?p=440
+### Python3
+https://www.anaconda.com/products/individual (scroll to bottom of page)
 
-### Vim -- youcompleteme
-You need to install python  
-You need to install cake  
-https://cmake.org/download/  
-I also needed to select Visual C++ build tools in Workloads in Visual Studio.  
-Then compile YCM (run install.py in the YCM directory)
+### 64bit Vim
+1. Install 64 bit vim - https://github.com/vim/vim-win32-installer/releases
+2. Add to dotfiles/.bashrc 
+    ```
+    alias vim="vim.bat"  
+    alias gvim="gvim.bat"  
+    ```
+3. In git bash
+    ```
+    bash ~/dotfiles/sync.sh  
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    vim +PluginInstall +qall
+    ```
 
-## POWER MANAGEMENT (Linux)
+### YCM - needs 64 bit vim and python3
+1. Install cake - https://cmake.org/download/
+2. Install Visual Studio Build Tools - https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16  
+        * Select Visual C++ build tools in Workloads in Visual Studio (was selected by default).  
+            ![Visual studio workload screenshot](https://github.com/hcollins345/random/blob/master/visual_studio_build_tools.png)
+3. Compile YCM - ```python .vim/bundle/YouCompleteMe/install.py```
+4. Add Environment variable ```PYTHONPATH``` with value (update path names first), ```C:\Users\<name>\Anaconda3\Lib;C:\Users\<name>\Anaconda3\libs;C:\Users#<name>\Anaconda3\Lib\site-packages;C:\Users\<name>\Anaconda3\DLLs```
+
+### POWERLINE fonts
+```
+git clone https://github.com/powerline/fonts.git --depth=1
+./fonts/install.sh
+rm -rf fonts
+```
+Navigate to ```C:\Program Files\Git\mingw64\share\fonts```, highlight all, right click and hit install
+
+POWER MANAGEMENT (Linux)
+----------------------------------
 
 Details here
 https://itsfoss.com/reduce-overheating-laptops-linux/
@@ -83,7 +109,7 @@ sudo apt-get install thermald
 
 sudo apt-get install indicator-cpufreq
 
-## Monitor overlay
+## Windows Monitor Overlay
 https://www.msi.com/Landing/afterburner
 
 Msi afterburner auto installs RTSS (used for the overlays)
