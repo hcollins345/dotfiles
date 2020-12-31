@@ -1,20 +1,19 @@
 Configs
-=======
+=====================================================
 
 Config files for vim, tmux, bash alongside startup scripts for
 installations, symbolic links etc
 
-### Setup
-
 Repo should be cloned into $HOME
 
-#### startup.sh
+Linux
+-----------------------------------------------------
 
-To be run with sudo after new OS installation. Installs Rmarkdown with
+#### startup.sh
+To be run after sudo after new OS installation. Installs Rmarkdown with
 tinytex, Anaconda etc.
 
 #### sync.sh
-
 Creates symbolic links for each of the config files.
 
 ### Installation
@@ -43,7 +42,9 @@ source ~/.bashrc
 - [ ] Insert backticks in tmux https://gist.github.com/JikkuJose/7509315
             (mod so 3 backticks will insert one backtick)
 
-## Windows 
+Windows
+----------------------
+
 1. Install git https://git-scm.com/download/win
 2. ```git clone git@github.com:hcollins345/dotfiles.git```
 3. Update ssh key 
@@ -87,7 +88,8 @@ rm -rf fonts
 ```
 Navigate to ```C:\Program Files\Git\mingw64\share\fonts```, highlight all, right click and hit install
 
-## POWER MANAGEMENT (Linux)
+POWER MANAGEMENT (Linux)
+----------------------------------
 
 Details here
 https://itsfoss.com/reduce-overheating-laptops-linux/
