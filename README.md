@@ -42,7 +42,7 @@ source ~/.bashrc
 - [ ] Insert backticks in tmux https://gist.github.com/JikkuJose/7509315
             (mod so 3 backticks will insert one backtick)
 
-Windows
+Windows (GIT BASH)
 ----------------------
 
 1. Install git https://git-scm.com/download/win
@@ -87,6 +87,17 @@ git clone https://github.com/powerline/fonts.git --depth=1
 rm -rf fonts
 ```
 Navigate to ```C:\Program Files\Git\mingw64\share\fonts```, highlight all, right click and hit install
+
+WINDOWS (WSL1)
+-------------------------------------------------------
+[More Info](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+1. Run command in Powershell as administer
+    ```
+    dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+    ```
+2. Restart computer
+3. Install Linux distro from [Microsoft Store](https://aka.ms/wslstore)
+
 
 POWER MANAGEMENT (Linux)
 ----------------------------------
