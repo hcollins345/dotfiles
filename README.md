@@ -96,7 +96,7 @@ WINDOWS (WSL1)
     dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
     ```
 2. Restart computer
-3. Install Linux distro from [Microsoft Store](https://aka.ms/wslstore)
+3. Install Linux distro from [Microsoft Store](https://aka.ms/wslstore) or direct [Ubuntu 20.04 LTS](https://www.microsoft.com/store/apps/9n6svws3rx71)
 
 
 POWER MANAGEMENT (Linux)
