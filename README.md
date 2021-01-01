@@ -30,7 +30,7 @@ Creates symbolic links for each of the config files.
       call TexNewMathZone("E","align",1)
 
 #### Vim install (if not using startup.sh)
-```
+```bash
 bash sync.sh 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 :PluginInstall #in vim
@@ -46,13 +46,16 @@ Windows (GIT BASH)
 ----------------------
 
 1. Install git https://git-scm.com/download/win
-2. ```git clone git@github.com:hcollins345/dotfiles.git```
+2. Clone dotfiles repo
+    ```bash
+    git clone git@github.com:hcollins345/dotfiles.git
+    ```
 3. Update ssh key 
-      ```
+    ```bash
     ssh-keygen -t ed25519 -C "hcollins345@gmail.com" # try replacing email with hcollins345 instead
     git config --global user.email "hcollins345@gmail.com" # try replacing with git config --global user.name "hcollins345"
     clip < ~/.ssh/id_ed25519.pub
-      ```
+    ```
     1. Paste clipboard into https://github.com/settings/ssh/new
 
 ### Python3
@@ -61,12 +64,12 @@ https://www.anaconda.com/products/individual (scroll to bottom of page)
 ### 64bit Vim
 1. Install 64 bit vim - https://github.com/vim/vim-win32-installer/releases
 2. Add to dotfiles/.bashrc 
-    ```
+    ```bash
     alias vim="vim.bat"  
     alias gvim="gvim.bat"  
     ```
 3. In git bash
-    ```
+    ```bash
     bash ~/dotfiles/sync.sh  
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     vim +PluginInstall +qall
@@ -81,7 +84,7 @@ https://www.anaconda.com/products/individual (scroll to bottom of page)
 4. Add Environment variable ```PYTHONPATH``` with value (update path names first), ```C:\Users\<name>\Anaconda3\Lib;C:\Users\<name>\Anaconda3\libs;C:\Users#<name>\Anaconda3\Lib\site-packages;C:\Users\<name>\Anaconda3\DLLs```
 
 ### POWERLINE fonts
-```
+```bash
 git clone https://github.com/powerline/fonts.git --depth=1
 ./fonts/install.sh
 rm -rf fonts
@@ -92,7 +95,7 @@ WINDOWS (WSL1)
 -------------------------------------------------------
 [More Info](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 1. Run command in Powershell as administer
-    ```
+    ```powershell
     dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
     ```
 2. Restart computer
@@ -106,19 +109,26 @@ Details here
 https://itsfoss.com/reduce-overheating-laptops-linux/
 
 #### tlp
+
+```bash
 sudo add-apt-repository ppa:linrunner/tlp
 sudo apt-get update
 sudo apt-get install tlp tlp-rdw
 **If you are using ThinkPads, you require an additional step:**
 sudo apt-get install tp-smapi-dkms acpi-call-dkms
+```
 
 #### thermald
 
+```bash
 sudo apt-get install thermald
+```
 
 #### CPUfreq
 
+```bash
 sudo apt-get install indicator-cpufreq
+```
 
 ## Windows Monitor Overlay
 https://www.msi.com/Landing/afterburner
