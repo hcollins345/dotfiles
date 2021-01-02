@@ -12,6 +12,10 @@
 " LINUX
 "" runtime! debian.vim
 " }}}
+" ===== HOT FIXES {{{
+" fix always starting in REPLACE mode in WSL in Windows after upgrading vim
+set t_u7=
+" }}}
 " ===== INIT SETTINGS AND VUNDLE REQUIREMENTS {{{
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -40,6 +44,7 @@ Plugin 'vim-latex/vim-latex'
 Plugin 'vivien/vim-linux-coding-style'
 Plugin 'Raimondi/delimitMate'
 "Search
+Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 "editorconfig
 Plugin 'editorconfig/editorconfig-vim'
