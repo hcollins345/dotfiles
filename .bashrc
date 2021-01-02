@@ -1,8 +1,8 @@
 set -o vi
 # export PATH="~/anaconda3/bin:$PATH"  # commented out by conda initialize
 export PATH="/home/harry/apps/android-studio/bin:$PATH"
-export TERM="xterm-256color"
-alias tmux="env TERM=screen-256color tmux"
+# export TERM="screen-256color"
+# alias tmux="env TERM=screen-256color tmux"
 export CLUSTER="s1664050@korenvliet.ewi.utwente.nl"
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
