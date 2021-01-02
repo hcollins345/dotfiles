@@ -25,6 +25,7 @@ Creates symbolic links for each of the config files.
     sudo apt install xclip
     cat /dev/zero | ssh-keygen -t ed25519 -C "hcollins345@gmail.com"
     git config --global user.email "hcollins345@gmail.com"
+    git config --global user.name "hcollins345" 
     clip.exe < ~/.ssh/id_ed25519.pub
     ```
     1. Paste clipboard into https://github.com/settings/ssh/new
@@ -61,8 +62,9 @@ Windows (GIT BASH)
     ```
 3. Update ssh key 
     ```bash
-    ssh-keygen -t ed25519 -C "hcollins345@gmail.com" # try replacing email with hcollins345 instead
-    git config --global user.email "hcollins345@gmail.com" # try replacing with git config --global user.name "hcollins345"
+    ssh-keygen -t ed25519 -C "hcollins345@gmail.com"
+    git config --global user.email "hcollins345@gmail.com" 
+    git config --global user.name "hcollins345" 
     clip < ~/.ssh/id_ed25519.pub
     ```
     1. Paste clipboard into https://github.com/settings/ssh/new
@@ -112,6 +114,13 @@ WINDOWS (WSL1)
 
 ```bash
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove && sudo apt autoclean
+```
+
+### VIM
+Default vim seems fine
+```
+sudo apt install python3-dev cmake build-essential
+python3 ~/.vim/bundle/YouCompleteMe/install.py
 ```
 
 POWER MANAGEMENT (Linux)
