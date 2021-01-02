@@ -114,6 +114,7 @@ WINDOWS (WSL1)
 
 ```bash
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove && sudo apt autoclean
+ln -s /mnt/c/Users/hcollins hcollins
 ```
 
 ### VIM
