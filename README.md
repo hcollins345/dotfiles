@@ -20,13 +20,22 @@ Creates symbolic links for each of the config files.
 
 1. set up keyboard mappings (details in startup.sh)
 2. sudo apt install git 
-3. add ssh keys [tutorial](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
-4. chmod 600 ~/.ssh/id_rsa
-5. git clone dotfiles
-6. bash sync.sh
-7. sudo bash startup.sh
-8. bash startup_part_2.sh
-11. in usr/share/vim/vim80/syntax/tex.vim find the TexNewMathZone parts and add 
+3. Update ssh key [tutorial](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
+    ```bash
+    sudo apt install xclip
+    cat /dev/zero | ssh-keygen -t ed25519 -C "hcollins345@gmail.com"
+    git config --global user.email "hcollins345@gmail.com"
+    clip.exe < ~/.ssh/id_ed25519.pub
+    ```
+    1. Paste clipboard into https://github.com/settings/ssh/new
+4. git clone dotfiles
+    ```bash
+    git clone git@github.com:hcollins345/dotfiles.git
+    ```
+5. bash sync.sh
+6. sudo bash startup.sh
+7. bash startup_part_2.sh
+8. in usr/share/vim/vim80/syntax/tex.vim find the TexNewMathZone parts and add 
       call TexNewMathZone("E","align",1)
 
 #### Vim install (if not using startup.sh)
@@ -101,6 +110,9 @@ WINDOWS (WSL1)
 2. Restart computer
 3. Install Linux distro from [Microsoft Store](https://aka.ms/wslstore) or direct [Ubuntu 20.04 LTS](https://www.microsoft.com/store/apps/9n6svws3rx71)
 
+```bash
+sudo apt update && sudo apt upgrade -y && sudo apt autoremove && sudo apt autoclean
+```
 
 POWER MANAGEMENT (Linux)
 ----------------------------------
@@ -136,6 +148,8 @@ https://www.msi.com/Landing/afterburner
 Msi afterburner auto installs RTSS (used for the overlays)
 
 https://pcgamehaven.com/easily-monitor-cpu-gpu-usage-gaming/
+
+
 
 
 
