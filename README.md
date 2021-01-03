@@ -152,6 +152,9 @@ First set up enable copy/paste using ctrl+shift+letter shortcuts in properties (
 VcXsrv - install and add config.xlaunch to startup folder
 https://sourceforge.net/projects/vcxsrv/files/latest/download
 
+### Right click modification
+Can modify registry keys or https://www.sordum.org/7615/easy-context-menu-v1-6/
+
 POWER MANAGEMENT (Linux)
 ----------------------------------
 
