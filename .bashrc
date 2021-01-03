@@ -6,7 +6,7 @@ if grep -qE "(Microsoft|WSL)" /proc/version &>/dev/null; then
     alias python=python.exe
     alias conda=conda.exe
     PATH=$PATH:/home/harry/.local/bin
-    cd
+    # cd
 fi
 # ==============ENDWINDOWS===============
 # ==============ALIASES===============
