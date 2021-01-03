@@ -124,6 +124,34 @@ sudo apt install python3-dev cmake build-essential
 python3 ~/.vim/bundle/YouCompleteMe/install.py
 ```
 
+### TMUX config
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+prefix + r # re-source tmux
+prefix + I # fetch plugins
+
+
+### Prompt
+```
+\[\033]0;$TITLEPREFIX:$PWD\007\]\n\[\033[32m\]\u@\h \[\033[35m\]$MSYSTEM \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n$
+```  
+![Git Bash Prompt](https://github.com/hcollins345/random/blob/master/PS1_gitbash.png)  
+
+```
+\[\e]0;\u@\h: \w\a\]\[\033[01;32m\]\u@\h \[\033[0;36m\]\w\[\033[01;32m\]$(__git_ps1)\n\[\033[01;32m\]└─\[\033[0m\033[01;32m\] λ\[\033[0m\033[01;32m\] ~\[\033[0m\]
+```  
+![WSLTTY Prompt](https://github.com/hcollins345/random/blob/master/PS1_WSLTTY.png)
+
+### COPY/PASTE
+In the WSLTTY Terminal, right click acts as both copy and paste using the windows clipboard ie. highlight and right click to copy, no highlight and right click to paste. 
+
+[WSL, TMUX and VIM copy/paste setup](https://www.youtube.com/watch?v=_MgrjgQqDcE)
+
+First set up enable copy/paste using ctrl+shift+letter shortcuts in properties (right click image in top left corner of terminal)  
+![Git Bash Prompt](https://github.com/hcollins345/random/blob/master/WSLTTY_copy_paste_settings.png)
+
+VcXsrv - install and add config.xlaunch to startup folder
+https://sourceforge.net/projects/vcxsrv/files/latest/download
+
 POWER MANAGEMENT (Linux)
 ----------------------------------
 
