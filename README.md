@@ -146,7 +146,7 @@ In the WSLTTY Terminal, right click acts as both copy and paste using the window
 
 [WSL, TMUX and VIM copy/paste setup](https://www.youtube.com/watch?v=_MgrjgQqDcE)
 
-First set up enable copy/paste using ctrl+shift+letter shortcuts in properties (right click image in top left corner of terminal)
+First set up enable copy/paste using ctrl+shift+letter shortcuts in properties (right click image in top left corner of terminal)  
 ![Git Bash Prompt](https://github.com/hcollins345/random/blob/master/WSLTTY_copy_paste_settings.png)
 
 VcXsrv - install and add config.xlaunch to startup folder
