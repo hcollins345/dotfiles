@@ -126,7 +126,7 @@ python3 ~/.vim/bundle/YouCompleteMe/install.py
 
 ### Prompt
 ```
-(base) \[\033]0;$TITLEPREFIX:$PWD\007\]\n\[\033[32m\]\u@\h \[\033[35m\]$MSYSTEM \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n$
+\[\033]0;$TITLEPREFIX:$PWD\007\]\n\[\033[32m\]\u@\h \[\033[35m\]$MSYSTEM \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n$
 ```  
 ![Git Bash Prompt](https://github.com/hcollins345/random/blob/master/PS1_git_bash.png)  
   
