@@ -1,3 +1,12 @@
+# ==============WINDOWS===============
+alias python=python.exe
+alias conda=conda.exe
+PATH=$PATH:/home/harry/.local/bin
+# ==============ENDWINDOWS===============
+# ==============ALIASES===============
+alias r=ranger
+alias v=vim
+# ==============ENDALIASES===============
 set -o vi
 # export PATH="~/anaconda3/bin:$PATH"  # commented out by conda initialize
 export PATH="/home/harry/apps/android-studio/bin:$PATH"
