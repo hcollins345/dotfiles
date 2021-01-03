@@ -124,6 +124,17 @@ sudo apt install python3-dev cmake build-essential
 python3 ~/.vim/bundle/YouCompleteMe/install.py
 ```
 
+### Prompt
+```
+(base) \[\033]0;$TITLEPREFIX:$PWD\007\]\n\[\033[32m\]\u@\h \[\033[35m\]$MSYSTEM \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n$
+```  
+![Git Bash Prompt](https://github.com/hcollins345/random/blob/master/PS1_git_bash.png)  
+  
+```
+\[\e]0;\u@\h: \w\a\]\[\033[01;32m\]\u@\h \[\033[0;36m\]\w\[\033[01;32m\]$(__git_ps1)\n\[\033[01;32m\]└─\[\033[0m\033[01;32m\] λ\[\033[0m\033[01;32m\] ~\[\033[0m\]
+```  
+![WSLTTY Prompt](https://github.com/hcollins345/random/blob/master/PS1_WSLTTY.png)
+
 POWER MANAGEMENT (Linux)
 ----------------------------------
 
