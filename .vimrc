@@ -187,7 +187,9 @@ nmap <silent><buffer> <Leader>wc <Plug>Vimwiki2HTML
 
 "}}}
 "----- General Mappings {{
-
+" Prevent x form overriding what's in the clipboard
+noremap x "_x
+noremap X "_x
 " stops undoable undo
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
