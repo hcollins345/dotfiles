@@ -129,12 +129,16 @@ ln -s /mnt/c/Users/hcollins hcollins
 7. Clone dotfiles repo
     ```bash
     git clone git@github.com:hcollins345/dotfiles.git
+    bash ~/dotfiles/sync.sh 
+    
     ```
 
 
 ### VIM
 Default vim seems fine
-```
+```bash
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
 sudo apt install python3-dev cmake build-essential
 python3 ~/.vim/bundle/YouCompleteMe/install.py
 ```
