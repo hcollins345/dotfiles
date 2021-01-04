@@ -11,6 +11,15 @@
 "
 " LINUX
 "" runtime! debian.vim
+function! IsWSL()
+  if has("unix")
+    let lines = readfile("/proc/version")
+    if lines[0] =~ "Microsoft"
+      return 1
+    endif
+  endif
+  return 0
+endfunction
 " }}}
 " ===== HOT FIXES {{{
 " fix always starting in REPLACE mode in WSL in Windows after upgrading vim
@@ -248,12 +257,15 @@ map <Leader>vz :VimuxZoomRunner<CR>
 	"Sparql
   autocmd BufRead,BufNewFile *.rq map <F5> :!<space>sparql.bat<space>--data=royal92.nt<space>--query=%<CR>
   "Py
-  autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python<space>%<CR>
+  if IsWSL()
+    autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python.exe<space>%<CR>
+  else
+    autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python<space>%<CR>
+  endif
   "ipynb
   autocmd Filetype ipynb nmap <silent><Leader>b :VimpyterInsertPythonBlock<CR>
   autocmd Filetype ipynb nmap <silent><Leader>j :VimpyterStartJupyter<CR>
   autocmd Filetype ipynb nmap <silent><Leader>n :VimpyterStartNteract<CR>
-" }}}
 " }}}
 "===== Vim configs {{{
 set showcmd		" Show (partial) command in status line.
