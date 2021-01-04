@@ -26,7 +26,8 @@ Creates symbolic links for each of the config files.
     cat /dev/zero | ssh-keygen -t ed25519 -C "hcollins345@gmail.com"
     git config --global user.email "hcollins345@gmail.com"
     git config --global user.name "hcollins345" 
-    clip.exe < ~/.ssh/id_ed25519.pub
+    sudo apt install xclip
+    xclip < ~/.ssh/id_ed25519.pub
     ```
     1. Paste clipboard into https://github.com/settings/ssh/new
 4. git clone dotfiles
@@ -56,19 +57,19 @@ Windows (GIT BASH)
 ----------------------
 
 1. Install git https://git-scm.com/download/win
-2. Clone dotfiles repo
+2. Update ssh key 
+    ```bash
+    git config --global user.email "hcollins345@gmail.com" 
+    git config --global user.name "hcollins345" 
+    ssh-keygen -t ed25519 -C "hcollins345@gmail.com"
+    clip.exe < ~/.ssh/id_ed25519.pub
+    ```
+    1. Paste clipboard into https://github.com/settings/ssh/new
+3. Clone dotfiles repo
     ```bash
     git clone git@github.com:hcollins345/dotfiles.git
     ```
-3. Update ssh key 
-    ```bash
-    ssh-keygen -t ed25519 -C "hcollins345@gmail.com"
-    git config --global user.email "hcollins345@gmail.com" 
-    git config --global user.name "hcollins345" 
-    clip < ~/.ssh/id_ed25519.pub
-    ```
-    1. Paste clipboard into https://github.com/settings/ssh/new
-
+    
 ### Python3
 https://www.anaconda.com/products/individual (scroll to bottom of page)
 
@@ -117,6 +118,18 @@ sudo apt update && sudo apt upgrade -y && sudo apt autoremove && sudo apt autocl
 ln -s /mnt/c/Users/hcollins hcollins
 ```
 5. Install WSLTTY https://github.com/mintty/wsltty/releases
+6. Update ssh key 
+    ```bash
+    git config --global user.email "hcollins345@gmail.com" 
+    git config --global user.name "hcollins345" 
+    ssh-keygen -t ed25519 -C "hcollins345@gmail.com"
+    clip.exe < ~/.ssh/id_ed25519.pub
+    ```
+    1. Paste clipboard into https://github.com/settings/ssh/new
+7. Clone dotfiles repo
+    ```bash
+    git clone git@github.com:hcollins345/dotfiles.git
+    ```
 
 
 ### VIM
