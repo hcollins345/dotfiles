@@ -125,12 +125,11 @@ python3 ~/.vim/bundle/YouCompleteMe/install.py
 ```
 
 ### TMUX config
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-prefix + r # re-source tmux
+```git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm```  
+prefix + r # re-source tmux  
 prefix + I # fetch plugins
 
-
-### Prompt
+### Prompts
 ```
 \[\033]0;$TITLEPREFIX:$PWD\007\]\n\[\033[32m\]\u@\h \[\033[35m\]$MSYSTEM \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n$
 ```  
@@ -152,7 +151,7 @@ First set up enable copy/paste using ctrl+shift+letter shortcuts in properties (
 VcXsrv - install and add config.xlaunch to startup folder
 https://sourceforge.net/projects/vcxsrv/files/latest/download
 
-### Right click modification
+### Right click launch modification (shift right click works already by default)
 Can modify registry keys or https://www.sordum.org/7615/easy-context-menu-v1-6/
 
 POWER MANAGEMENT (Linux)
