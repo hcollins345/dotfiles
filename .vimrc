@@ -24,7 +24,6 @@ endfunction
 " ===== HOT FIXES {{{
 " fix always starting in REPLACE mode in WSL in Windows after upgrading vim
 set t_u7=
-" let g:ycm_python_binary_path = "/mnt/c/Users/hcoll/anaconda3/python.exe"
 " }}}
 " ===== INIT SETTINGS AND VUNDLE REQUIREMENTS {{{
 set nocompatible              " be iMproved, required

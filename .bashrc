@@ -3,8 +3,6 @@
 # WSL 1 specific settings.
 if grep -qE "(Microsoft|WSL)" /proc/version &>/dev/null; then
     export DISPLAY=:0
-    alias python=python.exe
-    alias conda=conda.exe
     PATH=$PATH:/home/harry/.local/bin
     # cd
 fi
