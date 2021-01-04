@@ -146,7 +146,8 @@ Update vim
 sudo add-apt-repository ppa:jonathonf/vim
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y 
 ```
-### python.exe
+### python - need to install linux anaconda
+https://gist.github.com/kauffmanes/5e74916617f9993bc3479f401dfec7da  
 https://www.anaconda.com/products/individual (scroll to bottom of page)
 
 ### TMUX config
