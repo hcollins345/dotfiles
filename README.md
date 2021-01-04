@@ -111,7 +111,7 @@ WINDOWS (WSL1)
     ```
 2. Restart computer
 3. Install Linux distro from [Microsoft Store](https://aka.ms/wslstore) or direct [Ubuntu 20.04 LTS](https://www.microsoft.com/store/apps/9n6svws3rx71)
-
+4. Install WSLTTY https://github.com/mintty/wsltty/releases
 ```bash
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove && sudo apt autoclean
 ln -s /mnt/c/Users/hcollins hcollins
