@@ -114,7 +114,7 @@ WINDOWS (WSL1)
 3. Install Linux distro from [Microsoft Store](https://aka.ms/wslstore) or direct [Ubuntu 20.04 LTS](https://www.microsoft.com/store/apps/9n6svws3rx71)
 4. Run Ubuntu Terminal to finish install
 ```bash
-sudo apt update && sudo apt upgrade -y && sudo apt autoremove && sudo apt autoclean
+sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y 
 ln -s /mnt/c/Users/hcollins hcollins
 ```
 5. Install WSLTTY https://github.com/mintty/wsltty/releases
@@ -141,7 +141,11 @@ vim +PluginInstall +qall
 sudo apt -y install python3-dev cmake build-essential
 python3 ~/.vim/bundle/YouCompleteMe/install.py
 ```
-
+Update vim
+```bash
+sudo add-apt-repository ppa:jonathonf/vim
+sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y 
+```
 ### python.exe
 https://www.anaconda.com/products/individual (scroll to bottom of page)
 
