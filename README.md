@@ -138,17 +138,24 @@ Default vim seems fine
 ```bash
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
-sudo apt -y install python3-dev cmake build-essential
-python3 ~/.vim/bundle/YouCompleteMe/install.py
 ```
 Update vim
 ```bash
 sudo add-apt-repository ppa:jonathonf/vim
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y 
 ```
-### python - need to install linux anaconda
+
+### YCM and python - need to install linux anaconda
+
 https://gist.github.com/kauffmanes/5e74916617f9993bc3479f401dfec7da  
 https://www.anaconda.com/products/individual (scroll to bottom of page)
+
+
+```bash
+curl -O https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh && bash Anaconda3-2020.11-Linux-x86_64.sh -b
+sudo apt -y install python3-dev cmake build-essential
+python ~/.vim/bundle/YouCompleteMe/install.py
+```
 
 ### TMUX config
 ```git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm```  
