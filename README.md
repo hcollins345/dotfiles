@@ -174,6 +174,10 @@ prefix + I # fetch plugins
 ```  
 ![WSLTTY Prompt](https://github.com/hcollins345/random/blob/master/PS1_WSLTTY.png)
 
+colours
+https://misc.flogisoft.com/bash/tip_colors_and_formatting
+More detail in .bashrc
+
 ### COPY/PASTE
 In the WSLTTY Terminal, right click acts as both copy and paste using the windows clipboard ie. highlight and right click to copy, no highlight and right click to paste.
 

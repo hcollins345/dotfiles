@@ -77,9 +77,15 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# color explanation - https://misc.flogisoft.com/bash/tip_colors_and_formatting
+# 88/256 foreground “<Esc>[38;5;ColorNumberm”]"
+# 88/256 background “<Esc>[48;5;ColorNumberm”]"
+# 256 color pallete - https://jonasjacek.github.io/colors/
+
 if [ "$color_prompt" = yes ]; then
     # export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\e[32m\]\$(__git_ps1)\[\e[m\] λ "
-    PS1='\[\033[01;32m\]\u@\h \[\033[0;36m\]\w\[\033[01;32m\]$(__git_ps1)\n\[\033[01;32m\]└─\[\033[0m\033[01;32m\] λ\[\033[0m\033[01;32m\] ~\[\033[0m\] '
+    # 8/16bit color PS1='\e[01;32m\u@\h \e[01;36m\w\e[01;32m$(__git_ps1)\n\e[01;32m└─ λ ~ \e[0m'
+    PS1='\e[01;32m\u@\h \e[38;5;81m\w\e[01;32m$(__git_ps1)\n\e[01;32m└─ λ ~ \e[0m'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -93,6 +99,39 @@ xterm*|rxvt*)
 *)
     ;;
 esac
+
+function colorgrid( )
+{
+    iter=16
+    while [ $iter -lt 52 ]
+    do
+        second=$[$iter+36]
+        third=$[$second+36]
+        four=$[$third+36]
+        five=$[$four+36]
+        six=$[$five+36]
+        seven=$[$six+36]
+        if [ $seven -gt 250 ];then seven=$[$seven-251]; fi
+
+        echo -en "\033[38;5;$(echo $iter)m█ "
+        printf "%03d" $iter
+        echo -en "   \033[38;5;$(echo $second)m█ "
+        printf "%03d" $second
+        echo -en "   \033[38;5;$(echo $third)m█ "
+        printf "%03d" $third
+        echo -en "   \033[38;5;$(echo $four)m█ "
+        printf "%03d" $four
+        echo -en "   \033[38;5;$(echo $five)m█ "
+        printf "%03d" $five
+        echo -en "   \033[38;5;$(echo $six)m█ "
+        printf "%03d" $six
+        echo -en "   \033[38;5;$(echo $seven)m█ "
+        printf "%03d" $seven
+
+        iter=$[$iter+1]
+        printf '\r\n'
+    done
+}
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
