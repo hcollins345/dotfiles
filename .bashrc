@@ -85,7 +85,7 @@ fi
 if [ "$color_prompt" = yes ]; then
     # export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\e[32m\]\$(__git_ps1)\[\e[m\] λ "
     # 8/16bit color PS1='\e[01;32m\u@\h \e[01;36m\w\e[01;32m$(__git_ps1)\n\e[01;32m└─ λ ~ \e[0m'
-    PS1='\e[01;32m\u@\h \e[38;5;81m\w\e[01;32m$(__git_ps1)\n\e[01;32m└─ λ ~ \e[0m'
+    PS1='\[\e[01;32m\]\u@\h \[\e[38;5;81m\]\w\[\e[01;32m\]$(__git_ps1)\n\[\e[01;32m\]└─ λ ~ \[\e[0m\]'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
