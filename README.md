@@ -116,6 +116,7 @@ WINDOWS (WSL1)
 ```bash
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y 
 ln -s /mnt/c/Users/hcollins hcollins
+ln -svf hcollins/OneDrive\ -\ Intel\ Corporation/ onedrive
 ```
 5. Install WSLTTY https://github.com/mintty/wsltty/releases
 6. Update ssh key 
@@ -150,7 +151,6 @@ sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt aut
 https://gist.github.com/kauffmanes/5e74916617f9993bc3479f401dfec7da  
 https://www.anaconda.com/products/individual (scroll to bottom of page)
 
-
 ```bash
 curl -O https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh && bash Anaconda3-2020.11-Linux-x86_64.sh -b
 sudo apt -y install python3-dev cmake build-essential
@@ -158,7 +158,9 @@ python ~/.vim/bundle/YouCompleteMe/install.py
 ```
 
 ### TMUX config
-```git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm```  
+```bash
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```  
 prefix + r # re-source tmux  
 prefix + I # fetch plugins
 
@@ -167,22 +169,24 @@ prefix + I # fetch plugins
 \[\033]0;$TITLEPREFIX:$PWD\007\]\n\[\033[32m\]\u@\h \[\033[35m\]$MSYSTEM \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n$
 ```  
 ![Git Bash Prompt](https://github.com/hcollins345/random/blob/master/PS1_gitbash.png)  
-
 ```
 \[\e]0;\u@\h: \w\a\]\[\033[01;32m\]\u@\h \[\033[0;36m\]\w\[\033[01;32m\]$(__git_ps1)\n\[\033[01;32m\]└─\[\033[0m\033[01;32m\] λ\[\033[0m\033[01;32m\] ~\[\033[0m\]
 ```  
 ![WSLTTY Prompt](https://github.com/hcollins345/random/blob/master/PS1_WSLTTY.png)
 
 ### COPY/PASTE
-In the WSLTTY Terminal, right click acts as both copy and paste using the windows clipboard ie. highlight and right click to copy, no highlight and right click to paste. 
+In the WSLTTY Terminal, right click acts as both copy and paste using the windows clipboard ie. highlight and right click to copy, no highlight and right click to paste.
 
 [WSL, TMUX and VIM copy/paste setup](https://www.youtube.com/watch?v=_MgrjgQqDcE)
 
 First set up enable copy/paste using ctrl+shift+letter shortcuts in properties (right click image in top left corner of terminal)  
 ![Git Bash Prompt](https://github.com/hcollins345/random/blob/master/WSLTTY_copy_paste_settings.png)
-
 VcXsrv - install and add config.xlaunch to startup folder
 https://sourceforge.net/projects/vcxsrv/files/latest/download
+
+```bash
+cp dotfiles/config.xlaunch ~/hcollins/AppData/Roaming/Microsoft/Windows/Start\ Menu/
+```
 
 ### Right click launch modification (shift right click works already by default)
 Can modify registry keys or https://www.sordum.org/7615/easy-context-menu-v1-6/
