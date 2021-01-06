@@ -1,10 +1,14 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
 # ==============WINDOWS===============
 # required for tmux copy pasting
 # WSL 1 specific settings.
 if grep -qE "(Microsoft|WSL)" /proc/version &>/dev/null; then
     export DISPLAY=:0
-    PATH=$PATH:/home/harry/.local/bin
-    # cd
+    PATH=$PATH:~/.local/bin
+    export PATH=~/anaconda3/bin:$PATH
+    export EDITOR="vim"
 fi
 # ==============ENDWINDOWS===============
 # ==============ALIASES===============
@@ -12,16 +16,10 @@ alias r=ranger
 alias v=vim
 # ==============ENDALIASES===============
 set -o vi
-export EDITOR="vim"
-# export PATH="~/anaconda3/bin:$PATH"  # commented out by conda initialize
-export PATH="/home/harry/apps/android-studio/bin:$PATH"
-export PATH=~/anaconda3/bin:$PATH
+export PATH="~/apps/android-studio/bin:$PATH"
 # export TERM="screen-256color"
 # alias tmux="env TERM=screen-256color tmux"
 export CLUSTER="s1664050@korenvliet.ewi.utwente.nl"
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
 
 # If not running interactively, don't do anything
 case $- in
