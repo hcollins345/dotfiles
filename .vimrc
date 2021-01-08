@@ -268,6 +268,9 @@ map <Leader>vz :VimuxZoomRunner<CR>
   autocmd Filetype ipynb nmap <silent><Leader>n :VimpyterStartNteract<CR>
 " }}}
 "===== Vim configs {{{
+let &t_EI = "\<Esc>[1 q"
+let &t_SR = "\<Esc>[3 q"
+let &t_SI = "\<Esc>[5 q"
 set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
 set ignorecase		" Do case insensitive matching

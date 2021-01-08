@@ -18,7 +18,7 @@ alias v=vim
 set -o vi
 export PATH="~/apps/android-studio/bin:$PATH"
 # export TERM="screen-256color"
-# alias tmux="env TERM=screen-256color tmux"
+# alias tmux="env TERM=xterm-256color tmux"
 export CLUSTER="s1664050@korenvliet.ewi.utwente.nl"
 
 # If not running interactively, don't do anything
