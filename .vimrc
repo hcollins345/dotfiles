@@ -147,6 +147,7 @@ let g:pandoc#folding#fdc = 0
 "Arduino Directory
 let g:arduino_dir = '~/Applications/Arduino'
 
+set foldtext=gitgutter#fold#foldtext()
 "YouCompleteMe 
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -273,6 +274,7 @@ map <Leader>vz :VimuxZoomRunner<CR>
 " }}}
 " }}}
 "===== Vim configs {{{
+" change cursor style depending on mode
 let &t_EI = "\<Esc>[1 q"
 let &t_SR = "\<Esc>[3 q"
 let &t_SI = "\<Esc>[5 q"
@@ -329,6 +331,8 @@ if has("autocmd")
 	autocmd BufRead,BufNewFile *.ino set filetype=arduino
   filetype plugin indent on
 endif
+"}}}
+"===== Functions {{{
 function! DoPrettyXML()
   " save the filetype so we can restore it later
   let l:origft = &ft
@@ -378,4 +382,3 @@ endif
 
 " vim: set fdm=marker fmr={{{,}}} fdl=0 :
 "}}}
-"
