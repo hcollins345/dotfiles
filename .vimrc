@@ -11,6 +11,20 @@
 "
 " LINUX
 "" runtime! debian.vim
+function! IsWSL()
+  if has("unix")
+    let lines = readfile("/proc/version")
+    if lines[0] =~ "Microsoft"
+      return 1
+    endif
+  endif
+  return 0
+endfunction
+" }}}
+" ===== HOT FIXES {{{
+" fix always starting in REPLACE mode in WSL in Windows after upgrading vim
+set t_u7=
+set t_ut=
 " }}}
 " ===== INIT SETTINGS AND VUNDLE REQUIREMENTS {{{
 set nocompatible              " be iMproved, required
@@ -35,11 +49,12 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'jmarkow/vim-matlab'
 Plugin 'stevearc/vim-arduino'
 Plugin 'elmanuelito/vim-matlab-behave'
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-latex/vim-latex'
 Plugin 'vivien/vim-linux-coding-style'
 Plugin 'Raimondi/delimitMate'
 "Search
+Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 "editorconfig
 Plugin 'editorconfig/editorconfig-vim'
@@ -132,18 +147,18 @@ let g:arduino_dir = '~/Applications/Arduino'
 
 set foldtext=gitgutter#fold#foldtext()
 "YouCompleteMe 
-" let g:ycm_filepath_completion_use_working_dir = 1
-" let g:ycm_collect_identifiers_from_tags_files = 1
-" let g:ycm_autoclose_preview_window_after_insertion = 1
-" let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_filepath_completion_use_working_dir = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_seed_identifiers_with_syntax = 1
   " runs <c-space> after 2 letters
-" let g:ycm_semantic_triggers = {
+let g:ycm_semantic_triggers = {
 	\   'python': [ 're!\w{2}' ]
 	\ }
   " This doesn't work with python, but there is options like GoToDefinition
   " etc
-" map <leader>g :YcmCompleter GoToImplementationElseDeclaration<CR>
-" map <leader>i :YcmCompleter GetDoc<CR>
+map gd :YcmCompleter GoTo<CR>
+map gi :YcmCompleter GetDoc<CR>
 
 "fzf
 map ; :Files<CR>
@@ -182,7 +197,9 @@ nmap <silent><buffer> <Leader>wc <Plug>Vimwiki2HTML
 
 "}}}
 "----- General Mappings {{{
-
+" Prevent x form overriding what's in the clipboard
+noremap x "_x
+noremap X "_x
 " stops undoable undo
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
@@ -241,7 +258,11 @@ map <Leader>vz :VimuxZoomRunner<CR>
 	"Sparql
   autocmd BufRead,BufNewFile *.rq map <F5> :!<space>sparql.bat<space>--data=royal92.nt<space>--query=%<CR>
   "Py
-  autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python<space>%<CR>
+  if IsWSL()
+    autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python.exe<space>%<CR>
+  else
+    autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python<space>%<CR>
+  endif
   "ipynb
   autocmd Filetype ipynb nmap <silent><Leader>b :VimpyterInsertPythonBlock<CR>
   autocmd Filetype ipynb nmap <silent><Leader>j :VimpyterStartJupyter<CR>
@@ -249,6 +270,10 @@ map <Leader>vz :VimuxZoomRunner<CR>
 " }}}
 " }}}
 "===== Vim configs {{{
+" change cursor style depending on mode
+let &t_EI = "\<Esc>[1 q"
+let &t_SR = "\<Esc>[3 q"
+let &t_SI = "\<Esc>[5 q"
 set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
 set ignorecase		" Do case insensitive matching
