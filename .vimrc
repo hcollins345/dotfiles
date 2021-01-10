@@ -94,6 +94,8 @@ Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim'}
 Plugin 'mattn/emmet-vim'
 Plugin 'airblade/vim-gitgutter'
 
+Plugin 'wellle/targets.vim'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 filetype indent on
@@ -195,13 +197,15 @@ map <leader>n :NERDTreeToggle<CR>
 nmap <silent><buffer> <Leader>wc <Plug>Vimwiki2HTML
 
 "}}}
-"----- General Mappings {{
+"----- General Mappings {{{
 " Prevent x form overriding what's in the clipboard
 noremap x "_x
 noremap X "_x
 " stops undoable undo
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
+" Substitution shortcut
+nnoremap S :%s//g<Left><Left>
 " trigger line numbering
 nmap <leader>nn :set invnumber<CR>
 " fold settings 
@@ -266,6 +270,7 @@ map <Leader>vz :VimuxZoomRunner<CR>
   autocmd Filetype ipynb nmap <silent><Leader>b :VimpyterInsertPythonBlock<CR>
   autocmd Filetype ipynb nmap <silent><Leader>j :VimpyterStartJupyter<CR>
   autocmd Filetype ipynb nmap <silent><Leader>n :VimpyterStartNteract<CR>
+" }}}
 " }}}
 "===== Vim configs {{{
 let &t_EI = "\<Esc>[1 q"
