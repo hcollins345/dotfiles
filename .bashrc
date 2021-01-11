@@ -16,10 +16,13 @@ alias r=ranger
 alias v=vim
 # ==============ENDALIASES===============
 set -o vi
+shopt -s autocd
 export PATH="~/apps/android-studio/bin:$PATH"
 # export TERM="screen-256color"
 # alias tmux="env TERM=xterm-256color tmux"
 export CLUSTER="s1664050@korenvliet.ewi.utwente.nl"
+
+export GREP_COLORS='ms=01;31:mc=01;31:sl=:cx=:fn=38;5;81:ln=32:bn=32:se=36'
 
 # If not running interactively, don't do anything
 case $- in
