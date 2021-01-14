@@ -127,12 +127,8 @@ if has('gui_running')
 else
 	hi SpellBad guifg=Red
 endif
-if &diff
-    colorscheme gruvbox
-endif
 let g:nightflyUnderlineMatchParen = 1
 let g:nightflyCursorColor = 1
-let g:powerline = {'colorscheme': 'nightfly'}
 hi SpellBad cterm=bold ctermfg=1 
 " }}}
 "===== Plugin Configs {{{
