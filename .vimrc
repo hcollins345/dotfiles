@@ -178,7 +178,8 @@ let g:Powerline_symbols = 'fancy'
 "https://powerline.readthedocs.io/en/latest/configuration.html#quick-setup-guide
 
 "NERDTree
-let NERDTreeMinimalUI = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeChDirMode = 2
 " }}}
 "===== MAPPINGS {{{
 
