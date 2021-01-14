@@ -61,7 +61,6 @@ Plugin 'editorconfig/editorconfig-vim'
 "Extend % functionality (python_match might be a superset of matchit.zip)
 Plugin 'python_match.vim'
 Plugin 'matchit.zip'
-
 "T Pope
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
@@ -128,6 +127,12 @@ if has('gui_running')
 else
 	hi SpellBad guifg=Red
 endif
+if &diff
+    colorscheme gruvbox
+endif
+let g:nightflyUnderlineMatchParen = 1
+let g:nightflyCursorColor = 1
+let g:powerline = {'colorscheme': 'nightfly'}
 hi SpellBad cterm=bold ctermfg=1 
 " }}}
 "===== Plugin Configs {{{
