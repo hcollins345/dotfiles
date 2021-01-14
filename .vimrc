@@ -182,7 +182,8 @@ let g:Powerline_symbols = 'fancy'
 "https://powerline.readthedocs.io/en/latest/configuration.html#quick-setup-guide
 
 "NERDTree
-let NERDTreeMinimalUI = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeChDirMode = 2
 " }}}
 "===== MAPPINGS {{{
 
@@ -282,6 +283,8 @@ map <Leader>vz :VimuxZoomRunner<CR>
 let &t_EI = "\<Esc>[1 q"
 let &t_SR = "\<Esc>[3 q"
 let &t_SI = "\<Esc>[5 q"
+" set diffopt+=iwhite
+" set diffexpr=""
 set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
 set ignorecase		" Do case insensitive matching
