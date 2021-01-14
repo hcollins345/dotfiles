@@ -73,6 +73,7 @@ Plugin 'vim-pandoc/vim-rmarkdown'
 "Colorschemes
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'morhetz/gruvbox'
+Plugin 'bluz71/vim-nightfly-guicolors'
 "Distraction free
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
@@ -116,8 +117,11 @@ endif
 "===== ColorScheme/ SynTax/ Spelling  {{{ 
 let g:gruvbox_italic=1 
 set termguicolors " Gives terminal vim the same color options as 256???
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let g:pandoc#syntax#conceal#use = 1
-colorscheme gruvbox
+" colorscheme gruvbox
+colorscheme nightfly
 set background=dark
 if has('gui_running')
 	set guifont=Lucida_Console:h12:cDEFAULT
