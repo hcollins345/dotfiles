@@ -216,8 +216,13 @@ inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
 " Substitution shortcut
 nnoremap S :%s//g<Left><Left>
-" trigger line numbering
-nmap <leader>nn :set invnumber<CR>
+" trigger line numbering - same as :set nu! rnu!
+nmap <leader>nn :set number! relativenumber!<CR> 
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+augroup END
 " fold settings 
 set foldlevel=1
 nnoremap <space> za
@@ -283,6 +288,7 @@ map <Leader>vz :VimuxZoomRunner<CR>
 " }}}
 " }}}
 "===== Vim configs {{{
+set noesckeys
 " change cursor style depending on mode
 let &t_EI = "\<Esc>[1 q"
 let &t_SR = "\<Esc>[3 q"
