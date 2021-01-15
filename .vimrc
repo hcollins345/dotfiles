@@ -81,25 +81,28 @@ Plugin 'vimwiki/vimwiki'
 Plugin 'suan/vim-instant-markdown'
 "NERDTree
 Plugin 'scrooloose/nerdtree'
-"MiniMap
-"Plugin 'severin-lemaignan/vim-minimap'
-"Folding
-Plugin 'tmhedberg/SimpylFold' "python
+"MiniMap <leader>mm and <leader>mc
+Plugin 'severin-lemaignan/vim-minimap'
+"Folding for python
+Plugin 'tmhedberg/SimpylFold'
 "Panes
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
 "Powerline
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim'}
-
+"Can be used to generate tags/xml quickly - google emmet
 Plugin 'mattn/emmet-vim'
+"Git- highlights changes between file and latest commit
 Plugin 'airblade/vim-gitgutter'
-
+"Extends ci" functionality to ({[ etc and adds arguements ie. c4ana
 Plugin 'wellle/targets.vim'
+"Save vim sessions easier (used by tmux-resurrect)
+Plugin 'tpope/vim-obsession'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
-filetype indent on
-filetype plugin on
+"filetype indent on
+"filetype plugin on
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just
@@ -119,8 +122,8 @@ set termguicolors " Gives terminal vim the same color options as 256???
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let g:pandoc#syntax#conceal#use = 1
-" colorscheme gruvbox
-colorscheme nightfly
+colorscheme gruvbox
+" colorscheme nightfly
 set background=dark
 if has('gui_running')
 	set guifont=Lucida_Console:h12:cDEFAULT
