@@ -65,6 +65,7 @@ Plugin 'matchit.zip'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-sensible'
 "rmarkdown
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'vim-pandoc/vim-pandoc'
@@ -89,7 +90,9 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
 "Powerline
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim'}
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim'}
 "Can be used to generate tags/xml quickly - google emmet
 Plugin 'mattn/emmet-vim'
 "Git- highlights changes between file and latest commit
@@ -98,6 +101,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'wellle/targets.vim'
 "Save vim sessions easier (used by tmux-resurrect)
 Plugin 'tpope/vim-obsession'
+
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -116,8 +120,9 @@ if has("syntax")
 endif
 :syntax enable
 " }}}
-"===== ColorScheme/ SynTax/ Spelling  {{{ 
-let g:gruvbox_italic=1 
+runtime! plugin/sensible.vim
+"===== ColorScheme/ SynTax/ Spelling  {{{
+let g:gruvbox_italic=1
 set termguicolors " Gives terminal vim the same color options as 256???
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -126,13 +131,13 @@ colorscheme gruvbox
 " colorscheme nightfly
 set background=dark
 if has('gui_running')
-	set guifont=Lucida_Console:h12:cDEFAULT
+  set guifont=Lucida_Console:h12:cDEFAULT
 else
-	hi SpellBad guifg=Red
+  hi SpellBad guifg=Red
 endif
 let g:nightflyUnderlineMatchParen = 1
 let g:nightflyCursorColor = 1
-hi SpellBad cterm=bold ctermfg=1 
+hi SpellBad cterm=bold ctermfg=1
 " }}}
 "===== Plugin Configs {{{
 "vim fugitive
@@ -156,15 +161,15 @@ let g:pandoc#folding#fdc = 0
 let g:arduino_dir = '~/Applications/Arduino'
 
 set foldtext=gitgutter#fold#foldtext()
-"YouCompleteMe 
+"YouCompleteMe
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_seed_identifiers_with_syntax = 1
   " runs <c-space> after 2 letters
 let g:ycm_semantic_triggers = {
-	\   'python': [ 're!\w{2}' ]
-	\ }
+  \   'python': [ 're!\w{2}' ]
+  \ }
   " This doesn't work with python, but there is options like GoToDefinition
   " etc
 map gd :YcmCompleter GoTo<CR>
@@ -175,14 +180,18 @@ map ; :Files<CR>
 
 " Python Folding (uncomment to see docstrings)
 let g:SimpylFold_docstring_preview = 1
-let g:SimpylFold_fold_docstring	= 0
+let g:SimpylFold_fold_docstring = 0
 
-"powerline
+"airline
+let g:airline_powerline_fonts = 1
+" let g:airline_theme='simple'
+" let g:airline_theme='distinguished'
+let g:airline_theme='dark'
 set laststatus=2 " 2 to Always display the statusline in all windows
 "set showtabline=2 " Always display the tabline, even if there is only one tab
 "set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-"set t_Co=256
-let g:Powerline_symbols = 'fancy'
+let g:airline#extensions#obsession#enabled = 1
+set t_Co=256
 "https://powerline.readthedocs.io/en/latest/configuration.html#quick-setup-guide
 
 "NERDTree
@@ -217,15 +226,16 @@ inoremap <c-w> <c-g>u<c-w>
 " Substitution shortcut
 nnoremap S :%s//g<Left><Left>
 " trigger line numbering - same as :set nu! rnu!
-nmap <leader>nn :set number! relativenumber!<CR> 
+nmap <leader>nn :set number! relativenumber!<CR>
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
   autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
 augroup END
-" fold settings 
+" fold settings
 set foldlevel=1
-nnoremap <space> za
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
 " tmux settings
 set splitright
 " vimux
@@ -262,18 +272,18 @@ map <Leader>vz :VimuxZoomRunner<CR>
     autocmd Filetype markdown map <buffer> <F5> :!pandoc<space><C-r>%<space>--latex-engine=xelatex<space>-o<space>%:t:r.pdf<space>--verbose<Enter><Enter>
     autocmd Filetype rmd map <buffer> <F5> :call VimuxRunCommand("echo<space>$'require(rmarkdown);<space>render('~/test.Rmd')'<space>\|<space>R<space>--vanilla")<CR>
     autocmd Filetype rmd map <F7> :!<space>xreader<space>%:t:r.pdf<space>&<CR>
-  else 
+  else
     autocmd Filetype markdown map <buffer> <F5> :!pandoc<space><C-r>%<space>--latex-engine=xelatex<space>-o<space>%:t:r.pdf<space>--verbose<Enter><Enter>
     autocmd Filetype rmd map <buffer> <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
     autocmd Filetype markdown,rmd map <F7> :!<space>xreader<space>%:t:r.pdf<space>&<CR>
   endif
 "ARDUINO
-	autocmd FileType arduino nnoremap <buffer> <leader>am :ArduinoVerify<CR>
-	autocmd FileType arduino nnoremap <buffer> <leader>au :ArduinoUpload<CR>
-	autocmd FileType arduino nnoremap <buffer> <leader>ad :ArduinoUploadAndSerial<CR>
-	autocmd FileType arduino nnoremap <buffer> <leader>ab :ArduinoChooseBoard<CR>
-	autocmd FileType arduino nnoremap <buffer> <leader>ap :ArduinoChooseProgrammer<CR>
-	"Sparql
+  autocmd FileType arduino nnoremap <buffer> <leader>am :ArduinoVerify<CR>
+  autocmd FileType arduino nnoremap <buffer> <leader>au :ArduinoUpload<CR>
+  autocmd FileType arduino nnoremap <buffer> <leader>ad :ArduinoUploadAndSerial<CR>
+  autocmd FileType arduino nnoremap <buffer> <leader>ab :ArduinoChooseBoard<CR>
+  autocmd FileType arduino nnoremap <buffer> <leader>ap :ArduinoChooseProgrammer<CR>
+  "Sparql
   autocmd BufRead,BufNewFile *.rq map <F5> :!<space>sparql.bat<space>--data=royal92.nt<space>--query=%<CR>
   "Py
   if IsWSL()
@@ -295,14 +305,14 @@ let &t_SR = "\<Esc>[3 q"
 let &t_SI = "\<Esc>[5 q"
 " set diffopt+=iwhite
 " set diffexpr=""
-set showcmd		" Show (partial) command in status line.
-set showmatch		" Show matching brackets.
-set ignorecase		" Do case insensitive matching
-set smartcase		" Do smart case matching
-set incsearch		" Incremental search
-set autowrite		" Automatically save before commands like :next and :make
-set hidden		" Hide buffers when they are abandoned
-set mouse=a		" Enable mouse usage (all modes)
+set showcmd   " Show (partial) command in status line.
+set showmatch   " Show matching brackets.
+set ignorecase    " Do case insensitive matching
+set smartcase   " Do smart case matching
+set incsearch   " Incremental search
+set autowrite   " Automatically save before commands like :next and :make
+set hidden    " Hide buffers when they are abandoned
+set mouse=a   " Enable mouse usage (all modes)
 set backspace=indent,eol,start " allow backspacing over indent, start of line and start
 set expandtab  " turns tabs to spaces
 set clipboard=unnamedplus " uses the OS clipboard for copying and pasting
@@ -332,20 +342,20 @@ set autoindent
 set ts=2 sts=2 sw=2
 if has("autocmd")
   filetype on
-  autocmd FileType vim setlocal ts=2 sts=2 sw=2 
-  autocmd FileType ruby setlocal ts=2 sts=2 sw=2 
-  autocmd FileType python setlocal ts=4 sts=4 sw=4 
-  autocmd FileType html setlocal ts=2 sts=2 sw=2 
-  autocmd FileType css setlocal ts=4 sts=4 sw=4 
-  autocmd FileType matlab setlocal ts=4 sw=4 
+  autocmd FileType vim setlocal ts=2 sts=2 sw=2
+  autocmd FileType ruby setlocal ts=2 sts=2 sw=2
+  autocmd FileType python setlocal ts=4 sts=4 sw=4
+  autocmd FileType html setlocal ts=2 sts=2 sw=2
+  autocmd FileType css setlocal ts=4 sts=4 sw=4
+  autocmd FileType matlab setlocal ts=4 sw=4
   autocmd FileType tex setlocal sw=2 sts=2 ts=2
   autocmd FileType LaTex setlocal sw=2 sts=2 ts=2
-	autocmd FileType sh setlocal sw=4 ts=4
-	autocmd FileType markdown setlocal ts=2 sts=2 sw=2
-	autocmd FileType rmd setlocal ts=2 sts=2 sw=2 
+  autocmd FileType sh setlocal sw=4 ts=4
+  autocmd FileType markdown setlocal ts=2 sts=2 sw=2
+  autocmd FileType rmd setlocal ts=2 sts=2 sw=2
   autocmd FileType xml setlocal noexpandtab
-	autocmd BufRead,BufNewFile *.pde set filetype=arduino
-	autocmd BufRead,BufNewFile *.ino set filetype=arduino
+  autocmd BufRead,BufNewFile *.pde set filetype=arduino
+  autocmd BufRead,BufNewFile *.ino set filetype=arduino
   filetype plugin indent on
 endif
 "}}}
@@ -394,7 +404,7 @@ endif
 
 "Source the vimrc file after saving it
 if has("autocmd")
-	autocmd bufwritepost .vimrc nested :source $MYVIMRC
+  autocmd bufwritepost .vimrc nested :source $MYVIMRC
 endif
 
 " vim: set fdm=marker fmr={{{,}}} fdl=0 :
