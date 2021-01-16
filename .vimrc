@@ -59,7 +59,9 @@ Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-rmarkdown'
 "Colorschemes
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'ericbn/vim-solarized'
+" Plugin 'altercation/vim-colors-solarized'
 Plugin 'morhetz/gruvbox'
 Plugin 'bluz71/vim-nightfly-guicolors'
 "Distraction free
@@ -90,7 +92,6 @@ Plugin 'wellle/targets.vim'
 "Save vim sessions easier (used by tmux-resurrect)
 Plugin 'tpope/vim-obsession'
 
-
 call vundle#end()            " required
 filetype plugin indent on    " required
 "filetype indent on
@@ -103,29 +104,43 @@ filetype plugin indent on    " required
 " :PluginClean      - confirms removal of unused plugins; append `!` to
 "auto-approve removal
 "END VUNDLE REQUIREMENTS
-if has("syntax")
-  syntax on
+if !exists("g:syntax_on")
+    syntax enable
 endif
-:syntax enable
 " }}}
 runtime! plugin/sensible.vim
 "===== ColorScheme/ SynTax/ Spelling  {{{
 let g:gruvbox_italic=1
-set termguicolors " Gives terminal vim the same color options as 256???
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors " Gives terminal vim the same color options as 256
 let g:pandoc#syntax#conceal#use = 1
-colorscheme gruvbox
-" colorscheme nightfly
 set background=dark
+" colorscheme gruvbox
+" colorscheme base16-flat
+" colorscheme solarized
+colorscheme PaperColor
+" colorscheme nightfly
 if has('gui_running')
-  set guifont=Lucida_Console:h12:cDEFAULT
 else
   hi SpellBad guifg=Red
 endif
 let g:nightflyUnderlineMatchParen = 1
 let g:nightflyCursorColor = 1
 hi SpellBad cterm=bold ctermfg=1
+
+"airline https://github.com/vim-airline/vim-airline/wiki/Screenshots
+let g:airline_powerline_fonts = 1
+" let g:airline_theme='simple'
+" let g:airline_theme='distinguished'
+let g:airline_theme='bubblegum'
+" let g:airline_theme='molokai'
+" let g:airline_theme='deus'
+" let g:airline_theme='gruvbox'
+" let g:airline_theme='powerlineish'
+" let g:airline_theme='solarized'
+" let g:airline_theme='dark' "'dark','simple','badwolf','dues','powerlineish','solarized','luna','molokai',
+let g:airline_solarized_bg='dark'
 " }}}
 "===== Plugin Configs {{{
 "vim fugitive
@@ -172,20 +187,10 @@ let g:SimpylFold_fold_docstring = 0
 
 "airline https://github.com/vim-airline/vim-airline/wiki/Screenshots
 let g:airline_powerline_fonts = 1
-" let g:airline_theme='simple'
-" let g:airline_theme='distinguished'
-" let g:airline_theme='bubblegum'
-let g:airline_theme='molokai'
-" let g:airline_theme='deus'
-" let g:airline_theme='gruvbox'
-" let g:airline_theme='powerlineish'
-" let g:airline_theme='dark' "'dark','simple','badwolf','dues','powerlineish','solarized','luna','molokai',
-let g:airline_solarized_bg='dark'
 let g:airline#extensions#obsession#enabled = 1
 set laststatus=2 " 2 to Always display the statusline in all windows
 "set showtabline=2 " Always display the tabline, even if there is only one tab
 "set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-"https://powerline.readthedocs.io/en/latest/configuration.html#quick-setup-guide
 
 "NERDTree
 let g:NERDTreeMinimalUI = 1
@@ -396,7 +401,7 @@ if filereadable("/etc/vim/vimrc.local")
 endif
 
 "Source the vimrc file after saving it
-autocmd! bufwritepost $MYVIMRC source $MYVIMRC
+autocmd! bufwritepost .vimrc source ~/.vimrc
 
 " vim: set fdm=marker fmr={{{,}}} fdl=0 :
 "}}}

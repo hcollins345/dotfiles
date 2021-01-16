@@ -13,6 +13,7 @@ sudo chown -R harry ~/.TinyTex && \
 source ~/.bashrc && \
 vim +PluginInstall +qall && \
 python ~/.vim/bundle/YouCompleteMe/install.py
+echo 'set completion-ignore-case On' | sudo tee -a /etc/inputrc
 
 # ==========Vimrc and YCM=======
 # go to .vimrc in ~ and ran :PluginInstall

@@ -118,8 +118,8 @@ sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt aut
 ln -s /mnt/c/Users/hcollins hcollins
 ln -svf hcollins/OneDrive\ -\ Intel\ Corporation/ onedrive
 ```
-5. Install WSLTTY https://github.com/mintty/wsltty/releases
-6. Update ssh key 
+1. Install WSLTTY https://github.com/mintty/wsltty/releases
+2. Update ssh key 
     ```bash
     git config --global user.email "hcollins345@gmail.com" 
     git config --global user.name "hcollins345" 
@@ -132,7 +132,11 @@ ln -svf hcollins/OneDrive\ -\ Intel\ Corporation/ onedrive
     git clone -q git@github.com:hcollins345/dotfiles.git
     bash ~/dotfiles/sync.sh 
     ```
-
+8. make tab completion case-insensitive for all users
+    ```bash
+    echo 'set completion-ignore-case On' | sudo tee -a /etc/inputrc
+    ```
+    
 
 ### VIM
 Default vim seems fine
