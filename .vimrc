@@ -182,16 +182,21 @@ map ; :Files<CR>
 let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_docstring = 0
 
-"airline
+"airline https://github.com/vim-airline/vim-airline/wiki/Screenshots
 let g:airline_powerline_fonts = 1
 " let g:airline_theme='simple'
 " let g:airline_theme='distinguished'
-let g:airline_theme='dark'
+" let g:airline_theme='bubblegum'
+let g:airline_theme='molokai'
+" let g:airline_theme='deus'
+" let g:airline_theme='gruvbox'
+" let g:airline_theme='powerlineish'
+" let g:airline_theme='dark' "'dark','simple','badwolf','dues','powerlineish','solarized','luna','molokai',
+let g:airline_solarized_bg='dark'
+let g:airline#extensions#obsession#enabled = 1
 set laststatus=2 " 2 to Always display the statusline in all windows
 "set showtabline=2 " Always display the tabline, even if there is only one tab
 "set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-let g:airline#extensions#obsession#enabled = 1
-set t_Co=256
 "https://powerline.readthedocs.io/en/latest/configuration.html#quick-setup-guide
 
 "NERDTree
@@ -403,9 +408,7 @@ if filereadable("/etc/vim/vimrc.local")
 endif
 
 "Source the vimrc file after saving it
-if has("autocmd")
-  autocmd bufwritepost .vimrc nested :source $MYVIMRC
-endif
+autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 
 " vim: set fdm=marker fmr={{{,}}} fdl=0 :
 "}}}
