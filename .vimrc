@@ -61,6 +61,7 @@ Plugin 'vim-pandoc/vim-rmarkdown'
 "Colorschemes
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'ericbn/vim-solarized'
+Plugin 'rakr/vim-one'
 " Plugin 'altercation/vim-colors-solarized'
 Plugin 'morhetz/gruvbox'
 Plugin 'bluz71/vim-nightfly-guicolors'
@@ -110,60 +111,70 @@ endif
 " }}}
 runtime! plugin/sensible.vim
 "===== ColorScheme/ SynTax/ Spelling  {{{
-let g:gruvbox_italic=1
+" Enable True color or 256 if not available (I think)
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors " Gives terminal vim the same color options as 256
-let g:pandoc#syntax#conceal#use = 1
+
+let g:gruvbox_italic=1
+let g:one_allow_italics = 1
+
+"Colorscheme
 set background=dark
 " colorscheme gruvbox
 " colorscheme base16-flat
 " colorscheme solarized
-colorscheme PaperColor
+" colorscheme PaperColor
+colorscheme one
 " colorscheme nightfly
-if has('gui_running')
-else
-  hi SpellBad guifg=Red
-endif
+
 let g:nightflyUnderlineMatchParen = 1
 let g:nightflyCursorColor = 1
+if !has('gui_running')
+  hi SpellBad guifg=Red
+endif
 hi SpellBad cterm=bold ctermfg=1
 
 "airline https://github.com/vim-airline/vim-airline/wiki/Screenshots
 let g:airline_powerline_fonts = 1
 " let g:airline_theme='simple'
 " let g:airline_theme='distinguished'
-let g:airline_theme='bubblegum'
+" let g:airline_theme='bubblegum'
 " let g:airline_theme='molokai'
 " let g:airline_theme='deus'
 " let g:airline_theme='gruvbox'
 " let g:airline_theme='powerlineish'
-" let g:airline_theme='solarized'
+" let g:airline_theme='solarized' | let g:airline_solarized_bg='light'
+let g:airline_theme='one'
 " let g:airline_theme='dark' "'dark','simple','badwolf','dues','powerlineish','solarized','luna','molokai',
-let g:airline_solarized_bg='dark'
 " }}}
 "===== Plugin Configs {{{
 "vim fugitive
 set diffopt+=vertical
+
 "VIM-LATEX
 let g:tex_flavor='latex'
-"I don't know what this is for but the $* creates an error message
-"set grepprg=grep\ -nH $*
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats='pdf, aux'
+
 "Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
 "VimWiki
 let g:vimwiki_list = [{'path': '~/dotfiles/vimwiki/', 'syntax': 'markdown','ext': '.md', 'auto_tags': 1}]
 let g:instant_markdown_autostart = 0
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 
 "Pandoc/ Rmarkdown
+let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#folding#fdc = 0
+
 "Arduino Directory
 let g:arduino_dir = '~/Applications/Arduino'
 
+" Gitgutter
 set foldtext=gitgutter#fold#foldtext()
+
 "YouCompleteMe
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -173,8 +184,6 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_semantic_triggers = {
   \   'python': [ 're!\w{2}' ]
   \ }
-  " This doesn't work with python, but there is options like GoToDefinition
-  " etc
 map gd :YcmCompleter GoTo<CR>
 map gi :YcmCompleter GetDoc<CR>
 
@@ -317,7 +326,6 @@ set clipboard=unnamedplus " uses the OS clipboard for copying and pasting
 set encoding=utf-8
 set history=10000
 set updatetime=100
-"new (tobe checked)
 set scrolloff=1
 set sidescrolloff=5
 if &listchars ==# 'eol:$'
@@ -335,6 +343,8 @@ autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
 set smarttab
 set autoindent
+"I don't know what this is for but the $* creates an error message
+"set grepprg=grep\ -nH $*
 " }}}
 "===== FileType Indentation {{{
 set ts=2 sts=2 sw=2
