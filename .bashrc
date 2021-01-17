@@ -14,6 +14,7 @@ fi
 # ==============ALIASES===============
 alias r=ranger
 alias v=vim
+alias bat=batcat
 # ==============ENDALIASES===============
 set -o vi
 shopt -s autocd
