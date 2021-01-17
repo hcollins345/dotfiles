@@ -62,6 +62,8 @@ Plugin 'vim-pandoc/vim-rmarkdown'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'ericbn/vim-solarized'
 Plugin 'rakr/vim-one'
+Plugin 'sakibmoon/vim-colors-notepad-plus-plus'
+Plugin 'ayu-theme/ayu-vim' " or other package manager
 " Plugin 'altercation/vim-colors-solarized'
 Plugin 'morhetz/gruvbox'
 Plugin 'bluz71/vim-nightfly-guicolors'
@@ -118,18 +120,24 @@ set termguicolors " Gives terminal vim the same color options as 256
 
 let g:gruvbox_italic=1
 let g:one_allow_italics = 1
+let g:nightflyUnderlineMatchParen = 1
+let g:nightflyCursorColor = 1
 
+highlight clear signcolumn
+
+set background=light
 "Colorscheme
-set background=dark
 " colorscheme gruvbox
 " colorscheme base16-flat
 " colorscheme solarized
 " colorscheme PaperColor
-colorscheme one
+" colorscheme one
 " colorscheme nightfly
+" colorscheme notepad-plus-plus
+" let ayucolor="light"| colorscheme ayu   " 'light', 'mirage', 'dark'
+" let ayucolor="mirage"| colorscheme ayu   " 'light', 'mirage', 'dark'
+let ayucolor="dark"| colorscheme ayu   " 'light', 'mirage', 'dark'
 
-let g:nightflyUnderlineMatchParen = 1
-let g:nightflyCursorColor = 1
 if !has('gui_running')
   hi SpellBad guifg=Red
 endif
@@ -139,14 +147,18 @@ hi SpellBad cterm=bold ctermfg=1
 let g:airline_powerline_fonts = 1
 " let g:airline_theme='simple'
 " let g:airline_theme='distinguished'
-" let g:airline_theme='bubblegum'
+let g:airline_theme='bubblegum'
 " let g:airline_theme='molokai'
 " let g:airline_theme='deus'
 " let g:airline_theme='gruvbox'
 " let g:airline_theme='powerlineish'
 " let g:airline_theme='solarized' | let g:airline_solarized_bg='light'
-let g:airline_theme='one'
+" let g:airline_theme='one'
 " let g:airline_theme='dark' "'dark','simple','badwolf','dues','powerlineish','solarized','luna','molokai',
+
+" Clear gitgutter sign column highlighting
+highlight clear signcolumn
+
 " }}}
 "===== Plugin Configs {{{
 "vim fugitive
@@ -163,7 +175,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 "VimWiki
 let g:vimwiki_list = [{'path': '~/dotfiles/vimwiki/', 'syntax': 'markdown','ext': '.md', 'auto_tags': 1}]
 let g:instant_markdown_autostart = 0
-let g:vimwiki_ext2syntax = {'.md': 'markdown'}
+let g:vimwiki_ext2syntax = {'.Rmd': 'markdown','.rmd': 'markdown','.md':'markdown','.markdown': 'markdown','.mddown': 'markdown',}
 
 "Pandoc/ Rmarkdown
 let g:pandoc#syntax#conceal#use = 1
@@ -174,6 +186,7 @@ let g:arduino_dir = '~/Applications/Arduino'
 
 " Gitgutter
 set foldtext=gitgutter#fold#foldtext()
+" set signcolumn=number " use number column as signcolumn
 
 "YouCompleteMe
 let g:ycm_filepath_completion_use_working_dir = 1
@@ -210,11 +223,14 @@ let g:NERDTreeChDirMode = 2
 let mapleader = ","
 "----- Plugin Mappings {{{
 
+" Goyo
+map <leader>f :Goyo \| set linebreak<CR>
+
 " Commentary
 map cm <Plug>Commentary
 
 "GitGutter
-command! GG GitGutterToggle
+nmap <leader>GG :GitGutterToggle<CR>
 
 " NERDTree
 map <leader>n :NERDTreeToggle<CR>
@@ -232,26 +248,28 @@ inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
 " Substitution shortcut
 nnoremap S :%s//g<Left><Left>
-" trigger line numbering - same as :set nu! rnu!
-nmap <leader>nn :set number! relativenumber!<CR>
+
+nmap <leader>nn :set number! relativenumber!<CR>| " line numbering :set nu! rnu!
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
   autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
 augroup END
+
+map <leader>o :setlocal spell! spelllang=en_gb<CR>| "spellcheck, o for orthography
+
 " fold settings
 set foldlevel=1
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
-" tmux settings
-set splitright
+
+set splitright " tmux settings
+
 " vimux
 map <leader>vp :VimuxPromptCommand<CR>
 map <leader>vl :VimuxRunLastCommand<CR>
-" Inspect runner pane
-map <Leader>vi :VimuxInspectRunner<CR>
-" Zoom the tmux runner pane
-map <Leader>vz :VimuxZoomRunner<CR>
+map <Leader>vi :VimuxInspectRunner<CR>|  "Inspect runner pane
+map <Leader>vz :VimuxZoomRunner<CR>|  "Zoom the tmux runner pane
 " }}}
 "----- FileType Mappings {{{
 "MARKDOWN
@@ -271,11 +289,10 @@ map <Leader>vz :VimuxZoomRunner<CR>
   autocmd Filetype markdown,rmd inoremap ;l --------<Enter>
   autocmd Filetype markdown,rmd inoremap ;eq \begin{align}<CR><CR>\end{align}<CR><++><Esc>kki<space><space>
   autocmd Filetype markdown,rmd inoremap ;hr \hyperref[]{<++> \autoref{<++>}}<Esc>21hi
-  "autocmd Filetype markdown,rmd map <F5> :!pandoc<space><C-r>%<space>--pdf-engine=xelatex<space>-o<space><C-r>%.pdf<Enter><Enter>
   autocmd Filetype markdown,rmd map <F6> i---<CR>title: <++><CR>subtitle: <++><CR>author: Harry Collins<CR>date: '<C-r>=strftime('%c')<CR><++>'<CR>output: <++>pdf_document<CR>urlcolor: <++>blue<CR>linkcolor: <++>black<CR>---<CR><CR><++><C-j>
   autocmd Filetype markdown,rmd inoremap ;r ```{r}<CR>```<CR><CR><esc>2kO
   autocmd Filetype markdown,rmd inoremap ;p ```{python echo=FALSE, fig.cap=''}<CR>```<CR><CR><esc>2kO
-  if exists('$TUX')
+  if exists('$TMUX')
     autocmd Filetype markdown map <buffer> <F5> :!pandoc<space><C-r>%<space>--latex-engine=xelatex<space>-o<space>%:t:r.pdf<space>--verbose<Enter><Enter>
     autocmd Filetype rmd map <buffer> <F5> :call VimuxRunCommand("echo<space>$'require(rmarkdown);<space>render('~/test.Rmd')'<space>\|<space>R<space>--vanilla")<CR>
     autocmd Filetype rmd map <F7> :!<space>xreader<space>%:t:r.pdf<space>&<CR>
@@ -303,6 +320,9 @@ map <Leader>vz :VimuxZoomRunner<CR>
   autocmd Filetype ipynb nmap <silent><Leader>j :VimpyterStartJupyter<CR>
   autocmd Filetype ipynb nmap <silent><Leader>n :VimpyterStartNteract<CR>
 " }}}
+"----- External Command Mappings {{{
+map <leader>s :!clear && shellcheck %<CR>
+" }}}
 " }}}
 "===== Vim configs {{{
 set noesckeys
@@ -312,6 +332,7 @@ let &t_SR = "\<Esc>[3 q"
 let &t_SI = "\<Esc>[5 q"
 " set diffopt+=iwhite
 " set diffexpr=""
+set wildmode=longest,list,full " Enable Autocompletion
 set showcmd   " Show (partial) command in status line.
 set showmatch   " Show matching brackets.
 set ignorecase    " Do case insensitive matching
@@ -359,11 +380,11 @@ if has("autocmd")
   autocmd FileType tex setlocal sw=2 sts=2 ts=2
   autocmd FileType LaTex setlocal sw=2 sts=2 ts=2
   autocmd FileType sh setlocal sw=4 ts=4
-  autocmd FileType markdown setlocal ts=2 sts=2 sw=2
-  autocmd FileType rmd setlocal ts=2 sts=2 sw=2
+  autocmd FileType markdown setlocal ts=2 sts=2 sw=2 tw=79
+  " autocmd FileType rmd setlocal ts=2 sts=2 sw=2
   autocmd FileType xml setlocal noexpandtab
-  autocmd BufRead,BufNewFile *.pde set filetype=arduino
-  autocmd BufRead,BufNewFile *.ino set filetype=arduino
+  autocmd BufRead,BufNewFile *.pde,*.ino set filetype=arduino
+  autocmd BufRead,BufNewFile *.tex set filetype=tex
   filetype plugin indent on
 endif
 "}}}
