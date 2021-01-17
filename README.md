@@ -149,6 +149,11 @@ Update vim
 sudo add-apt-repository ppa:jonathonf/vim
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y 
 ```
+Upgrading fzf.vim
+```bash
+sudo apt install bat silversearcher-ag
+```
+
 
 ### YCM and python - need to install linux anaconda
 
