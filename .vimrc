@@ -55,6 +55,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-repeat'
 "rmarkdown
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'vim-pandoc/vim-pandoc'
@@ -136,8 +137,8 @@ set background=light
 " colorscheme nightfly
 " colorscheme notepad-plus-plus
 " let ayucolor="light"| colorscheme ayu   " 'light', 'mirage', 'dark'
-" let ayucolor="mirage"| colorscheme ayu   " 'light', 'mirage', 'dark'
-let ayucolor="dark"| colorscheme ayu   " 'light', 'mirage', 'dark'
+let ayucolor="mirage"| colorscheme ayu   " 'light', 'mirage', 'dark'
+" let ayucolor="dark"| colorscheme ayu   " 'light', 'mirage', 'dark'
 
 if !has('gui_running')
   hi SpellBad guifg=Red
@@ -265,6 +266,11 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
 set splitright " tmux settings
+"Resizing splits shortcut
+execute "set <a-,>=\<esc>,"
+execute "set <a-.>=\<esc>."
+nnoremap <silent> <a-,> :<c-u>vert res -<c-r>=v:count?v:count1:5<cr><cr>
+nnoremap <silent> <a-.> :<c-u>vert res +<c-r>=v:count?v:count1:5<cr><cr>
 
 " vimux
 map <leader>vp :VimuxPromptCommand<CR>
