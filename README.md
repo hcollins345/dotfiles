@@ -48,6 +48,13 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 source ~/.bashrc
 ```
 
+#### Adding patched fonts
+https://github.com/ryanoasis/nerd-fonts#option-6-ad-hoc-curl-download
+```bash
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
+```
+
 ### TODO
 - [x] Run :PluginInstall from commandline
 - [ ] Insert backticks in tmux https://gist.github.com/JikkuJose/7509315
