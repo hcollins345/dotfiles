@@ -55,6 +55,27 @@ mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
 ```
 
+#### SC-IM
+https://github.com/andmarti1424/sc-im/wiki/Ubuntu-with-XLSX-import-&-export
+
+```bash
+sudo apt-get install -y bison libncurses5-dev libncursesw5-dev libxml2-dev libzip-dev gnuplot
+git clone https://github.com/jmcnamara/libxlsxwriter.git
+cd libxlsxwriter/
+make
+sudo make install
+```
+```bash
+sudo ldconfig
+cd ..
+git clone https://github.com/andmarti1424/sc-im.git
+cd sc-im/src
+make
+sudo make install
+```
+
+
+
 ### TODO
 - [x] Run :PluginInstall from commandline
 - [ ] Insert backticks in tmux https://gist.github.com/JikkuJose/7509315

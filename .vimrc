@@ -242,6 +242,11 @@ nmap <silent><buffer> <Leader>wc <Plug>Vimwiki2HTML
 
 "}}}
 "----- General Mappings {{{
+" Copy and paste to clipboard using Ctrl + y and p
+nnoremap <C-y> "+y
+vnoremap <C-y> "+y
+nnoremap <C-p> "+gP
+vnoremap <C-p> "+gP
 " Prevent x form overriding what's in the clipboard
 noremap x "_x
 noremap X "_x
@@ -348,9 +353,14 @@ set incsearch   " Incremental search
 set autowrite   " Automatically save before commands like :next and :make
 set hidden    " Hide buffers when they are abandoned
 set mouse=a   " Enable mouse usage (all modes)
+set ttymouse=xterm2 " enables resizing splits using mouse
 set backspace=indent,eol,start " allow backspacing over indent, start of line and start
 set expandtab  " turns tabs to spaces
-set clipboard=unnamedplus " uses the OS clipboard for copying and pasting
+if IsWSL()
+  set clipboard=unnamedplus " uses the OS clipboard for copying and pasting
+else
+  set clipboard=unnamed " uses the OS clipboard for copying and pasting
+endif
 set encoding=utf-8
 set history=10000
 set updatetime=100
