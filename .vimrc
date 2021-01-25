@@ -71,6 +71,8 @@ Plugin 'bluz71/vim-nightfly-guicolors'
 "Distraction free
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
+Plugin 'victorze/foo'
+Plugin 'cormacrelf/vim-colors-github'
 "VIMWIKI
 Plugin 'vimwiki/vimwiki'
 Plugin 'suan/vim-instant-markdown'
@@ -137,7 +139,11 @@ set background=light
 " colorscheme notepad-plus-plus
 " let ayucolor="light"| colorscheme ayu   " 'light', 'mirage', 'dark'
 " let ayucolor="mirage"| colorscheme ayu   " 'light', 'mirage', 'dark'
-let ayucolor="dark"| colorscheme ayu   " 'light', 'mirage', 'dark'
+" let ayucolor="dark"| colorscheme ayu   " 'light', 'mirage', 'dark'
+" colorscheme github-old
+colorscheme github
+let g:github_colors_block_diffmark = 0
+
 
 if !has('gui_running')
   hi SpellBad guifg=Red
@@ -148,7 +154,7 @@ hi SpellBad cterm=bold ctermfg=1
 let g:airline_powerline_fonts = 1
 " let g:airline_theme='simple'
 " let g:airline_theme='distinguished'
-let g:airline_theme='bubblegum'
+" let g:airline_theme='bubblegum'
 " let g:airline_theme='molokai'
 " let g:airline_theme='deus'
 " let g:airline_theme='gruvbox'
@@ -156,6 +162,7 @@ let g:airline_theme='bubblegum'
 " let g:airline_theme='solarized' | let g:airline_solarized_bg='light'
 " let g:airline_theme='one'
 " let g:airline_theme='dark' "'dark','simple','badwolf','dues','powerlineish','solarized','luna','molokai',
+let g:airline_theme = "github"
 
 " Clear gitgutter sign column highlighting
 highlight clear signcolumn
@@ -249,6 +256,9 @@ inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
 " Substitution shortcut
 nnoremap S :%s//g<Left><Left>
+
+" select last paste in visual mode - gv already selects the last yanked text
+nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 nmap <leader>nn :set number! relativenumber!<CR>| " line numbering :set nu! rnu!
 augroup numbertoggle
