@@ -55,6 +55,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-repeat'
 "rmarkdown
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'vim-pandoc/vim-pandoc'
@@ -248,6 +249,11 @@ nmap <silent><buffer> <Leader>wc <Plug>Vimwiki2HTML
 
 "}}}
 "----- General Mappings {{{
+" Copy and paste to clipboard using Ctrl + y and p
+nnoremap <C-y> "+y
+vnoremap <C-y> "+y
+nnoremap <C-p> "+gP
+vnoremap <C-p> "+gP
 " Prevent x form overriding what's in the clipboard
 noremap x "_x
 noremap X "_x
@@ -275,6 +281,11 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
 set splitright " tmux settings
+"Resizing splits shortcut
+execute "set <a-,>=\<esc>,"
+execute "set <a-.>=\<esc>."
+nnoremap <silent> <a-,> :<c-u>vert res -<c-r>=v:count?v:count1:5<cr><cr>
+nnoremap <silent> <a-.> :<c-u>vert res +<c-r>=v:count?v:count1:5<cr><cr>
 
 " vimux
 map <leader>vp :VimuxPromptCommand<CR>
@@ -352,9 +363,14 @@ set incsearch   " Incremental search
 set autowrite   " Automatically save before commands like :next and :make
 set hidden    " Hide buffers when they are abandoned
 set mouse=a   " Enable mouse usage (all modes)
+set ttymouse=xterm2 " enables resizing splits using mouse
 set backspace=indent,eol,start " allow backspacing over indent, start of line and start
 set expandtab  " turns tabs to spaces
-set clipboard=unnamedplus " uses the OS clipboard for copying and pasting
+if IsWSL()
+  set clipboard=unnamedplus " uses the OS clipboard for copying and pasting
+else
+  set clipboard=unnamed " uses the OS clipboard for copying and pasting
+endif
 set encoding=utf-8
 set history=10000
 set updatetime=100

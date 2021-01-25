@@ -15,6 +15,8 @@ fi
 alias r=ranger
 alias v=vim
 alias bat=batcat
+alias calc='libreoffice --calc'
+alias scim=sc-im
 # ==============ENDALIASES===============
 set -o vi
 shopt -s autocd
