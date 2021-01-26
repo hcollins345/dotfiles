@@ -69,6 +69,9 @@ Plugin 'ayu-theme/ayu-vim' " or other package manager
 " Plugin 'altercation/vim-colors-solarized'
 Plugin 'morhetz/gruvbox'
 Plugin 'bluz71/vim-nightfly-guicolors'
+Plugin 'vim-scripts/eclipse.vim'
+Plugin 'vim-scripts/summerfruit256.vim'
+Plugin 'vim-scripts/AutumnLeaf'
 "Distraction free
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
@@ -129,7 +132,7 @@ let g:nightflyCursorColor = 1
 
 highlight clear signcolumn
 
-set background=light
+" set background=light
 "Colorscheme
 " colorscheme gruvbox
 " colorscheme base16-flat
@@ -142,7 +145,10 @@ set background=light
 " let ayucolor="mirage"| colorscheme ayu   " 'light', 'mirage', 'dark'
 " let ayucolor="dark"| colorscheme ayu   " 'light', 'mirage', 'dark'
 " colorscheme github-old
-colorscheme github
+" colorscheme github
+" colorscheme eclipse
+colorscheme summerfruit256
+" colorscheme autumnleaf
 let g:github_colors_block_diffmark = 0
 
 
@@ -155,7 +161,7 @@ hi SpellBad cterm=bold ctermfg=1
 let g:airline_powerline_fonts = 1
 " let g:airline_theme='simple'
 " let g:airline_theme='distinguished'
-" let g:airline_theme='bubblegum'
+let g:airline_theme='bubblegum'
 " let g:airline_theme='molokai'
 " let g:airline_theme='deus'
 " let g:airline_theme='gruvbox'
@@ -163,7 +169,7 @@ let g:airline_powerline_fonts = 1
 " let g:airline_theme='solarized' | let g:airline_solarized_bg='light'
 " let g:airline_theme='one'
 " let g:airline_theme='dark' "'dark','simple','badwolf','dues','powerlineish','solarized','luna','molokai',
-let g:airline_theme = "github"
+" let g:airline_theme = "github"
 
 " Clear gitgutter sign column highlighting
 highlight clear signcolumn
