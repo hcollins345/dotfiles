@@ -131,6 +131,14 @@ rm -rf fonts
 ```
 Navigate to ```C:\Program Files\Git\mingw64\share\fonts```, highlight all, right click and hit install
 
+### Ranger
+
+```bash
+wget https://raw.githubusercontent.com/kyoz/purify/master/ranger/purify.py -O ~/.config/ranger/colorschemes/default.py
+# or
+$ curl https://raw.githubusercontent.com/kyoz/purify/master/ranger/purify.py --output ~/.config/ranger/colorschemes/default.py
+```
+
 WINDOWS (WSL1)
 -------------------------------------------------------
 [More Info](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
