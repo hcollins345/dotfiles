@@ -359,9 +359,9 @@ map <Leader>vz :VimuxZoomRunner<CR>|  "Zoom the tmux runner pane
 "===== Vim configs {{{
 set noesckeys
 " change cursor style depending on mode
-let &t_EI = "\<Esc>[1 q"
-let &t_SR = "\<Esc>[3 q"
-let &t_SI = "\<Esc>[5 q"
+let &t_EI = "\<Esc>[2 q" "normal mode 1 is blinking box, 2 is non-blinking
+let &t_SR = "\<Esc>[3 q" "replace mode, 3 is blinking underline, 4 is non-blinking
+let &t_SI = "\<Esc>[5 q" "insert mode  5 is blinking line
 " set diffopt+=iwhite
 " set diffexpr=""
 set wildmode=longest,list,full " Enable Autocompletion
@@ -408,7 +408,7 @@ set autoindent
 set ts=2 sts=2 sw=2
 if has("autocmd")
   filetype on
-  autocmd FileType vim setlocal ts=2 sts=2 sw=2
+  autocmd FileType vim setlocal ts=2 sts=2 sw=2 tw=0
   autocmd FileType ruby setlocal ts=2 sts=2 sw=2
   autocmd FileType python setlocal ts=4 sts=4 sw=4
   autocmd FileType html setlocal ts=2 sts=2 sw=2
