@@ -44,11 +44,15 @@ Plugin 'Raimondi/delimitMate'
 "Search
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
+Plugin 'wincent/ferret'
 "editorconfig
 Plugin 'editorconfig/editorconfig-vim'
 "Extend % functionality (python_match might be a superset of matchit.zip)
 Plugin 'python_match.vim'
 Plugin 'matchit.zip'
+"Movement
+Plugin 'unblevable/quick-scope'
+Plugin 'rhysd/clever-f.vim'
 "T Pope
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
@@ -142,12 +146,12 @@ highlight clear signcolumn
 " colorscheme nightfly
 " colorscheme notepad-plus-plus
 " let ayucolor="light"| colorscheme ayu   " 'light', 'mirage', 'dark'
-" let ayucolor="mirage"| colorscheme ayu   " 'light', 'mirage', 'dark'
+let ayucolor="mirage"| colorscheme ayu   " 'light', 'mirage', 'dark'
 " let ayucolor="dark"| colorscheme ayu   " 'light', 'mirage', 'dark'
-" colorscheme github-old
 " colorscheme github
+" colorscheme github-old
 " colorscheme eclipse
-colorscheme summerfruit256
+" colorscheme summerfruit256
 " colorscheme autumnleaf
 let g:github_colors_block_diffmark = 0
 
@@ -349,7 +353,7 @@ map <Leader>vz :VimuxZoomRunner<CR>|  "Zoom the tmux runner pane
   autocmd Filetype ipynb nmap <silent><Leader>n :VimpyterStartNteract<CR>
 " }}}
 "----- External Command Mappings {{{
-map <leader>s :!clear && shellcheck %<CR>
+" map <leader>s :!clear && shellcheck %<CR>
 " }}}
 " }}}
 "===== Vim configs {{{
