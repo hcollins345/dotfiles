@@ -376,11 +376,7 @@ set mouse=a   " Enable mouse usage (all modes)
 set ttymouse=xterm2 " enables resizing splits using mouse
 set backspace=indent,eol,start " allow backspacing over indent, start of line and start
 set expandtab  " turns tabs to spaces
-if IsWSL()
-  set clipboard=unnamedplus " uses the OS clipboard for copying and pasting
-else
-  set clipboard=unnamed " uses the OS clipboard for copying and pasting
-endif
+set clipboard=unnamedplus " uses the OS clipboard for copying and pasting
 set encoding=utf-8
 set history=10000
 set updatetime=100
