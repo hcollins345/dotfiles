@@ -171,6 +171,8 @@ ln -svf hcollins/OneDrive\ -\ Intel\ Corporation/ onedrive
 8. make tab completion case-insensitive for all users
     ```bash
     echo 'set completion-ignore-case On' | sudo tee -a /etc/inputrc
+    echo 'set vi-ins-mode-string \1\e[5 q\2' | sudo tee -a /etc/inputrc
+    echo 'set vi-cmd-mode-string \1\e[2 q\2' | sudo tee -a /etc/inputrc
     ```
     
 
