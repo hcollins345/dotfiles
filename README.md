@@ -195,7 +195,7 @@ Upgrading fzf.vim
 ```bash
 sudo apt install bat silversearcher-ag
 ```
-
+http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html
 
 ### YCM and python - need to install linux anaconda
 
