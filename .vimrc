@@ -34,9 +34,9 @@ Plugin 'VundleVim/Vundle.vim'
 " ===== PLUGINS {{{
 "run :PluginInstall after saving (might have to reload vimrc)
 "Syntax and code completion
-Plugin 'jmarkow/vim-matlab'
-Plugin 'stevearc/vim-arduino'
-Plugin 'elmanuelito/vim-matlab-behave'
+" Plugin 'jmarkow/vim-matlab'
+" Plugin 'stevearc/vim-arduino'
+" Plugin 'elmanuelito/vim-matlab-behave'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-latex/vim-latex'
 Plugin 'vivien/vim-linux-coding-style'
@@ -114,6 +114,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'wellle/targets.vim'
 "Save vim sessions easier (used by tmux-resurrect)
 Plugin 'tpope/vim-obsession'
+"other
+Plugin 'vim-scripts/loremipsum' "http://www.vim.org/scripts/script.php?script_id=2289
 
 call vundle#end()            " required
 filetype plugin indent on    " required
