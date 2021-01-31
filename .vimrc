@@ -53,6 +53,11 @@ Plugin 'matchit.zip'
 "Movement
 Plugin 'unblevable/quick-scope'
 Plugin 'rhysd/clever-f.vim'
+"New text objects
+Plugin 'kana/vim-textobj-user'
+Plugin 'kana/vim-textobj-indent' "ai, ii
+Plugin 'kana/vim-textobj-entire' "ae, ie
+Plugin 'kana/vim-textobj-line' "al, il
 "T Pope
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
@@ -60,6 +65,10 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-repeat'
+" christoomey
+Plugin 'christoomey/vim-system-copy'
+Plugin 'christoomey/vim-sort-motion' "https://github.com/christoomey/vim-sort-motion
+Plugin 'vim-scripts/ReplaceWithRegister' "https://github.com/vim-scripts
 "rmarkdown
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'vim-pandoc/vim-pandoc'
@@ -119,7 +128,7 @@ filetype plugin indent on    " required
 "auto-approve removal
 "END VUNDLE REQUIREMENTS
 if !exists("g:syntax_on")
-    syntax enable
+  syntax enable
 endif
 " }}}
 runtime! plugin/sensible.vim
