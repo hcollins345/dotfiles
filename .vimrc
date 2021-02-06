@@ -299,6 +299,7 @@ nmap <silent><buffer> <Leader>wc <Plug>Vimwiki2HTML
 
 "}}}
 "----- General Mappings {{{
+
 " Copy and paste to clipboard using Ctrl + y and p
 nnoremap <C-y> "+y
 vnoremap <C-y> "+y
@@ -315,6 +316,8 @@ nnoremap S :%s//g<Left><Left>
 
 " select last paste in visual mode - gv already selects the last yanked text
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+
+nnoremap <leader>b :Buffer<cr>
 
 nmap <leader>nn :set number! relativenumber!<CR>| " line numbering :set nu! rnu!
 augroup numbertoggle
@@ -460,6 +463,8 @@ if has("autocmd")
   autocmd BufRead,BufNewFile *.tex set filetype=tex
   filetype plugin indent on
 endif
+let g:xml_syntax_folding=1
+au FileType xml setlocal foldmethod=syntax
 "}}}
 "===== Functions {{{
 function! DoPrettyXML()
