@@ -53,6 +53,8 @@ Plugin 'matchit.zip'
 "Movement
 Plugin 'unblevable/quick-scope'
 Plugin 'rhysd/clever-f.vim'
+Plugin 'easymotion/vim-easymotion'
+
 "New text objects
 Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-textobj-indent' "ai, ii
@@ -73,6 +75,7 @@ Plugin 'vim-scripts/ReplaceWithRegister' "https://github.com/vim-scripts
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-rmarkdown'
+Plugin 'iamcco/markdown-preview.nvim' "https://github.com/iamcco/markdown-preview.nvim
 "Colorschemes
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'ericbn/vim-solarized'
@@ -115,7 +118,8 @@ Plugin 'wellle/targets.vim'
 "Save vim sessions easier (used by tmux-resurrect)
 Plugin 'tpope/vim-obsession'
 "other
-Plugin 'vim-scripts/loremipsum' "http://www.vim.org/scripts/script.php?script_id=2289
+Plugin 'mhinz/vim-startify'            " A start menu for vim
+Plugin 'karoliskoncevicius/vim-sendtowindow' "https://github.com/karoliskoncevicius/vim-sendtowindow
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -176,6 +180,7 @@ hi SpellBad cterm=bold ctermfg=1
 let g:airline_powerline_fonts = 1
 " let g:airline_theme='simple'
 " let g:airline_theme='distinguished'
+
 let g:airline_theme='bubblegum'
 " let g:airline_theme='molokai'
 " let g:airline_theme='deus'
@@ -193,6 +198,11 @@ highlight clear signcolumn
 "===== Plugin Configs {{{
 "vim fugitive
 set diffopt+=vertical
+
+
+
+let g:sendtowindow_use_defaults=0
+
 
 "VIM-LATEX
 let g:tex_flavor='latex'
@@ -281,6 +291,19 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 let mapleader = ","
 "----- Plugin Mappings {{{
+"
+" Previewing markdown
+nnoremap <C-p><C-p> :MarkdownPreview<cr>
+
+" REPL commands
+nmap <leader>L <Plug>SendRight
+xmap <leader>L <Plug>SendRightV
+nmap <leader>H <Plug>SendLeft
+xmap <leader>H <Plug>SendLeftV
+nmap <leader>K <Plug>SendUp
+xmap <leader>K <Plug>SendUpV
+nmap <leader>J <Plug>SendDown
+xmap <leader>J <Plug>SendDownV
 
 " Goyo
 map <leader>f :Goyo \| set linebreak<CR>
@@ -299,6 +322,9 @@ nmap <silent><buffer> <Leader>wc <Plug>Vimwiki2HTML
 
 "}}}
 "----- General Mappings {{{
+"
+" change cwd to current directory
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 " Copy and paste to clipboard using Ctrl + y and p
 nnoremap <C-y> "+y
 vnoremap <C-y> "+y
@@ -331,6 +357,7 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
 set splitright " tmux settings
+set splitbelow " tmux settings
 "Resizing splits shortcut
 execute "set <a-,>=\<esc>,"
 execute "set <a-.>=\<esc>."
@@ -437,6 +464,7 @@ autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
 set smarttab
 set autoindent
+set colorcolumn=81
 "I don't know what this is for but the $* creates an error message
 "set grepprg=grep\ -nH $*
 " }}}
