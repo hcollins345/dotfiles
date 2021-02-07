@@ -1,4 +1,4 @@
-" WSL {{{
+" ===== IsOS functions {{{
 function! IsWSL()
   if has("unix")
     let lines = readfile("/proc/version")
@@ -23,6 +23,8 @@ endfunction
 " fix always starting in REPLACE mode in WSL in Windows after upgrading vim
 set t_u7=
 set t_ut=
+let &pythonthreedll = 'C:\anaconda3\python38.dll'
+
 " }}}
 " ===== INIT SETTINGS AND VUNDLE REQUIREMENTS {{{
 set nocompatible              " be iMproved, required
@@ -208,7 +210,7 @@ highlight clear signcolumn
 "vim fugitive
 set diffopt+=vertical
 
-" Use Nerdtree bookmarks in Startify 
+" Use Nerdtree bookmarks in Startify
 " https://github.com/mhinz/vim-startify/wiki/Example-configurations#use-nerdtree-bookmarks
 let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
 " Read ~/.NERDTreeBookmarks file and takes its second column
@@ -222,14 +224,14 @@ let g:startify_lists = [
         \]
 
 " Auto-save a session named from Git branch
-function! GetUniqueSessionName()
-  let path = fnamemodify(getcwd(), ':~:t')
-  let path = empty(path) ? 'no-project' : path
-  let branch = gitbranch#name()
-  let branch = empty(branch) ? '' : '-' . branch
-  return substitute(path . branch, '/', '-', 'g')
-endfunction
-autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()
+" function! GetUniqueSessionName()
+"   let path = fnamemodify(getcwd(), ':~:t')
+"   let path = empty(path) ? 'no-project' : path
+"   let branch = gitbranch#name()
+"   let branch = empty(branch) ? '' : '-' . branch
+"   return substitute(path . branch, '/', '-', 'g')
+" endfunction
+" autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()
 
 " Startify, Show modified and untracked git files
 " returns all modified files of the current git repo
@@ -341,7 +343,9 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 let mapleader = ","
 "----- Plugin Mappings {{{
-"
+
+nnoremap <leader>g :topleft G<CR>
+
 " Previewing markdown
 nnoremap <C-p><C-p> :MarkdownPreview<cr>
 
@@ -513,7 +517,14 @@ map <Leader>vz :VimuxZoomRunner<CR>|  "Zoom the tmux runner pane
 " }}}
 " }}}
 "===== Vim configs {{{
+" reduce delay to jump from insert mode to normal mode
 set noesckeys
+
+" I removed r and L from the guioptions to remove left and right scrollbars
+set guioptions-=r
+set guioptions-=L
+au GUIEnter * simalt ~x " Open GVIM in fullscreen (at least on windows)
+
 " change cursor style depending on mode
 let &t_EI = "\<Esc>[2 q" "normal mode 1 is blinking box, 2 is non-blinking
 let &t_SR = "\<Esc>[3 q" "replace mode, 3 is blinking underline, 4 is non-blinking
@@ -624,7 +635,7 @@ if filereadable("/etc/vim/vimrc.local")
 endif
 
 "Source the vimrc file after saving it
-autocmd! bufwritepost .vimrc source ~/.vimrc
+autocmd! bufwritepost .vimrc source ~/dotfiles/.vimrc
 
 " vim: set fdm=marker fmr={{{,}}} fdl=0 :
 "}}}
