@@ -8,6 +8,16 @@ function! IsWSL()
   endif
   return 0
 endfunction
+function! IsLinux()
+  if has("unix")
+    let lines = readfile("/proc/version")
+    if lines[0] =~ "Microsoft"
+      return 0
+    endif
+    return 1
+  endif
+  return 0
+endfunction
 "}}}
 " ===== HOT FIXES {{{
 " fix always starting in REPLACE mode in WSL in Windows after upgrading vim
@@ -177,11 +187,10 @@ endif
 hi SpellBad cterm=bold ctermfg=1
 
 "airline https://github.com/vim-airline/vim-airline/wiki/Screenshots
-let g:airline_powerline_fonts = 1
-" let g:airline_theme='simple'
+let g:airline_powerline_fonts = 0
+let g:airline_theme='simple'
 " let g:airline_theme='distinguished'
-
-let g:airline_theme='bubblegum'
+" let g:airline_theme='bubblegum'
 " let g:airline_theme='molokai'
 " let g:airline_theme='deus'
 " let g:airline_theme='gruvbox'
@@ -199,10 +208,52 @@ highlight clear signcolumn
 "vim fugitive
 set diffopt+=vertical
 
+" Use Nerdtree bookmarks in Startify 
+" https://github.com/mhinz/vim-startify/wiki/Example-configurations#use-nerdtree-bookmarks
+let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
+" Read ~/.NERDTreeBookmarks file and takes its second column
+function! s:nerdtreeBookmarks()
+    let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
+    let bookmarks = bookmarks[0:-2] " Slices an empty last line
+    return map(bookmarks, "{'line': v:val, 'path': v:val}")
+endfunction
+let g:startify_lists = [
+        \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']}
+        \]
+
+" Auto-save a session named from Git branch
+function! GetUniqueSessionName()
+  let path = fnamemodify(getcwd(), ':~:t')
+  let path = empty(path) ? 'no-project' : path
+  let branch = gitbranch#name()
+  let branch = empty(branch) ? '' : '-' . branch
+  return substitute(path . branch, '/', '-', 'g')
+endfunction
+autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()
+
+" Startify, Show modified and untracked git files
+" returns all modified files of the current git repo
+function! s:gitModified()
+    let files = systemlist('git ls-files -m 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+" same as above, but show untracked files, honouring .gitignore
+function! s:gitUntracked()
+    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+let g:startify_lists = [
+        \ { 'type': 'files',     'header': ['   MRU']            },
+        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+        \ { 'type': 'sessions',  'header': ['   Sessions']       },
+        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+        \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+        \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
+        \ { 'type': 'commands',  'header': ['   Commands']       },
+        \ ]
 
 
 let g:sendtowindow_use_defaults=0
-
 
 "VIM-LATEX
 let g:tex_flavor='latex'
@@ -248,7 +299,6 @@ let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_docstring = 0
 
 "airline https://github.com/vim-airline/vim-airline/wiki/Screenshots
-let g:airline_powerline_fonts = 1
 let g:airline#extensions#obsession#enabled = 1
 set laststatus=2 " 2 to Always display the statusline in all windows
 "set showtabline=2 " Always display the tabline, even if there is only one tab
@@ -323,6 +373,14 @@ nmap <silent><buffer> <Leader>wc <Plug>Vimwiki2HTML
 "}}}
 "----- General Mappings {{{
 "
+
+" font type
+if IsLinux() "If linux
+  set guifont=DroidSansMono\ Nerd\ Font\ 12
+elseif has("gui_win32") " Windows Gvim
+  set guifont=Consolas:h11:cANSI
+endif
+
 " change cwd to current directory
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 " Copy and paste to clipboard using Ctrl + y and p
@@ -330,6 +388,15 @@ nnoremap <C-y> "+y
 vnoremap <C-y> "+y
 nnoremap <C-p> "+gP
 vnoremap <C-p> "+gP
+
+" extend navigation to vim terminal
+tnoremap <C-J> <C-W><C-J>
+tnoremap <C-K> <C-W><C-K>
+tnoremap <C-L> <C-W><C-L>
+tnoremap <C-H> <C-W><C-H>
+
+" Terminal, endter normal mode
+nnoremap <C-n> <C-w>N
 " Prevent x form overriding what's in the clipboard
 noremap x "_x
 noremap X "_x
@@ -358,8 +425,26 @@ set foldlevel=1
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
-set splitright " tmux settings
-set splitbelow " tmux settings
+set splitright splitbelow " tmux settings
+
+" Make adjusing split sizes a bit more friendly
+nnoremap <silent> <C-Left> :vertical resize +1<CR>
+nnoremap <silent> <C-Right> :vertical resize -1<CR>
+nnoremap <silent> <C-Up> :resize -1<CR>
+nnoremap <silent> <C-Down> :resize +1<CR>
+
+tnoremap <silent> <C-Left> <C-\><C-n>:vertical resize +1<CR>i
+tnoremap <silent> <C-Right> <C-\><C-n>:vertical resize -1<CR>i
+tnoremap <silent> <C-Up> <C-\><C-n>:resize -1<CR>i
+tnoremap <silent> <C-Down> <C-\><C-n>:resize +1<CR>i
+
+" Change 2 split windows from vert to horiz or horiz to vert
+map <Leader>th <C-w>t<C-w>H
+map <Leader>tk <C-w>t<C-w>K
+
+" new terminal
+map <Leader>t :term<cr>
+
 "Resizing splits shortcut
 execute "set <a-,>=\<esc>,"
 execute "set <a-.>=\<esc>."
@@ -414,7 +499,9 @@ map <Leader>vz :VimuxZoomRunner<CR>|  "Zoom the tmux runner pane
   if IsWSL()
     autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python.exe<space>%<CR>
   else
-    autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python<space>%<CR>
+    autocmd FileType python map <buffer> <F5> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+    " autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python<space>%<CR>
+    "autocmd BufRead,BufNewFile *.py map <buffer> <F5> :python3<space>%<CR>
   endif
   "ipynb
   autocmd Filetype ipynb nmap <silent><Leader>b :VimpyterInsertPythonBlock<CR>
