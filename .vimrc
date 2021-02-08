@@ -200,7 +200,7 @@ let g:airline_theme='simple'
 " let g:airline_theme='solarized' | let g:airline_solarized_bg='light'
 " let g:airline_theme='one'
 " let g:airline_theme='dark' "'dark','simple','badwolf','dues','powerlineish','solarized','luna','molokai',
-" let g:airline_theme = "github"
+" let g:airline_theme='github'
 
 " Clear gitgutter sign column highlighting
 highlight clear signcolumn
@@ -209,7 +209,6 @@ highlight clear signcolumn
 "===== Plugin Configs {{{
 "vim fugitive
 set diffopt+=vertical
-
 " Use Nerdtree bookmarks in Startify
 " https://github.com/mhinz/vim-startify/wiki/Example-configurations#use-nerdtree-bookmarks
 let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
@@ -225,9 +224,9 @@ let g:startify_lists = [
         \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
         \ { 'type': 'commands',  'header': ['   Commands']       },
         \ ]
-        " \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']},
 " let g:startify_lists = [
 "         \ { 'type': 'sessions',  'header': ['   Sessions']       },
+        " \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']},
 "         \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
 "         \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
 "         \]
