@@ -23,7 +23,7 @@ endfunction
 " fix always starting in REPLACE mode in WSL in Windows after upgrading vim
 set t_u7=
 set t_ut=
-let &pythonthreedll = 'C:\anaconda3\python38.dll'
+" let &pythonthreedll = 'C:\anaconda3\python38.dll'
 
 " }}}
 " ===== INIT SETTINGS AND VUNDLE REQUIREMENTS {{{
@@ -213,47 +213,24 @@ set diffopt+=vertical
 " Use Nerdtree bookmarks in Startify
 " https://github.com/mhinz/vim-startify/wiki/Example-configurations#use-nerdtree-bookmarks
 let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
-" Read ~/.NERDTreeBookmarks file and takes its second column
-function! s:nerdtreeBookmarks()
-    let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
-    let bookmarks = bookmarks[0:-2] " Slices an empty last line
-    return map(bookmarks, "{'line': v:val, 'path': v:val}")
-endfunction
-let g:startify_lists = [
-        \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']}
-        \]
-
-" Auto-save a session named from Git branch
-" function! GetUniqueSessionName()
-"   let path = fnamemodify(getcwd(), ':~:t')
-"   let path = empty(path) ? 'no-project' : path
-"   let branch = gitbranch#name()
-"   let branch = empty(branch) ? '' : '-' . branch
-"   return substitute(path . branch, '/', '-', 'g')
+" " Read ~/.NERDTreeBookmarks file and takes its second column
+" function! s:nerdtreeBookmarks()
+"     let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
+"     let bookmarks = bookmarks[0:-2] " Slices an empty last line
+"     return map(bookmarks, "{'line': v:val, 'path': v:val}")
 " endfunction
-" autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()
-
-" Startify, Show modified and untracked git files
-" returns all modified files of the current git repo
-function! s:gitModified()
-    let files = systemlist('git ls-files -m 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
-endfunction
-" same as above, but show untracked files, honouring .gitignore
-function! s:gitUntracked()
-    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
-endfunction
 let g:startify_lists = [
         \ { 'type': 'files',     'header': ['   MRU']            },
         \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-        \ { 'type': 'sessions',  'header': ['   Sessions']       },
         \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-        \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
-        \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
         \ { 'type': 'commands',  'header': ['   Commands']       },
         \ ]
-
+        " \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']},
+" let g:startify_lists = [
+"         \ { 'type': 'sessions',  'header': ['   Sessions']       },
+"         \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+"         \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
+"         \]
 
 let g:sendtowindow_use_defaults=0
 
@@ -543,7 +520,7 @@ set mouse=a   " Enable mouse usage (all modes)
 set ttymouse=xterm2 " enables resizing splits using mouse
 set backspace=indent,eol,start " allow backspacing over indent, start of line and start
 set expandtab  " turns tabs to spaces
-set clipboard=unnamedplus " uses the OS clipboard for copying and pasting
+set clipboard=unnamed " uses the OS clipboard for copying and pasting
 set encoding=utf-8
 set history=10000
 set updatetime=100
