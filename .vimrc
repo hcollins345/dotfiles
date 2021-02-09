@@ -1,30 +1,45 @@
 " ===== IsOS functions {{{
-function! IsWSL()
-  if has("unix")
-    let lines = readfile("/proc/version")
-    if lines[0] =~ "Microsoft"
-      return 1
-    endif
-  endif
-  return 0
-endfunction
-function! IsLinux()
-  if has("unix")
-    let lines = readfile("/proc/version")
-    if lines[0] =~ "Microsoft"
-      return 0
-    endif
-    return 1
-  endif
-  return 0
-endfunction
+" function! CheckIfWSL()
+"   if has("unix")
+"     let lines = readfile("/proc/version")
+"     if lines[0] =~ "Microsoft"
+"       return 1
+"     endif
+"   endif
+"   return 0
+" endfunction
+" function! CheckIfLinux()
+"   if has("unix")
+"     let lines = readfile("/proc/version")
+"     if lines[0] =~ "Microsoft"
+"       return 0
+"     endif
+"     return 1
+"   endif
+"   return 0
+" endfunction
+let IsWSL=0
+let IsLinux=0
+let IsWin=1
+" if CheckIfWSL()
+"   let IsWSL=1
+" elseif CheckIfLinux()
+"   let IsLinux=1
+" else
+"   let IsWin=1
+" endif
 "}}}
 " ===== HOT FIXES {{{
 " fix always starting in REPLACE mode in WSL in Windows after upgrading vim
-set t_u7=
-set t_ut=
-" let &pythonthreedll = 'C:\anaconda3\python38.dll'
-
+if IsWSL
+  set t_u7=
+  set t_ut=
+endif
+if IsWin
+  set pythonthreehome=C:\Users\hcoll\anaconda3
+  set pythonthreedll=C:\Users\hcoll\anaconda3\python38.dll
+endif
+"pythonthreehome and pythonthreedll
 " }}}
 " ===== INIT SETTINGS AND VUNDLE REQUIREMENTS {{{
 set nocompatible              " be iMproved, required
@@ -355,7 +370,7 @@ nmap <silent><buffer> <Leader>wc <Plug>Vimwiki2HTML
 "
 
 " font type
-if IsLinux() "If linux
+if IsLinux "If linux
   set guifont=DroidSansMono\ Nerd\ Font\ 12
 elseif has("gui_win32") " Windows Gvim
   set guifont=Consolas:h11:cANSI
@@ -476,7 +491,7 @@ map <Leader>vz :VimuxZoomRunner<CR>|  "Zoom the tmux runner pane
   "Sparql
   autocmd BufRead,BufNewFile *.rq map <F5> :!<space>sparql.bat<space>--data=royal92.nt<space>--query=%<CR>
   "Py
-  if IsWSL()
+  if IsWSL
     autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python.exe<space>%<CR>
   else
     autocmd FileType python map <buffer> <F5> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
