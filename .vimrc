@@ -511,6 +511,10 @@ map <Leader>vz :VimuxZoomRunner<CR>|  "Zoom the tmux runner pane
 " reduce delay to jump from insert mode to normal mode
 set noesckeys
 
+if IsWin
+  set shell=powershell
+endif
+
 " I removed r and L from the guioptions to remove left and right scrollbars
 set guioptions-=r
 set guioptions-=L
@@ -581,6 +585,7 @@ if has("autocmd")
 endif
 let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
+autocmd FileType autohotkey setlocal commentstring=;
 "}}}
 "===== Functions {{{
 function! DoPrettyXML()
