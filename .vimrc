@@ -35,10 +35,10 @@ if IsWSL
   set t_u7=
   set t_ut=
 endif
-if IsWin
-  set pythonthreehome=C:\Users\hcoll\anaconda3
-  set pythonthreedll=C:\Users\hcoll\anaconda3\python38.dll
-endif
+" if IsWin
+"   set pythonthreehome=C:\Users\hcollins\anaconda3
+"   set pythonthreedll=C:\Users\hcollins\anaconda3\python38.dll
+" endif
 "pythonthreehome and pythonthreedll
 " }}}
 " ===== INIT SETTINGS AND VUNDLE REQUIREMENTS {{{
@@ -226,7 +226,7 @@ highlight clear signcolumn
 set diffopt+=vertical
 " Use Nerdtree bookmarks in Startify
 " https://github.com/mhinz/vim-startify/wiki/Example-configurations#use-nerdtree-bookmarks
-let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
+" let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
 " " Read ~/.NERDTreeBookmarks file and takes its second column
 " function! s:nerdtreeBookmarks()
 "     let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
@@ -236,9 +236,9 @@ let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
 let g:startify_lists = [
         \ { 'type': 'files',     'header': ['   MRU']            },
         \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-        \ { 'type': 'commands',  'header': ['   Commands']       },
         \ ]
+        " \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+        " \ { 'type': 'commands',  'header': ['   Commands']       },
 " let g:startify_lists = [
 "         \ { 'type': 'sessions',  'header': ['   Sessions']       },
         " \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']},
@@ -510,6 +510,9 @@ map <Leader>vz :VimuxZoomRunner<CR>|  "Zoom the tmux runner pane
 "===== Vim configs {{{
 " reduce delay to jump from insert mode to normal mode
 set noesckeys
+if IsWin
+  set directory=$HOME/tmp//
+endif
 
 " I removed r and L from the guioptions to remove left and right scrollbars
 set guioptions-=r
@@ -621,9 +624,9 @@ if has("autocmd")
 endif
 
 " Source a global configuration file if available
-if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
-endif
+" if filereadable("/etc/vim/vimrc.local")
+"   source /etc/vim/vimrc.local
+" endif
 
 "Source the vimrc file after saving it
 autocmd! bufwritepost .vimrc source ~/dotfiles/.vimrc

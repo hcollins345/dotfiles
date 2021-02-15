@@ -4,7 +4,7 @@
 # ==============WINDOWS===============
 # required for tmux copy pasting
 
-alias python='winpty python.exe'
+# alias python='winpty python.exe'
 # WSL 1 specific settings.
 if grep -qE "(Microsoft|WSL)" /proc/version &>/dev/null; then
     export DISPLAY=:0
