@@ -1,5 +1,16 @@
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+#UseHook
+
+;skype remapping
+#ifwinactive ahk_exe lync.exe
+enter::sendinput, +{enter}
+ctrl & enter::sendinput, {enter}
+return
+#If
+
 ; Map window snapping to vim keys
-#l:: ;Disable Win Key + L
 #k::
 Send, #{Up}
 return
