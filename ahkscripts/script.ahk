@@ -1,5 +1,4 @@
 ; Map window snapping to vim keys
-#l:: ;Disable Win Key + L
 #k::
 Send, #{Up}
 return
@@ -24,3 +23,7 @@ return
 #+l::
 Send, #+{Right}
 return
+
+; Close active window
+#Backspace::
+WinClose, A
