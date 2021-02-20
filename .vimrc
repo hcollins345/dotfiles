@@ -222,6 +222,7 @@ highlight clear signcolumn
 
 " }}}
 "===== Plugin Configs {{{
+let g:user_emmet_mode='a'    "enable all function in all mode.
 "vim fugitive
 set diffopt+=vertical
 " Use Nerdtree bookmarks in Startify
@@ -379,10 +380,10 @@ endif
 " change cwd to current directory
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 " Copy and paste to clipboard using Ctrl + y and p
-nnoremap <C-y> "+y
-vnoremap <C-y> "+y
-nnoremap <C-p> "+gP
-vnoremap <C-p> "+gP
+" nnoremap <C-y> "+y
+" vnoremap <C-y> "+y
+" nnoremap <C-p> "+gP
+" vnoremap <C-p> "+gP
 
 " extend navigation to vim terminal
 tnoremap <C-J> <C-W><C-J>
