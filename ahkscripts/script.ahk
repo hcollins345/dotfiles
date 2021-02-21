@@ -35,3 +35,7 @@ return
 #+l::
 Send, #+{Right}
 return
+
+; Close active window
+#Backspace::
+WinClose, A
