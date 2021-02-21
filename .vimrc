@@ -563,7 +563,7 @@ autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
 set smarttab
 set autoindent
-set colorcolumn=81
+" set colorcolumn=81
 "I don't know what this is for but the $* creates an error message
 "set grepprg=grep\ -nH $*
 " }}}
