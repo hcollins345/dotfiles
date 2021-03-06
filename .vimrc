@@ -35,6 +35,9 @@ if IsWSL
   set t_u7=
   set t_ut=
 endif
+if IsWin
+  set shellslash
+endif
 " if IsWin
 "   set pythonthreehome=C:\Users\hcollins\anaconda3
 "   set pythonthreedll=C:\Users\hcollins\anaconda3\python38.dll
@@ -515,10 +518,6 @@ if IsWin
   set directory=$HOME/tmp//
 endif
 
-if IsWin
-  set shell=powershell
-endif
-
 " I removed r and L from the guioptions to remove left and right scrollbars
 set guioptions-=r
 set guioptions-=L
@@ -563,6 +562,7 @@ autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
 set smarttab
 set autoindent
+set foldmethod=syntax
 " set colorcolumn=81
 "I don't know what this is for but the $* creates an error message
 "set grepprg=grep\ -nH $*
@@ -583,6 +583,7 @@ if has("autocmd")
   autocmd FileType markdown setlocal ts=2 sts=2 sw=2 tw=79
   " autocmd FileType rmd setlocal ts=2 sts=2 sw=2
   autocmd FileType xml setlocal noexpandtab
+  autocmd FileType *.tcg,*.lvl,*.ptm,*.soc setlocal filetype=c syntax=off
   autocmd BufRead,BufNewFile *.pde,*.ino set filetype=arduino
   autocmd BufRead,BufNewFile *.tex set filetype=tex
   filetype plugin indent on
