@@ -1,28 +1,48 @@
-" WSL {{{
-function! IsWSL()
-  if has("unix")
-    let lines = readfile("/proc/version")
-    if lines[0] =~ "Microsoft"
-      return 1
-    endif
-  endif
-  return 0
-endfunction
-function! IsLinux()
-  if has("unix")
-    let lines = readfile("/proc/version")
-    if lines[0] =~ "Microsoft"
-      return 0
-    endif
-    return 1
-  endif
-  return 0
-endfunction
+" ===== IsOS functions {{{
+" function! CheckIfWSL()
+"   if has("unix")
+"     let lines = readfile("/proc/version")
+"     if lines[0] =~ "Microsoft"
+"       return 1
+"     endif
+"   endif
+"   return 0
+" endfunction
+" function! CheckIfLinux()
+"   if has("unix")
+"     let lines = readfile("/proc/version")
+"     if lines[0] =~ "Microsoft"
+"       return 0
+"     endif
+"     return 1
+"   endif
+"   return 0
+" endfunction
+let IsWSL=0
+let IsLinux=0
+let IsWin=1
+" if CheckIfWSL()
+"   let IsWSL=1
+" elseif CheckIfLinux()
+"   let IsLinux=1
+" else
+"   let IsWin=1
+" endif
 "}}}
 " ===== HOT FIXES {{{
 " fix always starting in REPLACE mode in WSL in Windows after upgrading vim
-set t_u7=
-set t_ut=
+if IsWSL
+  set t_u7=
+  set t_ut=
+endif
+if IsWin
+  set shellslash
+endif
+" if IsWin
+"   set pythonthreehome=C:\Users\hcollins\anaconda3
+"   set pythonthreedll=C:\Users\hcollins\anaconda3\python38.dll
+" endif
+"pythonthreehome and pythonthreedll
 " }}}
 " ===== INIT SETTINGS AND VUNDLE REQUIREMENTS {{{
 set nocompatible              " be iMproved, required
@@ -198,60 +218,37 @@ let g:airline_theme='simple'
 " let g:airline_theme='solarized' | let g:airline_solarized_bg='light'
 " let g:airline_theme='one'
 " let g:airline_theme='dark' "'dark','simple','badwolf','dues','powerlineish','solarized','luna','molokai',
-" let g:airline_theme = "github"
+" let g:airline_theme='github'
 
 " Clear gitgutter sign column highlighting
 highlight clear signcolumn
 
 " }}}
 "===== Plugin Configs {{{
+let g:user_emmet_mode='a'    "enable all function in all mode.
 "vim fugitive
 set diffopt+=vertical
-
-" Use Nerdtree bookmarks in Startify 
+" Use Nerdtree bookmarks in Startify
 " https://github.com/mhinz/vim-startify/wiki/Example-configurations#use-nerdtree-bookmarks
-let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
-" Read ~/.NERDTreeBookmarks file and takes its second column
-function! s:nerdtreeBookmarks()
-    let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
-    let bookmarks = bookmarks[0:-2] " Slices an empty last line
-    return map(bookmarks, "{'line': v:val, 'path': v:val}")
-endfunction
-let g:startify_lists = [
-        \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']}
-        \]
-
-" Auto-save a session named from Git branch
-function! GetUniqueSessionName()
-  let path = fnamemodify(getcwd(), ':~:t')
-  let path = empty(path) ? 'no-project' : path
-  let branch = gitbranch#name()
-  let branch = empty(branch) ? '' : '-' . branch
-  return substitute(path . branch, '/', '-', 'g')
-endfunction
-autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()
-
-" Startify, Show modified and untracked git files
-" returns all modified files of the current git repo
-function! s:gitModified()
-    let files = systemlist('git ls-files -m 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
-endfunction
-" same as above, but show untracked files, honouring .gitignore
-function! s:gitUntracked()
-    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
-endfunction
+" let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
+" " Read ~/.NERDTreeBookmarks file and takes its second column
+" function! s:nerdtreeBookmarks()
+"     let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
+"     let bookmarks = bookmarks[0:-2] " Slices an empty last line
+"     return map(bookmarks, "{'line': v:val, 'path': v:val}")
+" endfunction
 let g:startify_lists = [
         \ { 'type': 'files',     'header': ['   MRU']            },
         \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-        \ { 'type': 'sessions',  'header': ['   Sessions']       },
-        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-        \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
-        \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
-        \ { 'type': 'commands',  'header': ['   Commands']       },
         \ ]
-
+        " \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+        " \ { 'type': 'commands',  'header': ['   Commands']       },
+" let g:startify_lists = [
+"         \ { 'type': 'sessions',  'header': ['   Sessions']       },
+        " \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']},
+"         \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+"         \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
+"         \]
 
 let g:sendtowindow_use_defaults=0
 
@@ -341,7 +338,9 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 let mapleader = ","
 "----- Plugin Mappings {{{
-"
+
+nnoremap <leader>g :topleft G<CR>
+
 " Previewing markdown
 nnoremap <C-p><C-p> :MarkdownPreview<cr>
 
@@ -375,7 +374,7 @@ nmap <silent><buffer> <Leader>wc <Plug>Vimwiki2HTML
 "
 
 " font type
-if IsLinux() "If linux
+if IsLinux "If linux
   set guifont=DroidSansMono\ Nerd\ Font\ 12
 elseif has("gui_win32") " Windows Gvim
   set guifont=Consolas:h11:cANSI
@@ -384,10 +383,10 @@ endif
 " change cwd to current directory
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 " Copy and paste to clipboard using Ctrl + y and p
-nnoremap <C-y> "+y
-vnoremap <C-y> "+y
-nnoremap <C-p> "+gP
-vnoremap <C-p> "+gP
+" nnoremap <C-y> "+y
+" vnoremap <C-y> "+y
+" nnoremap <C-p> "+gP
+" vnoremap <C-p> "+gP
 
 " extend navigation to vim terminal
 tnoremap <C-J> <C-W><C-J>
@@ -496,7 +495,7 @@ map <Leader>vz :VimuxZoomRunner<CR>|  "Zoom the tmux runner pane
   "Sparql
   autocmd BufRead,BufNewFile *.rq map <F5> :!<space>sparql.bat<space>--data=royal92.nt<space>--query=%<CR>
   "Py
-  if IsWSL()
+  if IsWSL
     autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python.exe<space>%<CR>
   else
     autocmd FileType python map <buffer> <F5> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
@@ -513,7 +512,17 @@ map <Leader>vz :VimuxZoomRunner<CR>|  "Zoom the tmux runner pane
 " }}}
 " }}}
 "===== Vim configs {{{
+" reduce delay to jump from insert mode to normal mode
 set noesckeys
+if IsWin
+  set directory=$HOME/tmp//
+endif
+
+" I removed r and L from the guioptions to remove left and right scrollbars
+set guioptions-=r
+set guioptions-=L
+au GUIEnter * simalt ~x " Open GVIM in fullscreen (at least on windows)
+
 " change cursor style depending on mode
 let &t_EI = "\<Esc>[2 q" "normal mode 1 is blinking box, 2 is non-blinking
 let &t_SR = "\<Esc>[3 q" "replace mode, 3 is blinking underline, 4 is non-blinking
@@ -532,7 +541,7 @@ set mouse=a   " Enable mouse usage (all modes)
 set ttymouse=xterm2 " enables resizing splits using mouse
 set backspace=indent,eol,start " allow backspacing over indent, start of line and start
 set expandtab  " turns tabs to spaces
-set clipboard=unnamedplus " uses the OS clipboard for copying and pasting
+set clipboard=unnamed " uses the OS clipboard for copying and pasting
 set encoding=utf-8
 set history=10000
 set updatetime=100
@@ -553,7 +562,8 @@ autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
 set smarttab
 set autoindent
-set colorcolumn=81
+set foldmethod=syntax
+" set colorcolumn=81
 "I don't know what this is for but the $* creates an error message
 "set grepprg=grep\ -nH $*
 " }}}
@@ -573,12 +583,14 @@ if has("autocmd")
   autocmd FileType markdown setlocal ts=2 sts=2 sw=2 tw=79
   " autocmd FileType rmd setlocal ts=2 sts=2 sw=2
   autocmd FileType xml setlocal noexpandtab
+  autocmd FileType *.tcg,*.lvl,*.ptm,*.soc setlocal filetype=c syntax=off
   autocmd BufRead,BufNewFile *.pde,*.ino set filetype=arduino
   autocmd BufRead,BufNewFile *.tex set filetype=tex
   filetype plugin indent on
 endif
 let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
+autocmd FileType autohotkey setlocal commentstring=;
 "}}}
 "===== Functions {{{
 function! DoPrettyXML()
@@ -619,12 +631,12 @@ if has("autocmd")
 endif
 
 " Source a global configuration file if available
-if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
-endif
+" if filereadable("/etc/vim/vimrc.local")
+"   source /etc/vim/vimrc.local
+" endif
 
 "Source the vimrc file after saving it
-autocmd! bufwritepost .vimrc source ~/.vimrc
+autocmd! bufwritepost .vimrc source ~/dotfiles/.vimrc
 
 " vim: set fdm=marker fmr={{{,}}} fdl=0 :
 "}}}

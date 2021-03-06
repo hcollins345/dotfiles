@@ -108,6 +108,7 @@ jupyter nbextension enable vim_binding/vim_binding
 Windows (GIT BASH)
 ----------------------
 
+
 1. Install git https://git-scm.com/download/win
 2. Update ssh key 
     ```bash
@@ -161,6 +162,12 @@ Navigate to ```C:\Program Files\Git\mingw64\share\fonts```, highlight all, right
 wget https://raw.githubusercontent.com/kyoz/purify/master/ranger/purify.py -O ~/.config/ranger/colorschemes/default.py
 # or
 $ curl https://raw.githubusercontent.com/kyoz/purify/master/ranger/purify.py --output ~/.config/ranger/colorschemes/default.py
+```
+
+### Powershell
+To use powershell scripting, run this in powershell in admin mode
+```
+Set-ExecutionPolicy RemoteSigned
 ```
 
 WINDOWS (WSL1)
