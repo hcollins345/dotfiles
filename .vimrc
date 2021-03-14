@@ -269,6 +269,8 @@ let g:arduino_dir = '~/Applications/Arduino'
 "EasyAlign
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
+nmap ga: :EasyAlign:>l1<cr>
+xmap ga: :EasyAlign*:>l1<cr>
 
 " Gitgutter
 set foldtext=gitgutter#fold#foldtext()
@@ -371,6 +373,22 @@ nmap <silent><buffer> <Leader>wc <Plug>Vimwiki2HTML
 
 "}}}
 "----- General Mappings {{{
+
+"" Diff original and edited file
+" https://vimdoc.sourceforge.net/htmldoc/diff.html#:DiffOrig
+" see the difference between the current buffer and the file it was loaded from, thus the changes you made.
+  " command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+  "       \ | wincmd p | diffthis
+command! DiffOrig let g:diffline = line('.') | vert new | set bt=nofile | r # | 0d_ | diffthis | :exe "norm! ".g:diffline."G" | wincmd p | diffthis | wincmd p
+nnoremap <Leader>do :DiffOrig<cr>
+nnoremap <leader>dc :q<cr>:diffoff<cr>:exe "norm! ".g:diffline."G"<cr>
+
+"" Edit configuration files
+" https://stackoverflow.com/a/52156757/13734567
+nnoremap <leader>ev :e $MYVIMRC<CR>
+" current file's filetype configuration
+nnoremap <leader>ef :e ~/.vim/after/ftplugin/<C-R>=&filetype<CR>.vim<CR>
+
 nmap <leader>w :w!<cr>
 
 map <silent> <leader><cr> :set hls!<cr>
