@@ -69,7 +69,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'elmanuelito/vim-matlab-behave'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-latex/vim-latex'
-Plugin 'vivien/vim-linux-coding-style'
+" Plugin 'vivien/vim-linux-coding-style'
 Plugin 'Raimondi/delimitMate'
 "Search
 Plugin 'junegunn/fzf'
@@ -290,6 +290,8 @@ map gi :YcmCompleter GetDoc<CR>
 
 "fzf
 map ; :Files<CR>
+" Empty value to disable preview window altogether
+let g:fzf_preview_window = []
 
 " Python Folding (uncomment to see docstrings)
 let g:SimpylFold_docstring_preview = 1
@@ -583,7 +585,7 @@ if has("autocmd")
   autocmd FileType markdown setlocal ts=2 sts=2 sw=2 tw=79
   " autocmd FileType rmd setlocal ts=2 sts=2 sw=2
   autocmd FileType xml setlocal noexpandtab
-  autocmd FileType *.tcg,*.lvl,*.ptm,*.soc setlocal filetype=c syntax=off
+  autocmd FileType *.tcg,*.lvl,*.ptm,*.soc setlocal filetype=c syntax=off syntax=on
   autocmd BufRead,BufNewFile *.pde,*.ino set filetype=arduino
   autocmd BufRead,BufNewFile *.tex set filetype=tex
   filetype plugin indent on
