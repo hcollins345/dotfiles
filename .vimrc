@@ -64,92 +64,86 @@ Plugin 'VundleVim/Vundle.vim'
 " ===== PLUGINS {{{
 "run :PluginInstall after saving (might have to reload vimrc)
 "Syntax and code completion
-" Plugin 'jmarkow/vim-matlab'
-" Plugin 'stevearc/vim-arduino'
-" Plugin 'elmanuelito/vim-matlab-behave'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-latex/vim-latex'
-" Plugin 'vivien/vim-linux-coding-style'
-Plugin 'Raimondi/delimitMate'
+  Plugin 'Valloric/YouCompleteMe'
+  Plugin 'vim-latex/vim-latex'
+  Plugin 'Raimondi/delimitMate'
 "Search
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'wincent/ferret'
+  Plugin 'junegunn/fzf'
+  Plugin 'junegunn/fzf.vim'
+  Plugin 'wincent/ferret'
 "editorconfig
-Plugin 'editorconfig/editorconfig-vim'
+  Plugin 'editorconfig/editorconfig-vim'
 "Extend % functionality (python_match might be a superset of matchit.zip)
-Plugin 'python_match.vim'
-Plugin 'matchit.zip'
+  Plugin 'python_match.vim'
+  Plugin 'matchit.zip'
 "Movement
-Plugin 'unblevable/quick-scope'
-Plugin 'rhysd/clever-f.vim'
-Plugin 'easymotion/vim-easymotion'
-
+  Plugin 'unblevable/quick-scope'
+  Plugin 'rhysd/clever-f.vim'
+  Plugin 'easymotion/vim-easymotion'
 "New text objects
-Plugin 'kana/vim-textobj-user'
-Plugin 'kana/vim-textobj-indent' "ai, ii
-Plugin 'kana/vim-textobj-entire' "ae, ie
-Plugin 'kana/vim-textobj-line' "al, il
+  Plugin 'kana/vim-textobj-user'
+  Plugin 'kana/vim-textobj-indent' "ai, ii
+  Plugin 'kana/vim-textobj-entire' "ae, ie
+  Plugin 'kana/vim-textobj-line' "al, il
 "T Pope
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-repeat'
+  Plugin 'tpope/vim-surround'
+  Plugin 'tpope/vim-commentary'
+  Plugin 'tpope/vim-fugitive'
+  Plugin 'tpope/vim-sensible'
+  Plugin 'tpope/vim-unimpaired'
+  Plugin 'tpope/vim-repeat'
 " christoomey
-Plugin 'christoomey/vim-system-copy'
-Plugin 'christoomey/vim-sort-motion' "https://github.com/christoomey/vim-sort-motion
-Plugin 'vim-scripts/ReplaceWithRegister' "https://github.com/vim-scripts
+  Plugin 'christoomey/vim-system-copy'
+  Plugin 'christoomey/vim-sort-motion' "https://github.com/christoomey/vim-sort-motion
+  Plugin 'vim-scripts/ReplaceWithRegister' "https://github.com/vim-scripts
 "rmarkdown
-Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-rmarkdown'
-Plugin 'iamcco/markdown-preview.nvim' "https://github.com/iamcco/markdown-preview.nvim
+  Plugin 'vim-pandoc/vim-pandoc-syntax'
+  Plugin 'vim-pandoc/vim-pandoc'
+  Plugin 'vim-pandoc/vim-rmarkdown'
+  Plugin 'iamcco/markdown-preview.nvim' "https://github.com/iamcco/markdown-preview.nvim
 "Colorschemes
-Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'ericbn/vim-solarized'
-Plugin 'rakr/vim-one'
-Plugin 'sakibmoon/vim-colors-notepad-plus-plus'
-Plugin 'ayu-theme/ayu-vim' " or other package manager
-" Plugin 'altercation/vim-colors-solarized'
-Plugin 'morhetz/gruvbox'
-Plugin 'bluz71/vim-nightfly-guicolors'
-Plugin 'vim-scripts/eclipse.vim'
-Plugin 'vim-scripts/summerfruit256.vim'
-Plugin 'vim-scripts/AutumnLeaf'
-"Distraction free
-Plugin 'junegunn/goyo.vim'
-Plugin 'junegunn/limelight.vim'
-Plugin 'victorze/foo'
-Plugin 'cormacrelf/vim-colors-github'
-"VIMWIKI
-Plugin 'vimwiki/vimwiki'
-Plugin 'suan/vim-instant-markdown'
+  Plugin 'NLKNguyen/papercolor-theme'
+  Plugin 'ericbn/vim-solarized'
+  Plugin 'rakr/vim-one'
+  Plugin 'sakibmoon/vim-colors-notepad-plus-plus'
+  Plugin 'ayu-theme/ayu-vim' " or other package manager
+  " Plugin 'altercation/vim-colors-solarized'
+  Plugin 'morhetz/gruvbox'
+  Plugin 'bluz71/vim-nightfly-guicolors'
+  Plugin 'vim-scripts/eclipse.vim'
+  Plugin 'vim-scripts/summerfruit256.vim'
+  Plugin 'vim-scripts/AutumnLeaf'
+  "Distraction free
+  Plugin 'junegunn/goyo.vim'
+  Plugin 'junegunn/limelight.vim'
+  Plugin 'victorze/foo' "adds github-old
+  Plugin 'cormacrelf/vim-colors-github'
+"Text manipulation
+  "Extends ci" functionality to ({[ etc and adds arguements ie. c4ana
+  Plugin 'wellle/targets.vim'
+  Plugin 'junegunn/vim-easy-align' "https://github.com/junegunn/vim-easy-align
 "NERDTree
-Plugin 'scrooloose/nerdtree'
+  Plugin 'scrooloose/nerdtree'
 "MiniMap <leader>mm and <leader>mc
-Plugin 'severin-lemaignan/vim-minimap'
+  Plugin 'severin-lemaignan/vim-minimap'
 "Folding for python
-Plugin 'tmhedberg/SimpylFold'
+  Plugin 'tmhedberg/SimpylFold'
 "Panes
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'benmills/vimux'
+  Plugin 'christoomey/vim-tmux-navigator'
+  Plugin 'benmills/vimux'
 "Powerline
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+  Plugin 'vim-airline/vim-airline'
+  Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim'}
 "Can be used to generate tags/xml quickly - google emmet
-Plugin 'mattn/emmet-vim'
+  Plugin 'mattn/emmet-vim'
 "Git- highlights changes between file and latest commit
-Plugin 'airblade/vim-gitgutter'
-"Extends ci" functionality to ({[ etc and adds arguements ie. c4ana
-Plugin 'wellle/targets.vim'
+  Plugin 'airblade/vim-gitgutter'
 "Save vim sessions easier (used by tmux-resurrect)
-Plugin 'tpope/vim-obsession'
+  Plugin 'tpope/vim-obsession'
 "other
-Plugin 'mhinz/vim-startify'            " A start menu for vim
-Plugin 'karoliskoncevicius/vim-sendtowindow' "https://github.com/karoliskoncevicius/vim-sendtowindow
+  Plugin 'mhinz/vim-startify' "A start menu for vim
+  Plugin 'karoliskoncevicius/vim-sendtowindow' "https://github.com/karoliskoncevicius/vim-sendtowindow
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -272,6 +266,12 @@ let g:pandoc#folding#fdc = 0
 "Arduino Directory
 let g:arduino_dir = '~/Applications/Arduino'
 
+"EasyAlign
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
+nmap ga: :EasyAlign:>l1<cr>
+xmap ga: :EasyAlign*:>l1<cr>
+
 " Gitgutter
 set foldtext=gitgutter#fold#foldtext()
 " set signcolumn=number " use number column as signcolumn
@@ -367,14 +367,33 @@ nmap <leader>GG :GitGutterToggle<CR>
 
 " NERDTree
 map <leader>n :NERDTreeToggle<CR>
+map <leader>nb :NERDTreeFromBookmark 
+map <leader>nf :NERDTreeFind<cr>
 
 " Vimwiki
 nmap <silent><buffer> <Leader>wc <Plug>Vimwiki2HTML
 
 "}}}
 "----- General Mappings {{{
-"
 
+"" Diff original and edited file
+" https://vimdoc.sourceforge.net/htmldoc/diff.html#:DiffOrig
+" see the difference between the current buffer and the file it was loaded from, thus the changes you made.
+  " command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+  "       \ | wincmd p | diffthis
+command! DiffOrig let g:diffline = line('.') | vert new | set bt=nofile | r # | 0d_ | diffthis | :exe "norm! ".g:diffline."G" | wincmd p | diffthis | wincmd p
+nnoremap <Leader>do :DiffOrig<cr>
+nnoremap <leader>dc :q<cr>:diffoff<cr>:exe "norm! ".g:diffline."G"<cr>
+
+"" Edit configuration files
+" https://stackoverflow.com/a/52156757/13734567
+nnoremap <leader>ev :e $MYVIMRC<CR>
+" current file's filetype configuration
+nnoremap <leader>ef :e ~/.vim/after/ftplugin/<C-R>=&filetype<CR>.vim<CR>
+
+nmap <leader>w :w!<cr>
+
+map <silent> <leader><cr> :set hls!<cr>
 " font type
 if IsLinux "If linux
   set guifont=DroidSansMono\ Nerd\ Font\ 12
@@ -564,7 +583,6 @@ autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
 set smarttab
 set autoindent
-set foldmethod=syntax
 " set colorcolumn=81
 "I don't know what this is for but the $* creates an error message
 "set grepprg=grep\ -nH $*
