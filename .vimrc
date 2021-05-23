@@ -388,6 +388,9 @@ command! DiffOrig let g:diffline = line('.') | vert new | set bt=nofile | r # | 
 nnoremap <Leader>do :DiffOrig<cr>
 nnoremap <leader>dc :q<cr>:diffoff<cr>:exe "norm! ".g:diffline."G"<cr>
 
+if IsWin || IsWSL
+  command UI silent exec "!explorer ."
+endif
 "" Edit configuration files
 " https://stackoverflow.com/a/52156757/13734567
 nnoremap <leader>ev :e $MYVIMRC<CR>
