@@ -224,18 +224,18 @@ let g:user_emmet_mode='a'    "enable all function in all mode.
 set diffopt+=vertical
 " Use Nerdtree bookmarks in Startify
 " https://github.com/mhinz/vim-startify/wiki/Example-configurations#use-nerdtree-bookmarks
-" let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
+let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
 " " Read ~/.NERDTreeBookmarks file and takes its second column
 " function! s:nerdtreeBookmarks()
-"     let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
-"     let bookmarks = bookmarks[0:-2] " Slices an empty last line
-"     return map(bookmarks, "{'line': v:val, 'path': v:val}")
+    " let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
+    " let bookmarks = bookmarks[0:-2] " Slices an empty last line
+    " return map(bookmarks, "{'line': v:val, 'path': v:val}")
 " endfunction
 let g:startify_lists = [
         \ { 'type': 'files',     'header': ['   MRU']            },
         \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
         \ ]
-        " \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
         " \ { 'type': 'commands',  'header': ['   Commands']       },
 " let g:startify_lists = [
 "         \ { 'type': 'sessions',  'header': ['   Sessions']       },
@@ -516,6 +516,8 @@ map <Leader>vz :VimuxZoomRunner<CR>|  "Zoom the tmux runner pane
   "Py
   if IsWSL
     autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python.exe<space>%<CR>
+  elseif IsWin
+    autocmd FileType python map <buffer> <F5> :w<CR>:!python<space>%<CR>
   else
     autocmd FileType python map <buffer> <F5> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
     " autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python<space>%<CR>
