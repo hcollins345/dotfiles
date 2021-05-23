@@ -362,6 +362,9 @@ map <leader>f :Goyo \| set linebreak<CR>
 " Commentary
 map cm <Plug>Commentary
 
+" Startify 
+command Home Startify
+
 "GitGutter
 nmap <leader>GG :GitGutterToggle<CR>
 
