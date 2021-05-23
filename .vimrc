@@ -175,7 +175,7 @@ let g:nightflyCursorColor = 1
 
 highlight clear signcolumn
 
-" set background=light
+set background=dark
 "Colorscheme
 " colorscheme gruvbox
 " colorscheme base16-flat
