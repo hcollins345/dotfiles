@@ -399,6 +399,8 @@ nnoremap <leader>ef :e ~/.vim/after/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 
 nmap <leader>w :w!<cr>
 
+command Time pu=strftime('%c')
+
 map <silent> <leader><cr> :set hls!<cr>
 " font type
 if IsLinux "If linux
