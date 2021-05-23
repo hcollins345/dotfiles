@@ -232,9 +232,9 @@ let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
     " return map(bookmarks, "{'line': v:val, 'path': v:val}")
 " endfunction
 let g:startify_lists = [
+        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
         \ { 'type': 'files',     'header': ['   MRU']            },
         \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
         \ ]
         " \ { 'type': 'commands',  'header': ['   Commands']       },
 " let g:startify_lists = [
