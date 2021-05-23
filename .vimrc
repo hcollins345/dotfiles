@@ -269,7 +269,7 @@ let g:arduino_dir = '~/Applications/Arduino'
 "EasyAlign
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
-nmap ga: :EasyAlign:>l1<cr>
+nmap ga: :'{,'}EasyAlign*:>l1<cr>
 xmap ga: :EasyAlign*:>l1<cr>
 
 " Gitgutter
@@ -290,6 +290,8 @@ map gi :YcmCompleter GetDoc<CR>
 
 "fzf
 map ; :Files<CR>
+" Empty value to disable preview window altogether
+let g:fzf_preview_window = []
 
 " Python Folding (uncomment to see docstrings)
 let g:SimpylFold_docstring_preview = 1
@@ -603,7 +605,7 @@ if has("autocmd")
   autocmd FileType markdown setlocal ts=2 sts=2 sw=2 tw=79
   " autocmd FileType rmd setlocal ts=2 sts=2 sw=2
   autocmd FileType xml setlocal noexpandtab
-  autocmd FileType *.tcg,*.lvl,*.ptm,*.soc setlocal filetype=c syntax=off
+  autocmd FileType *.tcg,*.lvl,*.ptm,*.soc setlocal filetype=c syntax=off syntax=on
   autocmd BufRead,BufNewFile *.pde,*.ino set filetype=arduino
   autocmd BufRead,BufNewFile *.tex set filetype=tex
   filetype plugin indent on
