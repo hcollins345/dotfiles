@@ -38,10 +38,10 @@ endif
 if IsWin
   set shellslash
 endif
-" if IsWin
-"   set pythonthreehome=C:\Users\hcollins\anaconda3
-"   set pythonthreedll=C:\Users\hcollins\anaconda3\python38.dll
-" endif
+if IsWin
+  set pythonthreehome=C:\Users\Hcollins\anaconda3
+  set pythonthreedll=C:\Users\Hcollins\anaconda3\python38.dll
+endif
 "pythonthreehome and pythonthreedll
 " }}}
 " ===== INIT SETTINGS AND VUNDLE REQUIREMENTS {{{
@@ -130,7 +130,9 @@ Plugin 'VundleVim/Vundle.vim'
   Plugin 'tmhedberg/SimpylFold'
 "Panes
   Plugin 'christoomey/vim-tmux-navigator'
+if !IsWin
   Plugin 'benmills/vimux'
+endif
 "Powerline
   Plugin 'vim-airline/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
@@ -224,14 +226,15 @@ let g:user_emmet_mode='a'    "enable all function in all mode.
 set diffopt+=vertical
 " Use Nerdtree bookmarks in Startify
 " https://github.com/mhinz/vim-startify/wiki/Example-configurations#use-nerdtree-bookmarks
-" let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
-" " Read ~/.NERDTreeBookmarks file and takes its second column
-" function! s:nerdtreeBookmarks()
-"     let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
-"     let bookmarks = bookmarks[0:-2] " Slices an empty last line
-"     return map(bookmarks, "{'line': v:val, 'path': v:val}")
-" endfunction
+let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
+" Read ~/.NERDTreeBookmarks file and takes its second column
+function! s:nerdtreeBookmarks()
+    let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
+    let bookmarks = bookmarks[0:-2] " Slices an empty last line
+    return map(bookmarks, "{'line': v:val, 'path': v:val}")
+endfunction
 let g:startify_lists = [
+        \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']},
         \ { 'type': 'files',     'header': ['   MRU']            },
         \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
         \ ]
@@ -307,33 +310,6 @@ set laststatus=2 " 2 to Always display the statusline in all windows
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeChDirMode = 2
 
-" Goyo
-function! s:goyo_enter()
-  if executable('tmux') && strlen($TMUX)
-    silent !tmux set status off
-    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-  endif
-  set noshowmode
-  set noshowcmd
-  set scrolloff=999
-  " Limelight
-  " ...
-endfunction
-
-function! s:goyo_leave()
-  if executable('tmux') && strlen($TMUX)
-    silent !tmux set status on
-    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-  endif
-  set showmode
-  set showcmd
-  set scrolloff=5
-  " Limelight!
-  " ...
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " }}}
 "===== MAPPINGS {{{
@@ -518,8 +494,10 @@ map <Leader>vz :VimuxZoomRunner<CR>|  "Zoom the tmux runner pane
   "Py
   if IsWSL
     autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python.exe<space>%<CR>
-  else
+  elseif IsLinux
     autocmd FileType python map <buffer> <F5> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+  else
+    autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python<space>%<CR>
     " autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python<space>%<CR>
     "autocmd BufRead,BufNewFile *.py map <buffer> <F5> :python3<space>%<CR>
   endif
@@ -656,7 +634,7 @@ endif
 " endif
 
 "Source the vimrc file after saving it
-autocmd! bufwritepost .vimrc source ~/dotfiles/.vimrc
+autocmd! bufwritepost .vimrc source ~/.vimrc
 
 " vim: set fdm=marker fmr={{{,}}} fdl=0 :
 "}}}
