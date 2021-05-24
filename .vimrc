@@ -177,7 +177,7 @@ let g:nightflyCursorColor = 1
 
 highlight clear signcolumn
 
-" set background=light
+set background=dark
 "Colorscheme
 " colorscheme gruvbox
 " colorscheme base16-flat
@@ -227,18 +227,17 @@ set diffopt+=vertical
 " Use Nerdtree bookmarks in Startify
 " https://github.com/mhinz/vim-startify/wiki/Example-configurations#use-nerdtree-bookmarks
 let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
-" Read ~/.NERDTreeBookmarks file and takes its second column
-function! s:nerdtreeBookmarks()
-    let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
-    let bookmarks = bookmarks[0:-2] " Slices an empty last line
-    return map(bookmarks, "{'line': v:val, 'path': v:val}")
-endfunction
+" " Read ~/.NERDTreeBookmarks file and takes its second column
+" function! s:nerdtreeBookmarks()
+    " let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
+    " let bookmarks = bookmarks[0:-2] " Slices an empty last line
+    " return map(bookmarks, "{'line': v:val, 'path': v:val}")
+" endfunction
 let g:startify_lists = [
-        \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']},
+        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
         \ { 'type': 'files',     'header': ['   MRU']            },
         \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
         \ ]
-        " \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
         " \ { 'type': 'commands',  'header': ['   Commands']       },
 " let g:startify_lists = [
 "         \ { 'type': 'sessions',  'header': ['   Sessions']       },
@@ -338,6 +337,9 @@ map <leader>f :Goyo \| set linebreak<CR>
 " Commentary
 map cm <Plug>Commentary
 
+" Startify 
+command Home Startify
+
 "GitGutter
 nmap <leader>GG :GitGutterToggle<CR>
 
@@ -361,6 +363,9 @@ command! DiffOrig let g:diffline = line('.') | vert new | set bt=nofile | r # | 
 nnoremap <Leader>do :DiffOrig<cr>
 nnoremap <leader>dc :q<cr>:diffoff<cr>:exe "norm! ".g:diffline."G"<cr>
 
+if IsWin || IsWSL
+  command UI silent exec "!explorer ."
+endif
 "" Edit configuration files
 " https://stackoverflow.com/a/52156757/13734567
 nnoremap <leader>ev :e $MYVIMRC<CR>
@@ -368,6 +373,8 @@ nnoremap <leader>ev :e $MYVIMRC<CR>
 nnoremap <leader>ef :e ~/.vim/after/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 
 nmap <leader>w :w!<cr>
+
+command Time pu=strftime('%c')
 
 map <silent> <leader><cr> :set hls!<cr>
 " font type
@@ -494,10 +501,10 @@ map <Leader>vz :VimuxZoomRunner<CR>|  "Zoom the tmux runner pane
   "Py
   if IsWSL
     autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python.exe<space>%<CR>
+  elseif IsWin
+    autocmd FileType python map <buffer> <F5> :w<CR>:!python<space>%<CR>
   elseif IsLinux
     autocmd FileType python map <buffer> <F5> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-  else
-    autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python<space>%<CR>
     " autocmd BufRead,BufNewFile *.py map <buffer> <F5> :!<space>python<space>%<CR>
     "autocmd BufRead,BufNewFile *.py map <buffer> <F5> :python3<space>%<CR>
   endif

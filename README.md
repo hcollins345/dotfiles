@@ -156,6 +156,14 @@ rm -rf fonts
 ```
 Navigate to ```C:\Program Files\Git\mingw64\share\fonts```, highlight all, right click and hit install
 
+### Ripgrep
+Run in admin powershell
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+choco install ripgrep
+```
+
 ### Ranger
 
 ```bash
@@ -169,6 +177,9 @@ To use powershell scripting, run this in powershell in admin mode
 ```
 Set-ExecutionPolicy RemoteSigned
 ```
+
+
+
 
 WINDOWS (WSL1)
 -------------------------------------------------------
